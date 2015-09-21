@@ -18,7 +18,6 @@ namespace CarManage.UI.Client.StartUp
             Application.SetCompatibleTextRenderingDefault(false);
 
             ClassLibrary.Configuration.ConfigurationManager.Instance.Init();
-            log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo("log4net.config"));
             Application.Run(new Form1());
         }
     }

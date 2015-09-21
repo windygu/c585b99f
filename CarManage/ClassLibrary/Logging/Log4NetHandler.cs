@@ -9,7 +9,7 @@ namespace ClassLibrary.Logging
 
         static Log4NetHandler()
         {
-            //log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo("log4net.config"));
+            log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo("log4net.config"));
         }
 
         public void Debug(object message)
