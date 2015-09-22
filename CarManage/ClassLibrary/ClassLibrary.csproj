@@ -86,6 +86,7 @@
     <Compile Include="ExceptionHandling\UserInterfaceException.cs" />
     <Compile Include="ExceptionHandling\UserInterfaceExceptionHandler.cs" />
     <Compile Include="ExceptionHandling\ValidateException.cs" />
+    <Compile Include="Logging\EnterpriseLibraryLogHandler.cs" />
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Logging\Log4NetHandler.cs" />
     <Compile Include="Logging\LogFactory.cs" />
@@ -115,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Include\Dapper.dll" />
+    <Content Include="Include\DapperExtensions.dll" />
     <Content Include="Include\log4net.dll" />
     <Content Include="Include\MySql.Data.dll" />
     <Content Include="Include\Newtonsoft.Json.dll" />
