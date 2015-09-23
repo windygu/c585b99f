@@ -76,6 +76,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CarManage.DataAccess\CarManage.DataAccess.MySql.csproj">
+      <Project>{2ef144a1-5070-46ac-bb30-8b002d776d84}</Project>
+      <Name>CarManage.DataAccess.MySql</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj">
       <Project>{d2aa8df7-41bb-40bd-91b3-9d23e1025360}</Project>
       <Name>ClassLibrary</Name>

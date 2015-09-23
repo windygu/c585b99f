@@ -4,7 +4,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.IO;
 
-namespace ClassLibrary.Common
+namespace ClassLibrary.Utility.Security
 {
     public class SecurityHelper
     {

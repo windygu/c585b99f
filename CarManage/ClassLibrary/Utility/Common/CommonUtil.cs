@@ -7,7 +7,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace ClassLibrary.Common
+namespace ClassLibrary.Utility.Common
 {
     public class CommonUtil
     {

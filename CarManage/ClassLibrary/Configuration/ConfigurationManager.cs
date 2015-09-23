@@ -39,7 +39,7 @@ namespace ClassLibrary.Configuration
 
         public void Init()
         {
-            UpdateConnectionStrings();
+            //UpdateConnectionStrings();
 
             string configPath =
                 Path.Combine(AppDomain.CurrentDomain.BaseDirectory,

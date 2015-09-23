@@ -9,7 +9,7 @@ using NPOI.HSSF.Util;
 using System.Web;
 using System.Collections.Generic;
 
-namespace ClassLibrary.Common
+namespace ClassLibrary.Utility.Office
 {
     public class ExcelUtil
     {

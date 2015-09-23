@@ -4,7 +4,7 @@ using System.Web.UI.WebControls;
 using System.Linq;
 using System.Web;
 
-namespace ClassLibrary.Common
+namespace ClassLibrary.Utility.Web
 {
     public class WebUtil
     {

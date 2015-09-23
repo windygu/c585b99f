@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Drawing;
 
-namespace ClassLibrary.Utility.File
+namespace ClassLibrary.Utility.IO
 {
     public class FileUtil
     {

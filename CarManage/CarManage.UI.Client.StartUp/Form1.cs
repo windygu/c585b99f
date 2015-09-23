@@ -22,7 +22,8 @@ namespace CarManage.UI.Client.StartUp
         private void button1_Click(object sender, EventArgs e)
         {
             //SqlServerDapper();
-            LoggingTest();
+            //LoggingTest();
+            new CarManage.DataAccess.MySql.Test().Insert();
         }
 
         private void SqlServerDapper()

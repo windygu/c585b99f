@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 
-namespace ClassLibrary.Common
+namespace ClassLibrary.Utility.Common
 {
     public class ImageUtil
     {

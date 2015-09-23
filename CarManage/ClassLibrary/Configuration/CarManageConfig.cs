@@ -184,6 +184,14 @@ namespace ClassLibrary.Configuration
         public string ConnectionStringName { get; set; }
 
         /// <summary>
+        /// 数据库连接字符串
+        /// </summary>
+        public string ConnectionString
+        {
+            get { return System.Configuration.ConfigurationManager.ConnectionStrings["MySqlConnectionString"].ConnectionString; }
+        }
+
+        /// <summary>
         /// 系统语言
         /// </summary>
         public string Language { get; set; }

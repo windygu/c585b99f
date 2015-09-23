@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace ClassLibrary.Common
+namespace ClassLibrary.Utility.Common
 {
     public class LibraryUtil
     {

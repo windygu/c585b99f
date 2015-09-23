@@ -103,7 +103,7 @@
     <Compile Include="Utility\Common\LibraryUtil.cs" />
     <Compile Include="Utility\Common\Win32Util.cs" />
     <Compile Include="Utility\Common\XmlUtil.cs" />
-    <Compile Include="Utility\File\FileUtil.cs" />
+    <Compile Include="Utility\IO\FileUtil.cs" />
     <Compile Include="Utility\Office\ExcelUtil.cs" />
     <Compile Include="Utility\Security\SecurityUtil.cs" />
     <Compile Include="Utility\Web\NetUtil.cs" />

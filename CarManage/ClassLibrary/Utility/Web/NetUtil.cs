@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 
-namespace ClassLibrary.Common
+namespace ClassLibrary.Utility.Web
 {
     public class NetUtil
     {

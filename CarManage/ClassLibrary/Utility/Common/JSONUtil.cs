@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json.Linq;
 
-namespace ClassLibrary.Common
+namespace ClassLibrary.Utility.Common
 {
     public class JSONUtil
     {

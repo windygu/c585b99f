@@ -2,7 +2,7 @@
 using System.Xml;
 using System.IO;
 
-namespace ClassLibrary.Common
+namespace ClassLibrary.Utility.Common
 {
     public class XmlUtil
     {

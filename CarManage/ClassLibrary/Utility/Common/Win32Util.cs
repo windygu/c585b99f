@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace ClassLibrary.Common
+namespace ClassLibrary.Utility.Common
 {
     /// <summary>
     /// Win32函数公用类

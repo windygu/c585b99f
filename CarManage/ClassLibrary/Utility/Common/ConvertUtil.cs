@@ -4,7 +4,7 @@ using System.Drawing.Imaging;
 using System.Text.RegularExpressions;
 using System.IO;
 
-namespace ClassLibrary.Common
+namespace ClassLibrary.Utility.Common
 {
     public class ConvertUtil
     {
