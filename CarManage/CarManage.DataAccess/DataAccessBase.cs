@@ -43,5 +43,16 @@ namespace CarManage.DataAccess.MySql
 
             return connection;
         }
+
+        protected void CloseConnection(IDbConnection connection)
+        {
+            if (connection != null && connection.State.Equals(ConnectionState.Open))
+                connection.Close();
+        }
+
+        protected IDbTransaction BeginTransaction(IDbConnection connection)
+        {
+            return connection.BeginTransaction();
+        }
     }
 }
