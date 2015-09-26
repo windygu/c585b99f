@@ -5,6 +5,8 @@ using System.Data;
 using MySql.Data.MySqlClient;
 
 using ClassLibrary.Configuration;
+using Dapper;
+using DapperExtensions;
 
 namespace CarManage.DataAccess.MySql
 {
@@ -53,6 +55,50 @@ namespace CarManage.DataAccess.MySql
         protected IDbTransaction BeginTransaction(IDbConnection connection)
         {
             return connection.BeginTransaction();
+        }
+
+        protected void Commit(IDbTransaction transaction)
+        {
+            transaction.Commit();
+        }
+
+        protected void Rollback(IDbTransaction transaction)
+        {
+            transaction.Rollback();
+        }
+
+        protected IDbCommand CreateCommand(string commandText)
+        {
+            return new MySqlCommand(commandText);
+        }
+
+
+        protected IDbCommand CreateCommand(string commandText, IDbConnection connection)
+        {
+            MySqlConnection conn = connection as MySqlConnection;
+
+            return new MySqlCommand(commandText, conn);
+        }
+
+
+        protected IDbCommand CreateCommand(string commandText, IDbConnection connection, IDbTransaction transaction)
+        {
+            MySqlConnection conn = connection as MySqlConnection;
+            MySqlTransaction tran = transaction as MySqlTransaction;
+
+            return new MySqlCommand(commandText, conn, tran);
+        }
+
+
+        protected void ExecuteNonQuery(string commandText, IDbConnection connection)
+        {
+            //connection.exe
+        }
+
+        protected void ExecuteNonQuery(IDbCommand command)
+        {
+            command.ExecuteNonQuery();
+            //new MySqlCommand()
         }
     }
 }
