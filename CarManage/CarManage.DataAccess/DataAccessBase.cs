@@ -101,24 +101,6 @@ namespace CarManage.DataAccess.MySql
             }
         }
 
-        protected int ExecuteNonQuery(IDbCommand command)
-        {
-            if (command.Connection == null)
-            {
-                using (IDbConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    command.Connection = connection;
-
-                    return command.ExecuteNonQuery();
-                }
-            }
-            else
-            {
-                return command.ExecuteNonQuery();
-            }
-        }
-
         protected int ExecuteNonQuery(string connectionString, IDbCommand command)
         {
             using (IDbConnection connection = new MySqlConnection(connectionString))
@@ -393,7 +375,7 @@ namespace CarManage.DataAccess.MySql
             bool buffered = true, int? commandTimeout = null, CommandType? commandType = null, object param = null)
         {
             if (connection.State.Equals(ConnectionState.Closed))
-                connection.Open();
+                connection.Open();connection.Insert
 
             return connection.Query<T>(commandText, param, transaction, buffered, commandTimeout, commandType);
         }
@@ -462,16 +444,18 @@ namespace CarManage.DataAccess.MySql
             return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
-        //public IEnumerable<TReturn> Query<TReturn>(string commandText, Type[] types, Func<object[], TReturn> map,
-        //    IDbConnection connection, IDbTransaction transaction = null, bool buffered = true,
-        //    string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null, dynamic param = null)
-        //{
-        //    if (connection.State.Equals(ConnectionState.Closed))
-        //        connection.Open();
+        public IEnumerable<TReturn> Query<TReturn>(string commandText, Type[] types, Func<object[], TReturn> map,
+            IDbConnection connection, IDbTransaction transaction = null, bool buffered = true,
+            string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null, object param = null)
+        {
+            if (connection.State.Equals(ConnectionState.Closed))
+                connection.Open();
+  
+            return connection.Query<TReturn>(commandText, types, map, param, transaction,
+                buffered, splitOn, commandTimeout, commandType);
+        }
 
-        //    return connection.Query<TReturn>(commandText, types, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
-        //}
-        //public static SqlMapper.GridReader QueryMultiple(this IDbConnection cnn, CommandDefinition command);
+        
         //public static SqlMapper.GridReader QueryMultiple(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
     }
 }
