@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClassLibrary.Event
+namespace ClassLibrary.WorkingProcess
 {
     /// <summary>
     /// 工作同步方式

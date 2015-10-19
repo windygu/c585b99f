@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.CompilerServices;
 
-namespace ClassLibrary.Event
+namespace ClassLibrary.WorkingProcess
 {
     /// <summary>
     /// 事件列表, 非线程安全

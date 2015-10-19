@@ -14,29 +14,7 @@ namespace CarManage.DataAccess.MySql
     {
         private string connectionString = CarManageConfig.Instance.ConnectionString;
 
-        protected IDbConnection CreateConnection()
-        {
-            IDbConnection connection = new MySqlConnection(connectionString);
-            return connection;
-        }
-
-        protected IDbConnection CreateConnection(string connectionString)
-        {
-            IDbConnection connection = new MySqlConnection(connectionString);
-            return connection;
-        }
-
-        protected IDbConnection CreateConnection(bool open)
-        {
-            IDbConnection connection = new MySqlConnection(connectionString);
-
-            if (open)
-                connection.Open();
-
-            return connection;
-        }
-
-        protected IDbConnection CreateConnection(string connectionString, bool open)
+        protected IDbConnection CreateConnection(string connectionString, bool open = false)
         {
             IDbConnection connection = new MySqlConnection(connectionString);
 
@@ -67,27 +45,19 @@ namespace CarManage.DataAccess.MySql
             transaction.Rollback();
         }
 
-        protected IDbCommand CreateCommand(string commandText)
+        protected IDbCommand CreateCommand(string commandText, IDbConnection connection = null,
+            IDbTransaction transaction = null)
         {
-            return new MySqlCommand(commandText);
+            IDbCommand command = new MySqlCommand(commandText);
+
+            if (connection != null)
+                command.Connection = connection;
+
+            if (transaction != null)
+                command.Transaction = transaction;
+
+            return command;
         }
-
-
-        protected IDbCommand CreateCommand(string commandText, IDbConnection connection)
-        {
-            MySqlConnection conn = connection as MySqlConnection;
-
-            return new MySqlCommand(commandText, conn);
-        }
-
-        protected IDbCommand CreateCommand(string commandText, IDbConnection connection, IDbTransaction transaction)
-        {
-            MySqlConnection conn = connection as MySqlConnection;
-            MySqlTransaction tran = transaction as MySqlTransaction;
-
-            return new MySqlCommand(commandText, conn, tran);
-        }
-
 
         protected int ExecuteNonQuery(string commandText, string connectionString)
         {
@@ -113,7 +83,7 @@ namespace CarManage.DataAccess.MySql
             }
         }
 
-        protected int ExecuteNonQuery(string commandText, IDbConnection connection)
+        protected int ExecuteNonQuery(string commandText, IDbConnection connection, IDbTransaction transaction = null)
         {
             if (connection.State.Equals(ConnectionState.Closed))
                 connection.Open();
@@ -121,42 +91,16 @@ namespace CarManage.DataAccess.MySql
             IDbCommand command = new MySqlCommand(commandText);
             command.Connection = connection;
 
-            return command.ExecuteNonQuery();
-        }
-
-        protected int ExecuteNonQuery(IDbConnection connection, IDbCommand command)
-        {
-            if (connection.State.Equals(ConnectionState.Closed))
-                connection.Open();
-
-            command = new MySqlCommand();
-            command.Connection = connection;
+            if (transaction != null)
+                command.Transaction = transaction;
 
             return command.ExecuteNonQuery();
         }
 
-        protected int ExecuteNonQuery(string commandText, IDbConnection connection, IDbTransaction transaction)
+        protected int ExecuteNonQuery(IDbConnection connection, IDbCommand command, IDbTransaction transaction = null)
         {
             if (connection.State.Equals(ConnectionState.Closed))
                 connection.Open();
-
-            if (transaction == null)
-                transaction = connection.BeginTransaction();
-
-            IDbCommand command = new MySqlCommand(commandText);
-            command.Connection = connection;
-            command.Transaction = transaction;
-
-            return command.ExecuteNonQuery();
-        }
-
-        protected int ExecuteNonQuery(IDbConnection connection, IDbTransaction transaction, IDbCommand command)
-        {
-            if (connection.State.Equals(ConnectionState.Closed))
-                connection.Open();
-
-            if (transaction == null)
-                transaction = connection.BeginTransaction();
 
             command.Connection = connection;
             command.Transaction = transaction;
@@ -375,7 +319,7 @@ namespace CarManage.DataAccess.MySql
             bool buffered = true, int? commandTimeout = null, CommandType? commandType = null, object param = null)
         {
             if (connection.State.Equals(ConnectionState.Closed))
-                connection.Open();connection.Insert
+                connection.Open();
 
             return connection.Query<T>(commandText, param, transaction, buffered, commandTimeout, commandType);
         }
@@ -396,7 +340,7 @@ namespace CarManage.DataAccess.MySql
             return connection.Query(type, commandText, param, transaction, buffered, commandTimeout, commandType);
         }
 
-        public static IEnumerable<TReturn> Query<TFirst, TSecond, TReturn>(string commandText,
+        public IEnumerable<TReturn> Query<TFirst, TSecond, TReturn>(string commandText,
             Func<TFirst, TSecond, TReturn> map, IDbConnection connection, IDbTransaction transaction = null,
             bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null,
             object param = null)
@@ -404,31 +348,15 @@ namespace CarManage.DataAccess.MySql
             return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
-        public static IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(string commandText,
-            Func<TFirst, TSecond, TThird, TFourth, TFifth, TReturn> map, IDbConnection connection,
-            IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null,
-            CommandType? commandType = null, object param = null)
+        public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TReturn>(string commandText,
+            Func<TFirst, TSecond, TThird, TReturn> map, IDbConnection connection, IDbTransaction transaction = null,
+            bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null,
+            object param = null)
         {
             return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
-        public static IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(string commandText,
-            Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn> map, IDbConnection connection,
-            IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null,
-            CommandType? commandType = null, object param = null)
-        {
-            return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
-        }
-
-        public static IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(string commandText,
-            Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn> map, IDbConnection connection,
-            IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null,
-            CommandType? commandType = null, object param = null)
-        {
-            return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
-        }
-
-        public static IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TReturn>(string commandText,
+        public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TReturn>(string commandText,
             Func<TFirst, TSecond, TThird, TFourth, TReturn> map, IDbConnection connection, IDbTransaction transaction = null,
             bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null,
             object param = null)
@@ -436,10 +364,26 @@ namespace CarManage.DataAccess.MySql
             return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
-        public static IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TReturn>(string commandText,
-            Func<TFirst, TSecond, TThird, TReturn> map, IDbConnection connection, IDbTransaction transaction = null,
-            bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null,
-            object param = null)
+        public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(string commandText,
+            Func<TFirst, TSecond, TThird, TFourth, TFifth, TReturn> map, IDbConnection connection,
+            IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null,
+            CommandType? commandType = null, object param = null)
+        {
+            return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+        }
+
+        public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(string commandText,
+            Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn> map, IDbConnection connection,
+            IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null,
+            CommandType? commandType = null, object param = null)
+        {
+            return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+        }
+
+        public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(string commandText,
+            Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn> map, IDbConnection connection,
+            IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null,
+            CommandType? commandType = null, object param = null)
         {
             return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
@@ -450,12 +394,64 @@ namespace CarManage.DataAccess.MySql
         {
             if (connection.State.Equals(ConnectionState.Closed))
                 connection.Open();
-  
+
             return connection.Query<TReturn>(commandText, types, map, param, transaction,
                 buffered, splitOn, commandTimeout, commandType);
         }
 
-        
-        //public static SqlMapper.GridReader QueryMultiple(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
+        public SqlMapper.GridReader QueryMultiple(string commandText, IDbConnection connection,
+            IDbTransaction transaction = null, object param = null, int? commandTimeout = null,
+                CommandType? commandType = null)
+        {
+            return connection.QueryMultiple(commandText, param, transaction, commandTimeout, commandType);
+        }
+
+        public dynamic Insert<T>(T entity, IDbConnection connection, IDbTransaction transaction = null,
+            int? commandTimeout = null) where T : class
+        {
+            return connection.Insert<T>(entity, transaction, commandTimeout);
+        }
+
+        public void Insert<T>(IEnumerable<T> entities, IDbConnection connection,
+            IDbTransaction transaction = null, int? commandTimeout = null) where T : class
+        {
+            connection.Insert<T>(entities, transaction, commandTimeout);
+        }
+
+        public bool Delete<T>(object predicate, IDbConnection connection, IDbTransaction transaction = null,
+            int? commandTimeout = null) where T : class
+        {
+            return connection.Delete<T>(predicate, transaction, commandTimeout);
+        }
+        public bool Delete<T>(T entity, IDbConnection connection, IDbTransaction transaction = null,
+            int? commandTimeout = null) where T : class
+        {
+            return connection.Delete<T>(entity, transaction, commandTimeout);
+        }
+
+        public bool Update<T>(T entity, IDbConnection connection, IDbTransaction transaction = null,
+            int? commandTimeout = null) where T : class
+        {
+            return connection.Update<T>(entity, transaction, commandTimeout);
+        }
+
+        public T Get<T>(object id, IDbConnection connection, IDbTransaction transaction = null,
+            int? commandTimeout = null) where T : class
+        {
+            return connection.Get<T>(id, transaction, commandTimeout);
+        }
+
+        public IEnumerable<T> GetList<T>(IDbConnection connection, object predicate = null,
+            IList<ISort> sort = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, bool buffered = false) where T : class
+        {
+            return connection.GetList<T>(predicate, sort, transaction, commandTimeout, buffered);
+        }
+
+        public static int Count<T>(object predicate, IDbConnection connection, IDbTransaction transaction = null,
+            int? commandTimeout = null) where T : class
+        {
+            return connection.Count<T>(predicate, transaction, commandTimeout);
+        }
     }
 }

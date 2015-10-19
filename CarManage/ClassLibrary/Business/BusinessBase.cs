@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 
 using ClassLibrary.ExceptionHandling;
-using ClassLibrary.Event;
+using ClassLibrary.WorkingProcess;
 
 namespace ClassLibrary.Business
 {
-    public abstract class BusinessBase : WorkStatusManager
+    public abstract class BusinessBase : ClassLibrary.WorkingProcess.WorkProcessManager
     {
         #region 私有变量
 

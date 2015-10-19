@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ClassLibrary.Event
+namespace ClassLibrary.WorkingProcess
 {
     /// <summary>
     /// 任务完成事件所需的参数
     /// </summary>
-    public class WorkerCompletedEventArgs : System.ComponentModel.RunWorkerCompletedEventArgs
+    public class WorkCompleteEventArgs : System.ComponentModel.RunWorkerCompletedEventArgs
     {
         /// <summary>
         /// 任务完成事件参数构造函数
@@ -15,7 +15,8 @@ namespace ClassLibrary.Event
         /// <param name="error"></param>
         /// <param name="cancelled"></param>
         /// <param name="completedTime"></param>
-        public WorkerCompletedEventArgs(Object result, Exception error, Boolean cancelled, TimeSpan completedTime)
+        public WorkCompleteEventArgs(object result, Exception error = null, bool cancelled = false,
+            TimeSpan completedTime = new TimeSpan())
             : base(result, error, cancelled)
         {
             this.processTime = completedTime;
@@ -35,15 +36,15 @@ namespace ClassLibrary.Event
             set { processTime = value; }
         }
 
-        private Object tag;
+        private object data;
 
         /// <summary>
-        /// 
+        /// 事件状态返回值
         /// </summary>
-        public Object Tag
+        public object Data
         {
-            get { return this.tag; }
-            set { this.tag = value; }
+            get { return this.data; }
+            set { this.data = value; }
         }
     }
 }

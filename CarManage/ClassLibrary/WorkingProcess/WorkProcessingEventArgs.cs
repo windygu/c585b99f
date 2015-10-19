@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace ClassLibrary.Event
+namespace ClassLibrary.WorkingProcess
 {
-    public class ReportWorkStatusEventArgs :  ProgressChangedEventArgs
+    public class WorkProcessingEventArgs : ProgressChangedEventArgs
     {
         /// <summary>
         /// 工作状态事件构造函数
@@ -12,8 +12,8 @@ namespace ClassLibrary.Event
         /// <param name="totalWorkCount">总共的工作量</param>
         /// <param name="currentWork">当前的工作进度</param>
         /// <param name="userState">唯一的用户状态</param>
-        public ReportWorkStatusEventArgs(string workStatus, int totalWorkCount,
-            int currentWork, TimeSpan processTime, Object userState)
+        public WorkProcessingEventArgs(string workStatus, int totalWorkCount = 0,
+            int currentWork = 0, TimeSpan processTime = new TimeSpan(), object userState = null)
             : base(((totalWorkCount == 0) ? 0 : currentWork * 100 / totalWorkCount),
             userState)
         {
@@ -43,15 +43,18 @@ namespace ClassLibrary.Event
         public TimeSpan ProcessTime { get; set; }
 
         /// <summary>
-        /// 
+        /// 事件状态返回值
         /// </summary>
-        public Object Tag { get; set; }
+        public object Data { get; set; }
 
-
+        /// <summary>
+        /// 事件结果
+        /// </summary>
         public bool Result { get; set; }
 
 
         public string OperateType { get; set; }
+
         /// <summary>
         /// 获取剩余时间
         /// </summary>

@@ -67,11 +67,10 @@
     <Compile Include="DataAccess\MySql\DBUtil.cs" />
     <Compile Include="DataAccess\SqlServer\DBUtil.cs" />
     <Compile Include="Event\DelegateCollection.cs" />
-    <Compile Include="Event\EventHandlerList.cs" />
-    <Compile Include="Event\ReportWorkStatusEventArgs.cs" />
-    <Compile Include="Event\WorkerCompletedEventArgs.cs" />
-    <Compile Include="Event\WorkStatusManager.cs" />
-    <Compile Include="Event\WorkSyncType.cs" />
+    <Compile Include="WorkingProcess\EventHandlerList.cs" />
+    <Compile Include="WorkingProcess\WorkProcessingEventArgs.cs" />
+    <Compile Include="WorkingProcess\WorkCompleteEventArgs.cs" />
+    <Compile Include="WorkingProcess\WorkSyncType.cs" />
     <Compile Include="ExceptionHandling\BaseException.cs" />
     <Compile Include="ExceptionHandling\BusinessCustomException.cs" />
     <Compile Include="ExceptionHandling\BusinessException.cs" />
@@ -108,6 +107,7 @@
     <Compile Include="Utility\Security\SecurityUtil.cs" />
     <Compile Include="Utility\Web\NetUtil.cs" />
     <Compile Include="Utility\Web\WebUtil.cs" />
+    <Compile Include="WorkingProcess\WorkProcessManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Configuration\CarManage.config">
