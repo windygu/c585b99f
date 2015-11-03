@@ -1,0 +1,416 @@
+﻿<%-- 
+Name: 数据访问层代码生成模版
+Description: 根据数据库的内容生成模型层代码
+--%>
+
+<%@ CodeTemplate Language="C#" TargetLanguage="C#" ResponseEncoding="UTF-8"%>
+<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="内容" Description="数据源表" %>
+<%@ Property Name="ObjectName" Type="String" Category="注释" Description="对象名称，为生成注释而用" %>
+<%@ Property Name="SystemNamespace" Type="String" Category="输入参数" Description="这是一个字符串型的参数" %>
+<%@ Property Name="SubNamespace" Type="String" Category="输入参数" Description="这是一个字符串型的参数" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+#region CopyRight
+// -----------------------------------------------------------------------------------
+// 版权声明： 
+// 使用声明： 任何组织和个人未经许可不得擅自复制或更改其内容
+// 软件版本： 1.0
+// 公司地址： 
+// 公司电话： ***
+// -----------------------------------------------------------------------------------
+#endregion
+
+using System;
+using System.Collections.Generic;
+
+using Esoft.Framework.Utility.ExceptionHandling;
+using Esoft.Framework.Utility.Common;
+using TLC.Model.Common;
+using TLC.Model.Enum;
+
+namespace <%=SystemNamespace%>.<%=SubNamespace%>
+{
+     public class <%=SourceTable.Name %>
+     {
+         private static TLC.DataAccess.Common.<%=GetModelName()%> <%=GetModelParameterName()%> = 
+            new DataAccess.Common.<%=SourceTable.Name %>();
+            
+        /// <summary>
+        /// 添加<%=ObjectName%>
+        /// </summary>
+        /// <param name="<%=GetModelParameterName()%>Info"><%=ObjectName%>实体信息</param>
+        public void Add(<%=GetModelName()%>Info <%=GetModelParameterName()%>Info)
+        {
+            try
+            {
+                <%=GetModelParameterName()%>.Add(<%=GetModelParameterName()%>Info);
+            }
+            catch (Exception ex)
+            {
+                BusinessExceptionHandler.HandlerException("添加<%=ObjectName%>失败！", ex);
+            }
+        }
+        
+        /// <summary>
+        /// 更新<%=ObjectName%>
+        /// </summary>
+        /// <param name="<%=GetModelParameterName()%>Info"><%=ObjectName%>信息对象</param>
+        public void Update(<%=GetModelName()%>Info <%=GetModelParameterName()%>Info)
+        {
+            try
+            {
+                <%=GetModelParameterName()%>.Update(<%=GetModelParameterName()%>Info);
+            }
+            catch (Exception ex)
+            {
+                BusinessExceptionHandler.HandlerException("更新<%=ObjectName%>失败！", ex);
+            }
+        }
+        
+        /// <summary>
+        /// 删除<%=ObjectName%>
+        /// </summary>
+        /// <param name="<%=GetPrimaryKeyFieldName()%>"><%=ObjectName%>Id</param>
+        public void Delete(<%=GetPrimaryKeyType()%> <%=GetPrimaryKeyFieldName()%>)
+        {
+            try
+            {
+                <%=GetModelParameterName()%>.Delete(<%=GetPrimaryKeyFieldName()%>);
+            }
+            catch (Exception ex)
+            {
+                BusinessExceptionHandler.HandlerException("删除<%=ObjectName%>失败！", ex);
+            }
+        }
+        
+         /// <summary>
+        /// 获取<%=ObjectName%>信息对象
+        /// </summary>
+        /// <param name="<%=GetPrimaryKeyFieldName()%>">主键</param>
+        /// <returns>返回<%=ObjectName%>信息对象，如果无匹配则返回null。</returns>
+        public <%=GetModelName()%>Info Load(<%=GetPrimaryKeyType()%> <%=GetPrimaryKeyFieldName()%>)
+        {
+            <%=GetModelName()%>Info <%=GetModelParameterName()%>Info = null;
+
+            try
+            {
+                <%=GetModelParameterName()%>Info = <%=GetModelParameterName()%>.Load(<%=GetPrimaryKeyFieldName()%>);
+            }
+            catch (Exception ex)
+            {
+                BusinessExceptionHandler.HandlerException("获取<%=ObjectName%>信息失败！", ex);
+            }
+
+            return <%=GetModelParameterName()%>Info;
+        }
+        
+        /// <summary>
+        /// 获得所有<%=ObjectName%>集合
+        /// </summary>
+        /// <returns><%=ObjectName%>集合</returns>
+        public List<<%=GetModelName()%>Info> Get<%=GetModelName()%>s()
+        {
+            List<<%=GetModelName()%>Info> <%=GetModelParameterName()%>List =new List<<%=GetModelName()%>Info>();
+
+            try
+            {
+                <%=GetModelParameterName()%>List = <%=GetModelParameterName()%>.Get<%=GetModelName()%>s();
+            }
+            catch (Exception ex)
+            {
+                BusinessExceptionHandler.HandlerException("获取<%=ObjectName%>信息失败！", ex);
+            }
+
+            return <%=GetModelParameterName()%>List;
+        
+        }
+        
+     }
+}
+
+<script runat="template">
+	public string GetClassName()
+	{
+		string tempTable;
+		if (SourceTable.Name.EndsWith("s"))
+		{
+			tempTable = SourceTable.Name.Substring(0,SourceTable.Name.Length-1);
+		}
+		else
+		{
+			tempTable = SourceTable.Name;
+		}
+		return tempTable;
+	}
+	
+	public string GetModelName()
+	{
+		return ConvertToPascal(GetClassName());
+	}
+	
+	public string GetModelParameterName()
+	{
+		return ConvertToCamel(GetClassName());
+	}
+    
+	public string GetPrimaryKeyType()
+	{
+		if (SourceTable.PrimaryKey != null)
+		{
+			if (SourceTable.PrimaryKey.MemberColumns.Count == 1)
+			{
+				return GetCSharpDataTypeByDBColumn(SourceTable.PrimaryKey.MemberColumns[0]);
+			}
+			else
+			{
+				throw new ApplicationException("此模板只支持单个列的主键");
+			}
+		}
+		else
+		{
+			throw new ApplicationException("此模板需要有主键的表");
+		}
+	}
+	
+	public ColumnSchema GetPrimaryKeyColumn()
+	{
+		if (SourceTable.PrimaryKey != null)
+		{
+			if (SourceTable.PrimaryKey.MemberColumns.Count == 1)
+			{
+				return SourceTable.PrimaryKey.MemberColumns[0];
+			}
+			else
+			{
+				throw new ApplicationException("此模板只支持单个列的主键");
+			}
+		}
+		else
+		{
+			throw new ApplicationException("此模板需要有主键的表");
+		}
+	}
+	
+	public string GetPrimaryKeyName()
+	{
+		if (SourceTable.PrimaryKey != null)
+		{
+			if (SourceTable.PrimaryKey.MemberColumns.Count == 1)
+			{
+				return SourceTable.PrimaryKey.MemberColumns[0].Name;
+			}
+			else
+			{
+				throw new ApplicationException("此模板只支持单个列的主键");
+			}
+		}
+		else
+		{
+			throw new ApplicationException("此模板需要有主键的表");
+		}
+	}
+	
+	public string GetPrimaryKeySize()
+	{
+		return SourceTable.PrimaryKey.MemberColumns[0].Size.ToString();
+	}
+	
+	public string GetPrimaryKeySqlDbType()
+	{
+		return GetDbType(SourceTable.PrimaryKey.MemberColumns[0]);
+	}
+	
+	public string GetPrimaryKeyFieldName()
+	{
+		return ConvertToCamel(GetPrimaryKeyName());
+	}
+	
+	public string GetPrimaryKeyPropertyName()
+	{
+		return ConvertToPascal(GetPrimaryKeyName());
+	}
+	
+	public string GetInsertSql()
+	{
+		string sql = "\"INSERT INTO " + SourceTable.Name + "(";
+		foreach(ColumnSchema column in SourceTable.Columns)
+		{
+			sql += column.Name + ",";
+		}
+		sql = sql.Substring(0,sql.Length-1);
+		sql += ")\" +\n";
+		
+		sql += "\t\t\t\t\" values(";
+		foreach(ColumnSchema column in SourceTable.Columns)
+		{
+			sql += "@" + column.Name + ",";
+		}
+		sql = sql.Substring(0,sql.Length-1);
+		sql += ")\"";
+		
+		return sql;
+	}
+	
+	public string GetUpdateSql()
+	{
+		string sql = "\"UPDATE " + SourceTable.Name + " \" +\n";
+		sql += "\t\t\t\t\"SET ";
+		foreach(ColumnSchema column in SourceTable.Columns)
+		{
+			sql += column.Name + "=@" + column.Name + ",";
+		}
+		sql = sql.Substring(0,sql.Length-1);
+		sql += " \" +\n";
+		
+		sql += "\t\t\t\t\"WHERE " + GetPrimaryKeyName() + "=@" + GetPrimaryKeyName() + "\"";
+		
+		return sql;
+	}
+	
+	public string GetSelectOneModelSql()
+	{
+		string sql = "\"SELECT * FROM "+ SourceTable.Name +" WHERE " 
+            + GetPrimaryKeyName() + "=@" + GetPrimaryKeyName() + "\"";
+		
+		return sql;
+	}
+	
+    public string GetSelectModelSql()
+	{
+		string sql = "\"SELECT * FROM " + SourceTable.Name + " WHERE 1=1 \"";
+		
+		return sql;
+	}
+    
+	public string GetSelectAllModelSql()
+	{
+		string sql = "\"SELECT * FROM " + SourceTable.Name + "\"";
+		
+		return sql;
+	}
+
+	
+	public string GetCSharpDataTypeByDBColumn(ColumnSchema column)
+	{
+		switch (column.DataType)
+		{
+			case DbType.AnsiString: return "string";
+			case DbType.AnsiStringFixedLength: return "string";
+			case DbType.Binary: return "byte[]";
+			case DbType.Boolean: return "bool";
+			case DbType.Byte: return "byte";
+			case DbType.Currency: return "decimal";
+			case DbType.Date: return "DateTime";
+			case DbType.DateTime: return "DateTime";
+			case DbType.Decimal: return "decimal";
+			case DbType.Double: return "double";
+			case DbType.Guid: return "Guid";
+			case DbType.Int16: return "short";
+			case DbType.Int32: return "int";
+			case DbType.Int64: return "long";
+			case DbType.Object: return "object";
+			case DbType.SByte: return "sbyte";
+			case DbType.Single: return "float";
+			case DbType.String: return "string";
+			case DbType.StringFixedLength: return "string";
+			case DbType.Time: return "TimeSpan";
+			case DbType.UInt16: return "ushort";
+			case DbType.UInt32: return "uint";
+			case DbType.UInt64: return "ulong";
+			case DbType.VarNumeric: return "decimal";
+			default:
+			{
+				return "__UNKNOWN__" + column.NativeType;
+			}
+		}
+	}
+	public string GetDbType(ColumnSchema column)
+	{
+		switch (column.NativeType.ToLower())
+		{
+			case "bigint": return "Int64";
+			case "binary": return "Binary";
+			case "bit": return "Boolean";
+			case "char": return "AnsiStringFixedLength";
+			case "datetime": return "DateTime";
+			case "decimal": return "Decimal";
+			case "float": return "Double";
+			case "image": return "Image";
+			case "int": return "Int32";
+			case "money": return "Currency";
+			case "nchar": return "StringFixedLength";
+			case "ntext": return "String";
+			case "numeric": return "Decimal";
+			case "nvarchar": return "String";
+			case "real": return "Single";
+			case "smalldatetime": return "DateTime";
+			case "smallint": return "Int16";
+			case "smallmoney": return "Currency";
+			case "sql_variant": return "Object";
+			case "sysname": return "StringFixedLength";
+			case "text": return "String";
+			case "timestamp": return "Timestamp";
+			case "tinyint": return "Byte";
+			case "uniqueidentifier": return "Guid";
+			case "varbinary": return "Binary";
+			case "varchar": return "String";
+			default: return "__UNKNOWN__" + column.NativeType;
+		}
+	}
+    
+	public string GetSqlDbType(ColumnSchema column)
+	{
+		switch (column.NativeType.ToLower())
+		{
+			case "bigint": return "BigInt";
+			case "binary": return "Binary";
+			case "bit": return "Bit";
+			case "char": return "Char";
+			case "datetime": return "DateTime";
+			case "decimal": return "Decimal";
+			case "float": return "Float";
+			case "image": return "Image";
+			case "int": return "Int";
+			case "money": return "Money";
+			case "nchar": return "NChar";
+			case "ntext": return "NText";
+			case "numeric": return "Decimal";
+			case "nvarchar": return "NVarChar";
+			case "real": return "Real";
+			case "smalldatetime": return "SmallDateTime";
+			case "smallint": return "SmallInt";
+			case "smallmoney": return "SmallMoney";
+			case "sql_variant": return "Variant";
+			case "sysname": return "NChar";
+			case "text": return "Text";
+			case "timestamp": return "Timestamp";
+			case "tinyint": return "TinyInt";
+			case "uniqueidentifier": return "UniqueIdentifier";
+			case "varbinary": return "VarBinary";
+			case "varchar": return "VarChar";
+			default: return "__UNKNOWN__" + column.NativeType;
+		}
+	}
+	
+	public string ConvertToPascal(string str)
+	{
+		return str.Substring(0,1).ToUpper() + str.Substring(1);
+	}
+	
+	public string ConvertToCamel(string str)
+	{
+		return str.Substring(0,1).ToLower() + str.Substring(1);
+	}
+	
+	public override string GetFileName()
+	{
+		return GetModelName() + "Service.cs";
+	}
+    
+    public string GetPropertyNameByColumn(ColumnSchema column)
+	{
+		return ConvertToPascal(column.Name);
+	}
+</script>

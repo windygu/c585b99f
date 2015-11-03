@@ -1,0 +1,290 @@
+﻿<%-- 
+Name:IMEI_ListPageCode Template
+Author: WangWentao
+Description: IMEI List页后台代码模板
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="C#" Src="" Inherits="" ResponseEncoding="UTF-8" Debug="False" Description="Template description here." %>
+<%@ Property Name="Table" Type="SchemaExplorer.TableSchema" Default="" Optional="False" Category="数据库信息" Description="数据库表" %>
+<%@ Map Name="CSharpAlias" Src="System-CSharpAlias" Description="System to C# Type Map" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Import Namespace="System.IO" %>
+<%@ Assembly Name="System.Design" %>
+#region CopyRight
+// -----------------------------------------------------------------------------------
+// 版权声明： 
+// 使用声明： 任何组织和个人未经许可不得擅自复制或更改其内容
+// 软件版本： 1.0
+// 公司地址： 
+// 公司电话： ***
+// -----------------------------------------------------------------------------------
+#endregion
+
+using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Web;
+using System.Web.SessionState;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
+
+/// <summary>
+/// UserQuery 的摘要说明。
+/// </summary>
+public partial class <%=Table.Name %>Details : System.Web.UI.Page
+{
+    protected string uid;
+	protected void Page_Load(object sender, System.EventArgs e)
+	{
+		// 在此处放置用户代码以初始化页面
+		if (!IsPostBack)
+		{		
+            
+            uid = (string)ComFun.GetURLParam(Request)["UID"];
+            if (uid != null && uid !="")
+            {
+                loadInit(uid);
+            }
+		}
+	}
+
+	#region Web Form Designer generated code
+	override protected void OnInit(EventArgs e)
+	{
+		//
+		// CODEGEN：该调用是 ASP.NET Web 窗体设计器所必需的。
+		//
+		InitializeComponent();
+	}
+	
+	/// <summary>
+	/// 设计器支持所需的方法 - 不要使用代码编辑器修改
+	/// 此方法的内容。
+	/// </summary>
+	private void InitializeComponent()
+	{    
+
+	}
+	#endregion
+
+    public void loadInit(string uid)
+    {
+        <%if(Table.Columns[0].SystemType.FullName == "System.Guid") {%>
+        <%=Table.Name %> <%=Table.Name.ToLower() %>=null;
+        try{
+            <%=Table.Name.ToLower() %> = new <%=Table.Name %>Service().Get<%=Table.Name %>By<%=GetPrimaryKeyPropertyName()%>(new Guid(uid));
+        }catch(Exception ex)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(),"onekey", "alert('参数有误')", true);
+            return;
+        }
+        <%} %>
+        <%if(Table.Columns[0].SystemType.FullName == "System.Int32") {%>
+        <%=Table.Name %> <%=Table.Name.ToLower() %>=null;
+        try{
+            Convert.ToInt32(uid);
+            <%=Table.Name %> <%=Table.Name.ToLower() %> = new <%=Table.Name %>Service().Get<%=Table.Name %>By<%=GetPrimaryKeyPropertyName()%>(Convert.ToInt32(uid));
+        }catch(Exception ex)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(),"onekey", "alert('参数有误')", true);
+            return;
+        }
+        <%} %>
+         <%if(Table.Columns[0].SystemType.FullName == "System.String") {%>
+          <%=Table.Name %> <%=Table.Name.ToLower() %> = new <%=Table.Name %>Service().Get<%=Table.Name %>By<%=GetPrimaryKeyPropertyName()%>(uid);
+        <%} %>
+        
+        if (<%=Table.Name.ToLower() %> != null)
+        {
+            <%for(int i=1;i<Table.Columns.Count;i++) {%>
+            txt<%=Table.Columns[i].Name %>.Text = <%=Table.Name.ToLower() %>.<%=Table.Columns[i].Name %>.ToString();
+            <%} %>
+        }
+    }
+    
+    public void btnSave_Click(object sender, EventArgs e)
+    {
+        <%=Table.Name %> <%=Table.Name.ToLower() %> = new <%=Table.Name %>();
+        
+        <%for(int i=2;i<Table.Columns.Count;i++){%>
+        if (txt<%=Table.Columns[i].Name %>.Text.Trim() == "")
+        {
+            ClientScript.RegisterStartupScript(this.GetType(),"onekey", "alert('请输入<%=Table.Columns[i].Description %>')", true);
+            return;
+        }
+        <%--判断数据类型添加JS脚本--%>
+        <%if(Table.Columns[i].SystemType.FullName =="System.Int32" ){ %>
+        try{
+        Convert.ToInt32(txt<%=Table.Columns[i].Name %>.Text.Trim());
+        }catch(Exception ex)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(),"onekey", "alert('<%=Table.Columns[i].Description %>请输入数字')", true);
+        return;
+        }
+        <%} %>
+        <%if(Table.Columns[i].SystemType.FullName =="System.Decimal" ){ %>
+        try{
+        Convert.ToDecimal(txt<%=Table.Columns[i].Name %>.Text.Trim());
+        }catch(Exception ex)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(),"onekey", "alert('<%=Table.Columns[i].Description %>请输入数字')", true);
+        return;
+        }
+        <%} %>
+        <%if(Table.Columns[i].SystemType.FullName =="System.DateTime" ){ %>
+        try{
+        Convert.ToDateTime(txt<%=Table.Columns[i].Name %>.Text.Trim());
+        }catch(Exception ex)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(),"onekey", "alert('<%=Table.Columns[i].Description %>请输入日期')", true);
+        return;
+        }
+        <%} %>
+        <%--if(<%=Table.Name.ToLower() %>.<%=Table.Columns[i].SystemType.FullName.ToString() =="int" %>){
+            try{
+            Convert.ToInt32(txt<%=Table.Columns[i].Name %>.Text.Trim());
+            }catch()
+            {
+                ClientScript.RegisterStartupScript(this.GetType(),"onekey", "alert('<%=Table.Columns[i].Description %>请输入数字')", true);
+            return;
+            }
+        }
+        if(<%=Table.Name.ToLower() %>.<%=Table.Columns[i].SystemType.FullName.ToString() =="System.DateTime" %>){
+            try{
+            Convert.ToDateTime(txt<%=Table.Columns[i].Name %>.Text.Trim());
+            }catch()
+            {
+                ClientScript.RegisterStartupScript(this.GetType(),"onekey", "alert('<%=Table.Columns[i].Description %>请输入正确的日期')", true);
+            return;
+            }--%>
+        <%} %>
+        <%--给UID赋值--%>
+        if (uid != null && uid != "")
+         {
+        <%if(Table.Columns[0].SystemType.FullName == "System.Guid") {%>
+        <%=Table.Name.ToLower() %>.<%=Table.Columns[0].Name %> =new Guid(uid);
+        <%} %>
+        <%if(Table.Columns[0].SystemType.FullName == "System.Int32") {%>
+        <%=Table.Name.ToLower() %>.<%=Table.Columns[0].Name %> =Convert.ToInt32(uid);
+        <%} %>
+         <%if(Table.Columns[0].SystemType.FullName == "System.String") {%>
+          <%=Table.Name.ToLower() %>.<%=Table.Columns[0].Name %> =uid;
+        <%} %>
+        }
+        <%--根据数据类型，循环给其它项赋值，可以添加其它数据类型判断--%>
+        <%for(int i=1;i<Table.Columns.Count;i++){ %>
+        <%if(Table.Columns[i].SystemType.FullName == "System.Int32" ) {%>
+            <%=Table.Name.ToLower() %>.<%=Table.Columns[i].Name %> = Convert.ToInt32(ComFun.StrReplace(txt<%=Table.Columns[i].Name %>.Text.Trim()));
+        <%}else if(Table.Columns[i].SystemType.FullName == "System.DateTime"){ %>
+        <%=Table.Name.ToLower() %>.<%=Table.Columns[i].Name %> = Convert.ToDateTime(ComFun.StrReplace(txt<%=Table.Columns[i].Name %>.Text.Trim()));
+        <%}else if(Table.Columns[i].SystemType.FullName == "System.Decimal"){ %>
+        <%=Table.Name.ToLower() %>.<%=Table.Columns[i].Name %> = Convert.ToDecimal(ComFun.StrReplace(txt<%=Table.Columns[i].Name %>.Text.Trim()));
+        <%}else if(Table.Columns[i].SystemType.FullName == "System.Guid"){%>
+        <%=Table.Name.ToLower() %>.<%=Table.Columns[i].Name %> = new Guid(ComFun.StrReplace(txt<%=Table.Columns[i].Name %>.Text.Trim()));
+        <%}else{ %>
+        <%=Table.Name.ToLower() %>.<%=Table.Columns[i].Name %> = ComFun.StrReplace(txt<%=Table.Columns[i].Name %>.Text.Trim());
+        <%}%>
+        <%} %>
+        
+        <%=Table.Name %>Service <%=Table.Name %>ser = new <%=Table.Name %>Service();
+        
+        if (<%=Table.Name.ToLower() %>.uID != null && <%=Table.Name.ToLower() %>.uID.ToString() != "")
+        {
+            if(<%=Table.Name %>ser.Update<%=Table.Name %>(<%=Table.Name.ToLower() %>)){
+                ClientScript.RegisterStartupScript(this.GetType(),"onekey", "alert('保存成功')", true);
+            }
+             HttpResponseExtensions.Redirect(HttpContext.Current,"UserInfoDetails.aspx?UID="+ <%=Table.Name.ToLower() %>.uID);
+        }
+        else{
+            <%=Table.Name %>ser.Add<%=Table.Name %>(<%=Table.Name.ToLower() %>);
+             HttpResponseExtensions.Redirect(HttpContext.Current,"<%=Table.Name %>List.aspx");
+        }
+    }
+    
+    public void btnBack_Click(object sender, EventArgs e)
+    {
+         HttpResponseExtensions.Redirect(HttpContext.Current,"<%=Table.Name %>List.aspx");
+    }
+}
+
+<script runat="template">
+
+///<summary>
+///获取当前时间
+///</summary>
+///<returns>时间字符串</returns>
+public string NowDate()
+{
+	return DateTime.Now.ToString("yyyy-mm-dd");
+}
+///<summary>
+///获取后缀
+///</summary>
+///<returns>后缀字符串</returns>
+public string GetSuffix(string strNameSpace)
+{
+	if(strNameSpace=="") throw new Exception("Some property is required!");
+	return "."+strNameSpace+"DB";
+}
+
+///<summary>
+///获取带DB后缀
+///</summary>
+///<returns>后缀字符串</returns>
+public string GetSuffix2(string strNameSpace)
+{
+	if(strNameSpace=="") throw new Exception("Some property is required!");
+	return "."+strNameSpace;
+}
+///<summary>
+///获取前缀
+///</summary>
+///<returns>前缀字符串</returns>
+public string GetPrefix(string strNameSpace)
+{
+	if(strNameSpace=="") throw new Exception("Some property is required!");
+	return strNameSpace+"DB";
+}
+
+public string GetPrimaryKeyPropertyName()
+	{
+		return ConvertToPascal(GetPrimaryKeyName());
+	}
+
+public string GetPrimaryKeyFieldName()
+	{
+		return ConvertToCamel(GetPrimaryKeyName());
+	}
+    
+public string ConvertToCamel(string str)
+	{
+		return str.Substring(0,1).ToLower() + str.Substring(1);
+	} 
+public string GetPrimaryKeyName()
+	{
+		if (Table.PrimaryKey != null)
+		{
+			if (Table.PrimaryKey.MemberColumns.Count == 1)
+			{
+				return Table.PrimaryKey.MemberColumns[0].Name;
+			}
+			else
+			{
+				throw new ApplicationException("此模板只支持单个列的主键");
+			}
+		}
+		else
+		{
+			throw new ApplicationException("此模板需要有主键的表");
+		}
+	}
+public string ConvertToPascal(string str)
+	{
+		return str.Substring(0,1).ToUpper() + str.Substring(1);
+	}
+</script>

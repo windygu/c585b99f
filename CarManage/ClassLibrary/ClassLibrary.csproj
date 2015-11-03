@@ -61,7 +61,6 @@
   <ItemGroup>
     <Compile Include="Business\BusinessBase.cs" />
     <Compile Include="Configuration\AppType.cs" />
-    <Compile Include="Configuration\CarManageConfig.cs" />
     <Compile Include="Configuration\ConfigurationManager.cs" />
     <Compile Include="Configuration\IConfigurationSection.cs" />
     <Compile Include="DataAccess\MySql\DBUtil.cs" />
@@ -110,11 +109,6 @@
     <Compile Include="WorkingProcess\WorkProcessManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Configuration\CarManage.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Include\Dapper.dll" />
     <Content Include="Include\DapperExtensions.dll" />
     <Content Include="Include\log4net.dll" />
@@ -122,7 +116,12 @@
     <Content Include="Include\Newtonsoft.Json.dll" />
     <Content Include="Include\NPOI.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Logging\log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Logging\LogConfig.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -96,6 +96,7 @@ namespace CarManage.UI.Client.StartUp
         {
             try
             {
+                throw new Exception();
                 businessDemo.Init();
                 businessDemo.Test(9);
             }

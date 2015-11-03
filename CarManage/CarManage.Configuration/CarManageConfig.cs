@@ -9,7 +9,9 @@ using System.Text;
 using System.Xml;
 using System.IO;
 
-namespace ClassLibrary.Configuration
+using ClassLibrary.Configuration;
+
+namespace CarManage.Configuration
 {
     public sealed class CarManageConfig : IConfigurationSection
     {

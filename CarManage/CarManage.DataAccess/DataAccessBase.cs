@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 using MySql.Data.MySqlClient;
 
-using ClassLibrary.Configuration;
+using CarManage.Configuration;
 using Dapper;
-using DapperExtensions;
+//using DapperExtensions;
 
 namespace CarManage.DataAccess.MySql
 {
@@ -406,52 +407,61 @@ namespace CarManage.DataAccess.MySql
             return connection.QueryMultiple(commandText, param, transaction, commandTimeout, commandType);
         }
 
-        public dynamic Insert<T>(T entity, IDbConnection connection, IDbTransaction transaction = null,
-            int? commandTimeout = null) where T : class
+        public T Load<T>(string commandText, IDbConnection connection, IDbTransaction transaction = null,
+            bool buffered = true, int? commandTimeout = null, CommandType? commandType = null, object param = null)
         {
-            return connection.Insert<T>(entity, transaction, commandTimeout);
+            if (connection.State.Equals(ConnectionState.Closed))
+                connection.Open();
+
+            return connection.Query<T>(commandText, param, transaction, buffered, commandTimeout, commandType).FirstOrDefault();
         }
 
-        public void Insert<T>(IEnumerable<T> entities, IDbConnection connection,
-            IDbTransaction transaction = null, int? commandTimeout = null) where T : class
-        {
-            connection.Insert<T>(entities, transaction, commandTimeout);
-        }
+        //public dynamic Insert<T>(T entity, IDbConnection connection, IDbTransaction transaction = null,
+        //    int? commandTimeout = null) where T : class
+        //{
+        //    return connection.Insert<T>(entity, transaction, commandTimeout);
+        //}
 
-        public bool Delete<T>(object predicate, IDbConnection connection, IDbTransaction transaction = null,
-            int? commandTimeout = null) where T : class
-        {
-            return connection.Delete<T>(predicate, transaction, commandTimeout);
-        }
-        public bool Delete<T>(T entity, IDbConnection connection, IDbTransaction transaction = null,
-            int? commandTimeout = null) where T : class
-        {
-            return connection.Delete<T>(entity, transaction, commandTimeout);
-        }
+        //public void Insert<T>(IEnumerable<T> entities, IDbConnection connection,
+        //    IDbTransaction transaction = null, int? commandTimeout = null) where T : class
+        //{
+        //    connection.Insert<T>(entities, transaction, commandTimeout);
+        //}
 
-        public bool Update<T>(T entity, IDbConnection connection, IDbTransaction transaction = null,
-            int? commandTimeout = null) where T : class
-        {
-            return connection.Update<T>(entity, transaction, commandTimeout);
-        }
+        //public bool Delete<T>(object predicate, IDbConnection connection, IDbTransaction transaction = null,
+        //    int? commandTimeout = null) where T : class
+        //{
+        //    return connection.Delete<T>(predicate, transaction, commandTimeout);
+        //}
+        //public bool Delete<T>(T entity, IDbConnection connection, IDbTransaction transaction = null,
+        //    int? commandTimeout = null) where T : class
+        //{
+        //    return connection.Delete<T>(entity, transaction, commandTimeout);
+        //}
 
-        public T Get<T>(object id, IDbConnection connection, IDbTransaction transaction = null,
-            int? commandTimeout = null) where T : class
-        {
-            return connection.Get<T>(id, transaction, commandTimeout);
-        }
+        //public bool Update<T>(T entity, IDbConnection connection, IDbTransaction transaction = null,
+        //    int? commandTimeout = null) where T : class
+        //{
+        //    return connection.Update<T>(entity, transaction, commandTimeout);
+        //}
 
-        public IEnumerable<T> GetList<T>(IDbConnection connection, object predicate = null,
-            IList<ISort> sort = null, IDbTransaction transaction = null,
-            int? commandTimeout = null, bool buffered = false) where T : class
-        {
-            return connection.GetList<T>(predicate, sort, transaction, commandTimeout, buffered);
-        }
+        //public T Get<T>(object id, IDbConnection connection, IDbTransaction transaction = null,
+        //    int? commandTimeout = null) where T : class
+        //{
+        //    return connection.Get<T>(id, transaction, commandTimeout);
+        //}
 
-        public static int Count<T>(object predicate, IDbConnection connection, IDbTransaction transaction = null,
-            int? commandTimeout = null) where T : class
-        {
-            return connection.Count<T>(predicate, transaction, commandTimeout);
-        }
+        //public IEnumerable<T> GetList<T>(IDbConnection connection, object predicate = null,
+        //    IList<ISort> sort = null, IDbTransaction transaction = null,
+        //    int? commandTimeout = null, bool buffered = false) where T : class
+        //{
+        //    return connection.GetList<T>(predicate, sort, transaction, commandTimeout, buffered);
+        //}
+
+        //public static int Count<T>(object predicate, IDbConnection connection, IDbTransaction transaction = null,
+        //    int? commandTimeout = null) where T : class
+        //{
+        //    return connection.Count<T>(predicate, transaction, commandTimeout);
+        //}
     }
 }

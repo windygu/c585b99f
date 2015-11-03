@@ -1,15 +1,30 @@
 ﻿using System;
-
+using System.Xml;
 
 namespace ClassLibrary.Logging
 {
     public class Log4NetHandler : ILog
     {
-        private static log4net.ILog log = log4net.LogManager.GetLogger(ClassLibrary.Configuration.CarManageConfig.Instance.LoggingPolicy);
+        private static log4net.ILog log;
 
         static Log4NetHandler()
         {
             log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo("log4net.config"));
+
+            ProcessConfiguragtion();
+        }
+
+        static void ProcessConfiguragtion()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("log4net.config");
+
+            XmlNode logPolicy = doc.SelectSingleNode("descendant::logPolicy");
+
+            if (logPolicy == null)
+                throw new Exception("log4net配置文件中无log策略节点！");
+
+            log = log4net.LogManager.GetLogger(logPolicy.Attributes["name"].Value);
         }
 
         public void Debug(object message)

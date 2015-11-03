@@ -23,8 +23,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrar
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{E4BE1884-950E-42C4-9801-4C37BB9D5BFB}"
 	ProjectSection(SolutionItems) = preProject
+		Document\Business.cst = Document\Business.cst
+		Document\DataAccess.cst = Document\DataAccess.cst
+		Document\MISListDetails.cst = Document\MISListDetails.cst
+		Document\MISListDetailsCode.cst = Document\MISListDetailsCode.cst
+		Document\Model.cst = Document\Model.cst
 		Document\代码规范文档.doc = Document\代码规范文档.doc
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarManage.Configuration", "CarManage.Configuration\CarManage.Configuration.csproj", "{04C0DD06-4121-412F-AC99-45CCC2C7F9CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperExtensions", "DapperExtensions\DapperExtensions.csproj", "{3A606D8E-CEB9-48B2-A625-30822C32359C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper", "Dapper\Dapper.csproj", "{BF3DEBCF-0910-4454-ACCD-EB617F0D27A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +79,18 @@ Global
 		{D2AA8DF7-41BB-40BD-91B3-9D23E1025360}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2AA8DF7-41BB-40BD-91B3-9D23E1025360}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2AA8DF7-41BB-40BD-91B3-9D23E1025360}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04C0DD06-4121-412F-AC99-45CCC2C7F9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C0DD06-4121-412F-AC99-45CCC2C7F9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04C0DD06-4121-412F-AC99-45CCC2C7F9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04C0DD06-4121-412F-AC99-45CCC2C7F9CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A606D8E-CEB9-48B2-A625-30822C32359C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A606D8E-CEB9-48B2-A625-30822C32359C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A606D8E-CEB9-48B2-A625-30822C32359C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A606D8E-CEB9-48B2-A625-30822C32359C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF3DEBCF-0910-4454-ACCD-EB617F0D27A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF3DEBCF-0910-4454-ACCD-EB617F0D27A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF3DEBCF-0910-4454-ACCD-EB617F0D27A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF3DEBCF-0910-4454-ACCD-EB617F0D27A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

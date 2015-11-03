@@ -1,0 +1,223 @@
+﻿<%-- 
+Name:ListPage Template
+Author: 
+Description: 
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="C#" Src="" Inherits="" ResponseEncoding="UTF-8" Debug="False" Description="Template description here." %>
+<%@ Property Name="Table" Type="SchemaExplorer.TableSchema" Default="" Optional="False" Category="数据库信息" Description="数据库表" %>
+
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Import Namespace="System.Data" %>
+
+
+<%%@ Page Title="<%=Table.Description%>列表详细" Language="C#" MasterPageFile="~/MasterPage.master"  AutoEventWireup="true" CodeFile="<%=Table.Name%>Details.aspx.cs" Inherits="<%=Table.Name%>Details"%%>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<head runat="server">
+    <title><%=Table.Description%>列表详细</title>
+    <!------------------------Import Required CssStyle-------------------------->
+    <link href="Style/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <!-----------------------Import Required Componets ------------------------->
+    <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <!-----------------------Custome Define ShowMessage ------------------------>
+    <script src="Scripts/messages_zh.js" type="text/javascript"></script>
+    <!-------------------------Custome Validate Group -------------------------->
+    <script src="GroupValidation.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#signupForm").validate({
+    		rules: {
+                <%for(int i=0;i<Table.Columns.Count;i++)
+                {%>
+                <%if(i<Table.Columns.Count-1)
+                {%>
+                txt<%=Table.Columns[i].Name%>:
+                <%{%>
+                    required: true,
+                    <%if(Table.Columns[i].SystemType.FullName=="System.Int32"||Table.Columns[i].SystemType.FullName=="System.Int64"||Table.Columns[i].SystemType.FullName==" System.Int16"){%>
+                    
+                    <%}%>
+    				maxlength: <%=Table.Columns[i].Size/2%>
+                <%}%>,
+                <%}
+                else{%>
+                txt<%=Table.Columns[i].Name%>:
+                <%{%>
+                    required: true,
+    				maxlength: <%=Table.Columns[i].Size/2%>
+                <%}%>
+                <%}%>
+                <%}%>
+    		},
+    		messages: {
+                <%for(int i=0;i<Table.Columns.Count;i++)
+                {%>
+                <%if(i<Table.Columns.Count-1)
+                {%>
+                txt<%=Table.Columns[i].Name%>:
+                <%{%>
+                    required:"请输入<%=Table.Columns[i].Description%>",
+    				maxlength: "该数据长度最大限定为<%=Table.Columns[i].Size/2%>"
+                <%}%>,
+                <%}
+                else{%>
+                txt<%=Table.Columns[i].Name%>:
+                <%{%>
+                    required:"请输入<%=Table.Columns[i].Description%>",
+    				maxlength: "该数据长度最大限定为<%=Table.Columns[i].Size/2%>"
+                <%}%>
+                <%}%>
+                <%}%>
+    		},
+          // the errorPlacement has to take the table layout into account
+		errorPlacement: function(error, element) {
+			if ( element.is(":radio") )
+				error.appendTo( element.parent().next().next() );
+			else if ( element.is(":checkbox") )
+				error.appendTo ( element.next() );
+			else
+				error.appendTo( element.parent().next() );
+		},
+          // set this class to error-labels to indicate valid fields
+          success: function (label) {
+               // set &nbsp; as text for IE
+               label.html("&nbsp;").addClass("checked");
+          },
+          highlight: function(element, errorClass) {
+			$(element).parent().next().find("." + errorClass).removeClass("checked");
+		}
+    	});
+    });
+    </script>
+</head>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" >
+<div id="tabs">
+    <form id="signupForm" runat="server">
+    <ul>
+	    <li><a href="#tabs-1"><%=Table.Description%></a></li>
+	</ul>
+    <div id="tabs-1">
+	    <div id="tablebg">
+		    <table cellspacing="0" cellpadding="0" width="95%" align="center" border="0">
+                <tr>
+                    <td style="width: 140px" align="center">
+                        &nbsp;</td>
+                    <td>
+                        &nbsp;</td>
+                </tr>
+                <%for(int i=1; i< Table.Columns.Count;i++) 
+                {%>
+                <%if(Table.Columns[i].Size>=200){ %>
+                <tr>
+                    <td class="fieldName"><%=Table.Columns[i].Description %>：</td>
+                    <td colspan="3" class="fieldValue">
+                    <%if(Table.Columns[i].SystemType.FullName=="System.Int32"||Table.Columns[i].SystemType.FullName=="System.Int64"||Table.Columns[i].SystemType.FullName==" System.Int16"){%>
+                    <asp:TextBox ID="txt<%=Table.Columns[i].Name %>" MaxLength="<%=Table.Columns[i].Size/2%>" CssClass="{required digits}" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    <%}
+                    else if(Table.Columns[i].SystemType.FullName=="System.Double"||Table.Columns[i].SystemType.FullName=="System.Decimal"||Table.Columns[i].SystemType.FullName=="System.Single"){%>
+                    <asp:TextBox ID="txt<%=Table.Columns[i].Name %>" MaxLength="<%=Table.Columns[i].Size/2%>" CssClass="{required number}" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    <%}
+                    else
+                    { %>
+                    <asp:TextBox ID="txt<%=Table.Columns[i].Name %>" MaxLength="<%=Table.Columns[i].Size/2%>" CssClass="required" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    <%} %>
+                    </td>
+                </tr>
+                <%}
+                else
+                { %>
+                <tr>
+                    <td class="fieldName"><%=Table.Columns[i].Description %>：</td>
+                    <td class="fieldValue">
+                        <asp:TextBox ID="txt<%=Table.Columns[i].Name %>" runat="server" ></asp:TextBox>
+                    </td>
+                    <%if(i+1<Table.Columns.Count) 
+                    {%>
+                    <td class="fieldName"><%=Table.Columns[i+1].Description %>：</td>
+                    <td class="fieldValue">
+                        <%if(Table.Columns[i].SystemType.FullName=="System.Int32"||Table.Columns[i].SystemType.FullName=="System.Int64"||Table.Columns[i].SystemType.FullName==" System.Int16"){%>
+                    <asp:TextBox ID="txt<%=Table.Columns[i].Name %>" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    <%}
+                    else if(Table.Columns[i].SystemType.FullName=="System.Double"||Table.Columns[i].SystemType.FullName=="System.Decimal"||Table.Columns[i].SystemType.FullName=="System.Single"){%>
+                    <asp:TextBox ID="txt<%=Table.Columns[i].Name %>" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    <%}
+                    else
+                    { %>
+                    <%if(Table.Columns[i].SystemType.FullName=="System.Int32"||Table.Columns[i].SystemType.FullName=="System.Int64"||Table.Columns[i].SystemType.FullName==" System.Int16"){%>
+                    <asp:TextBox ID="txt<%=Table.Columns[i].Name %>" MaxLength="<%=Table.Columns[i].Size/2%>" CssClass="{required digits}" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    <%}
+                    else if(Table.Columns[i].SystemType.FullName=="System.Double"||Table.Columns[i].SystemType.FullName=="System.Decimal"||Table.Columns[i].SystemType.FullName=="System.Single"){%>
+                    <asp:TextBox ID="txt<%=Table.Columns[i].Name %>" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    <%}
+                    else
+                    { %>
+                    <asp:TextBox ID="txt<%=Table.Columns[i].Name %>" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    <%} %>
+                    <%} %>
+                    </td>
+                    <%i++; %>
+                    <%}%>
+                </tr>
+                <%} %>
+                <%} %>
+                <tr>
+                    <td colspan="4">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="4">
+                        <asp:Button ID="btnSave" runat="server" onclick="btnSave_Click" Text="保存" 
+                             CssClass="option-button"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="btnBack" runat="server" onclick="btnBack_Click" Text="返回" 
+                             CssClass="option-button"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+		</div>
+	</div>
+    </from>
+</div>
+</asp:Content>
+
+<script runat="template">
+///<summary>
+///获取当前时间
+///</summary>
+///<returns>时间字符串</returns>
+public string NowDate()
+{
+	return DateTime.Now.ToString("yyyy-mm-dd");
+}
+///<summary>
+///获取后缀
+///</summary>
+///<returns>后缀字符串</returns>
+public string GetSuffix(string strNameSpace)
+{
+	if(strNameSpace=="") throw new Exception("Some property is required!");
+	return "."+strNameSpace+"DB";
+}
+
+///<summary>
+///获取带DB后缀
+///</summary>
+///<returns>后缀字符串</returns>
+public string GetSuffix2(string strNameSpace)
+{
+	if(strNameSpace=="") throw new Exception("Some property is required!");
+	return "."+strNameSpace;
+}
+///<summary>
+///获取前缀
+///</summary>
+///<returns>前缀字符串</returns>
+public string GetPrefix(string strNameSpace)
+{
+	if(strNameSpace=="") throw new Exception("Some property is required!");
+	return strNameSpace+"DB";
+}
+</script>

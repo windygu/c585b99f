@@ -18,7 +18,7 @@ namespace CarManage.UI.Client.StartUp
             Application.SetCompatibleTextRenderingDefault(false);
 
             ClassLibrary.Configuration.ConfigurationManager.Instance.Init();
-            Application.Run(new UIDemo());
+            Application.Run(new Form1());
         }
     }
 }
