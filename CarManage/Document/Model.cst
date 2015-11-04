@@ -14,7 +14,7 @@ Description: 实体层模板
 
 <%@ Property Name="Table" Type="SchemaExplorer.TableSchema" Default="" Optional="False" Category="数据库信息" Description="数据库表" %>
 <%@ Property Name="Author" Type="System.String" Default="" Optional="True" Category="基本信息" Description="作者" %>
-<%@ Property Name="Description" Type="System.String" Default="" Optional="True" Category="基本信息" Description="基本信息" %>
+<%@ Property Name="ObjectName" Type="String" Category="注释" Description="对象名称，为生成注释而用" %>
 <%@ Property Name="SystemNameSpace" Type="System.String" Default="" Optional="True" Category="基本信息" Description="系统命名空间" %>
 <%@ Property Name="SubSystemNameSpace" Type="System.String" Default="" Optional="False" Category="基本信息" Description="子系统命名空间" %>
 #region CopyRight
@@ -30,12 +30,12 @@ Description: 实体层模板
 using System;
 using System.Collections.Generic;
 
-using TLC.Model;
+using <%=SystemNameSpace%>.Model;
 
 namespace <%=SystemNameSpace%>.Model.<%=SubSystemNameSpace%>
 {
 	///<summary>
-	///<summary><%=Table.Description%>实体类</summary>
+	///<summary><%=Table.Description%>对象</summary>
 	///<creator><%=Author%></creator>
 	///<createdate><%=NowDate()%></createdate>
 	///<modifier></modifier>
@@ -112,19 +112,18 @@ public string GetSimpleType(ColumnSchema column)
 	{
 		case DbType.Boolean: strType = "bool";break;
 		case DbType.Binary: strType = "byte[]";break;
-		case DbType.Date:
-		case DbType.Time: strType = "Date";break;
+		case DbType.Date:strType = "DateTime";break;
+		case DbType.Time: strType = "DateTime";break;
 		case DbType.DateTime: strType = "DateTime";break;
 		case DbType.Byte:
 		case DbType.Currency:
-		case DbType.Int16: strType = "Int16";break;
-		case DbType.Int32:
-		case DbType.Int64:
+		case DbType.Int16: strType = "short";break;
+		case DbType.Int32:strType = "int";break;
+		case DbType.Int64:strType = "long";break;
 		case DbType.Single: strType = "int";break;
-		case DbType.AnsiString:
-		case DbType.AnsiStringFixedLength:
-		case DbType.String:
-		case DbType.StringFixedLength: strType = "string";break;
+		case DbType.String:strType = "string";break;
+        case DbType.UInt16:strType = "bool";break;
+            
 		default:
 		{
 			strType = Enum.GetName(typeof(DbType),column.DataType);break;

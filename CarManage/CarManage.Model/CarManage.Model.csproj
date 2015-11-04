@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="Customer\CarInfo.cs" />
     <Compile Include="Enum\CustomerCharacter.cs" />
     <Compile Include="Enum\InsuranceItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

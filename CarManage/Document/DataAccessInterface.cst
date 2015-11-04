@@ -12,7 +12,9 @@ Description: 根据数据库的内容生成模型层代码
 <%@ Assembly Name="SchemaExplorer" %>
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="SchemaExplorer" %>
+
 <%@ Property Name="Author" Type="System.String" Default="" Optional="True" Category="基本信息" Description="作者" %>
+
 #region CopyRight
 // -----------------------------------------------------------------------------------
 // 版权声明： 
@@ -26,17 +28,12 @@ Description: 根据数据库的内容生成模型层代码
 using System;
 using System.Collections.Generic;
 
-using ClassLibrary.Utility.ExceptionHandling;
-using ClassLibrary.Utility.Common;
-using <%=SystemNamespace%>.Factory.DataAccess;
-using <%=SystemNamespace%>.Interface.DataAccess;
 using <%=SystemNamespace%>.Model.<%=SubNamespace%>;
-using <%=SystemNamespace%>.Model.Enum;
 
 namespace <%=SystemNamespace%>.<%=SubNamespace%>
 {
     ///<summary>
-	///<summary><%=Table.Description%>业务对象</summary>
+	///<summary><%=ObjectName%>数据访问接口对象</summary>
 	///<creator><%=Author%></creator>
 	///<createdate><%=NowDate()%></createdate>
 	///<modifier></modifier>
@@ -44,102 +41,43 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
     ///<modifydate></modifydate>
     ///<other></other>    
 	///</summary>
-     public class <%=Table.Name %>
+     public inerface I<%=Table.Name %>
      {
-         private static <%=SystemNamespace%>.<%=SubNamespace%>.I<%=GetModelName()%> <%=GetModelParameterName()%> = DataAccessFactory.CreateInstance<I<%=GetModelName()%>>();
-            
         /// <summary>
         /// 新增<%=ObjectName%>
         /// </summary>
         /// <param name="<%=GetModelParameterName()%>Info"><%=ObjectName%></param>
-        public void Add(<%=GetModelName()%>Info <%=GetModelParameterName()%>Info)
-        {
-            try
-            {
-                <%=GetModelParameterName()%>.Add(<%=GetModelParameterName()%>Info);
-            }
-            catch (Exception ex)
-            {
-                BusinessExceptionHandler.HandlerException("新增<%=ObjectName%>失败！", ex);
-            }
-        }
+        void Add(<%=GetModelName()%>Info <%=GetModelParameterName()%>Info);
         
         /// <summary>
         /// 更新<%=ObjectName%>
         /// </summary>
         /// <param name="<%=GetModelParameterName()%>Info"><%=ObjectName%>信息对象</param>
-        public void Update(<%=GetModelName()%>Info <%=GetModelParameterName()%>Info)
-        {
-            try
-            {
-                <%=GetModelParameterName()%>.Update(<%=GetModelParameterName()%>Info);
-            }
-            catch (Exception ex)
-            {
-                BusinessExceptionHandler.HandlerException("更新<%=ObjectName%>失败！", ex);
-            }
-        }
+        void Update(<%=GetModelName()%>Info <%=GetModelParameterName()%>Info);
         
         /// <summary>
         /// 删除<%=ObjectName%>
         /// </summary>
         /// <param name="<%=GetPrimaryKeyFieldName()%>"><%=ObjectName%>Id</param>
-        public void Delete(<%=GetPrimaryKeyType()%> <%=GetPrimaryKeyFieldName()%>)
-        {
-            try
-            {
-                <%=GetModelParameterName()%>.Delete(<%=GetPrimaryKeyFieldName()%>);
-            }
-            catch (Exception ex)
-            {
-                BusinessExceptionHandler.HandlerException("删除<%=ObjectName%>失败！", ex);
-            }
-        }
+        void Delete(<%=GetPrimaryKeyType()%> <%=GetPrimaryKeyFieldName()%>);
         
-         /// <summary>
+        /// <summary>
         /// 获取<%=ObjectName%>对象
         /// </summary>
         /// <param name="<%=GetPrimaryKeyFieldName()%>">主键</param>
         /// <returns>返回<%=ObjectName%>对象，如果无匹配则返回null。</returns>
-        public <%=GetModelName()%>Info Load(<%=GetPrimaryKeyType()%> <%=GetPrimaryKeyFieldName()%>)
-        {
-            <%=GetModelName()%>Info <%=GetModelParameterName()%>Info = null;
-
-            try
-            {
-                <%=GetModelParameterName()%>Info = <%=GetModelParameterName()%>.Load(<%=GetPrimaryKeyFieldName()%>);
-            }
-            catch (Exception ex)
-            {
-                BusinessExceptionHandler.HandlerException("获取<%=ObjectName%>失败！", ex);
-            }
-
-            return <%=GetModelParameterName()%>Info;
-        }
+        <%=GetModelName()%>Info Load(<%=GetPrimaryKeyType()%> <%=GetPrimaryKeyFieldName()%>);
         
         /// <summary>
         /// 查询<%=ObjectName%>
         /// </summary>
         /// <returns><%=ObjectName%>集合</returns>
-        public List<<%=GetModelName()%>Info> Search(<%=Table.Name %>Info queryInfo)
-        {
-            List<<%=GetModelName()%>Info> <%=GetModelParameterName()%>List = new List<<%=GetModelName()%>Info>();
-
-            try
-            {
-                <%=GetModelParameterName()%>List = <%=GetModelParameterName()%>.Search(queryInfo);
-            }
-            catch (Exception ex)
-            {
-                BusinessExceptionHandler.HandlerException("查询<%=ObjectName%>失败！", ex);
-            }
-
-            return <%=GetModelParameterName()%>List;
-        }
+        List<<%=GetModelName()%>Info> Search(<%=Table.Name %>Info queryInfo);
      }
 }
 
 <script runat="template">
+
     ///<summary>
     ///获取当前时间
     ///</summary>

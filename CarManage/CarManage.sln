@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{E4
 	ProjectSection(SolutionItems) = preProject
 		Document\Business.cst = Document\Business.cst
 		Document\DataAccess.cst = Document\DataAccess.cst
+		Document\DataAccessInterface.cst = Document\DataAccessInterface.cst
 		Document\MISListDetails.cst = Document\MISListDetails.cst
 		Document\MISListDetailsCode.cst = Document\MISListDetailsCode.cst
 		Document\Model.cst = Document\Model.cst

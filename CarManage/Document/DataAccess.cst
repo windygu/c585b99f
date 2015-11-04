@@ -4,7 +4,7 @@ Description: 根据数据库的内容生成模型层代码
 --%>
 
 <%@ CodeTemplate Language="C#" TargetLanguage="C#" ResponseEncoding="UTF-8"%>
-<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="内容" Description="数据源表" %>
+<%@ Property Name="Table" Type="SchemaExplorer.TableSchema" Category="内容" Description="数据源表" %>
 <%@ Property Name="ObjectName" Type="String" Category="注释" Description="对象名称，为生成注释而用" %>
 <%@ Property Name="SystemNamespace" Type="String" Category="输入参数" Description="这是一个字符串型的参数" %>
 <%@ Property Name="SubNamespace" Type="String" Category="输入参数" Description="这是一个字符串型的参数" %>
@@ -12,6 +12,8 @@ Description: 根据数据库的内容生成模型层代码
 <%@ Assembly Name="SchemaExplorer" %>
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="SchemaExplorer" %>
+
+<%@ Property Name="Author" Type="System.String" Default="" Optional="True" Category="基本信息" Description="作者" %>
 #region CopyRight
 // -----------------------------------------------------------------------------------
 // 版权声明： 
@@ -37,7 +39,16 @@ using <%=SystemNamespace%>.DataAccess;
 
 namespace <%=SystemNamespace%>.<%=SubNamespace%>
 {
-    public class <%=SourceTable.Name %> : DataAccessBase
+    ///<summary>
+	///<summary><%=ObjectName%>数据访问对象</summary>
+	///<creator><%=Author%></creator>
+	///<createdate><%=NowDate()%></createdate>
+	///<modifier></modifier>
+	///<modifynote></modifynote>
+    ///<modifydate></modifydate>
+    ///<other></other>    
+	///</summary>
+    public class <%=Table.Name %> : DataAccessBase
     {
     	/// <summary>
     	/// 新增<%=ObjectName%>
@@ -83,7 +94,7 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
     	/// <param name="<%=GetPrimaryKeyFieldName()%>"><%=ObjectName%>Id</param>
     	public void Delete(<%=GetPrimaryKeyType()%> <%=GetPrimaryKeyFieldName()%>)
     	{
-    		string commandText = "DELETE FROM <%=SourceTable.Name%> WHERE <%=GetPrimaryKeyName()%>=@<%=GetPrimaryKeyName()%>";
+    		string commandText = "DELETE FROM <%=Table.Name%> WHERE <%=GetPrimaryKeyName()%>=@<%=GetPrimaryKeyName()%>";
             
     		try
             {
@@ -105,7 +116,7 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
         {
             <%=GetModelName()%>Info <%=GetModelParameterName()%>Info = null;
 
-            string commandText = "SELECT * FROM <%=SourceTable.Name %> WHERE <%=GetPrimaryKeyName()%>=@<%=GetPrimaryKeyName()%>";
+            string commandText = "SELECT * FROM <%=Table.Name %> WHERE <%=GetPrimaryKeyName()%>=@<%=GetPrimaryKeyName()%>";
 
             try
             {
@@ -126,97 +137,84 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
     	/// 获得所有<%=ObjectName%>集合
     	/// </summary>
     	/// <returns><%=ObjectName%>集合</returns>
-    	public List<<%=SourceTable.Name %>Info> Search(<%=SourceTable.Name %>Info <%=GetModelParameterName()%>Info)
-    	{
-    		string commandText  = <%=GetSelectAllModelSql()%>;
-			
-            List<<%=SourceTable.Name %>Info> <%=SourceTable.Name.ToLower() %>List =new List<<%=SourceTable.Name %>Info>();
+    	public List<<%=Table.Name %>Info> Search(<%=Table.Name %>Info queryInfo)
+    	{			
+            List<<%=Table.Name %>Info> <%=Table.Name.ToLower() %>List =new List<<%=Table.Name %>Info>();
             
 			try
             {
-				 Database database = CreateDatabase(
-                     TLCConfig.Instance.BusinessConnectionStringName);
-                DbCommand command =CreateCommand(database, commandText);
- 
-                using (IDataReader reader = base.ExecuteReader(database, command))
-                { 
-                    while (reader.Read())
-                    {
-                        <%=SourceTable.Name %>Info <%=GetModelParameterName()%>Info=new <%=SourceTable.Name %>Info();
-                        <%for(int i=0;i<SourceTable.Columns.Count;i++)
-                        {%>
-                        <%if(SourceTable.Columns[i].SystemType.FullName == "System.Int32" ) 
-                        {%>
-                        <%if(SourceTable.Columns[i].SystemType.IsGenericType && SourceTable.Columns[i].SystemType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
-                        {%>
-                        <%=GetModelParameterName()%>Info.<%=SourceTable.Columns[i].Name %> = ConvertUtil.ToNullableInt32(reader["<%=SourceTable.Columns[i].Name %>"]);
-                        <%}
-                        else
-                        {%>
-                        <%=GetModelParameterName()%>Info.<%=SourceTable.Columns[i].Name %> = ConvertUtil.ToInt32(reader["<%=SourceTable.Columns[i].Name %>"]);
-                        <%}%>
-                        <%}
-                        else if(SourceTable.Columns[i].SystemType.FullName == "System.DateTime")
-                        {%>
-                        <%if(SourceTable.Columns[i].SystemType.IsGenericType && SourceTable.Columns[i].SystemType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
-                        {%>
-                        <%=GetModelParameterName()%>Info.<%=SourceTable.Columns[i].Name %> = ConvertUtil.ToNullableDateTime(reader["<%=SourceTable.Columns[i].Name %>"]);
-                        <%}
-                        else
-                        {%>
-                        <%=GetModelParameterName()%>Info.<%=SourceTable.Columns[i].Name %> = ConvertUtil.ToDateTime(reader["<%=SourceTable.Columns[i].Name %>"]);
-                        <%}%>
-                        <%}
-                        else if(SourceTable.Columns[i].SystemType.FullName == "System.Decimal")
-                        {%>
-                        <%if(SourceTable.Columns[i].SystemType.IsGenericType && SourceTable.Columns[i].SystemType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
-                        {%>
-                        <%=GetModelParameterName()%>Info.<%=SourceTable.Columns[i].Name %> = ConvertUtil.ToNullableDecimal(reader["<%=SourceTable.Columns[i].Name %>"]);
-                        <%}
-                        else
-                        {%>
-                        <%=GetModelParameterName()%>Info.<%=SourceTable.Columns[i].Name %> = ConvertUtil.ToDecimal(reader["<%=SourceTable.Columns[i].Name %>"]);
-                        <%}%>
-                        <%}
-                        else if(SourceTable.Columns[i].SystemType.FullName == "System.Guid")
-                        {%>
-                        <%=GetModelParameterName()%>Info.<%=SourceTable.Columns[i].Name %> = new Guid(reader["<%=SourceTable.Columns[i].Name %>"].ToString());
-                        <%}
-						else if(SourceTable.Columns[i].SystemType.FullName == "System.Boolean")
-						{%>
-						<%=GetModelParameterName()%>Info.<%=SourceTable.Columns[i].Name %> = ConvertUtil.ToBoolean(reader["<%=SourceTable.Columns[i].Name %>"]);
-						<%}
-						else{ %>
-                        <%=GetModelParameterName()%>Info.<%=SourceTable.Columns[i].Name %> = reader["<%=SourceTable.Columns[i].Name %>"].ToString();
-                        <%}%>
-                        <%}%>
-                        
-                        <%=SourceTable.Name.ToLower() %>List.Add(<%=GetModelParameterName()%>Info);
-                   }
+				string field = "*";
+
+                string table = "<%=Table.Name %>";
+                string order = "ORDER BY <%=GetPrimaryKeyName()%>";
+
+                StringBuilder filter = new StringBuilder();
+                
+                #region 查询条件
+                
+                
+                #endregion
+
+                string filterText = string.Empty;
+
+                if (filter.Length > 0)
+                {
+                    filterText = filter.ToString().TrimStart(' ').Remove(0, 3).Insert(0, " WHERE ");
                 }
-             }
+
+                string commandText = string.Format("SELECT COUNT(*) FROM <%=Table.Name %> {0}", filterText);
+                
+                IDbConnection connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
+
+                queryInfo.TotalCount = base.ExecuteObject<int>(commandText, connection);
+
+                if (queryInfo.TotalCount.Equals(0))
+                    return <%=Table.Name.ToLower() %>List;
+
+                int pageCount = queryInfo.TotalCount / queryInfo.PageSize + 1;
+
+                if (queryInfo.TotalCount % queryInfo.PageSize != 0)
+                    pageCount++;
+
+                int startIndex = queryInfo.PageIndex * queryInfo.PageSize;
+
+                commandText = string.Format("SELECT {0} FROM {1} WHERE {2} ORDER BY {3} LIMIT {4},{5}",
+                    field, table, filterText, order, startIndex, queryInfo.PageSize);
+
+                brandList = base.Query(commandText, connection, param: startIndex);
+            }
             catch (Exception ex)
             {
                 DataAccessExceptionHandler.HandlerException(
-                    "读取<%=ObjectName%>信息失败！", ex);
+                    "查询<%=ObjectName%>失败！", ex);
             }
-            return <%=SourceTable.Name.ToLower() %>List;
+            
+            return <%=Table.Name.ToLower() %>List;
     	}
     }
 }
 
 
 <script runat="template">
+    ///<summary>
+    ///获取当前时间
+    ///</summary>
+    ///<returns>时间字符串</returns>
+    public string NowDate()
+    {
+    	return DateTime.Now.ToString("yyyy-MM-dd");
+    }
+
 	public string GetClassName()
 	{
 		string tempTable;
-		if (SourceTable.Name.EndsWith("s"))
+		if (Table.Name.EndsWith("s"))
 		{
-			tempTable = SourceTable.Name.Substring(0,SourceTable.Name.Length-1);
+			tempTable = Table.Name.Substring(0,Table.Name.Length-1);
 		}
 		else
 		{
-			tempTable = SourceTable.Name;
+			tempTable = Table.Name;
 		}
 		return tempTable;
 	}
@@ -233,11 +231,11 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
     
 	public string GetPrimaryKeyType()
 	{
-		if (SourceTable.PrimaryKey != null)
+		if (Table.PrimaryKey != null)
 		{
-			if (SourceTable.PrimaryKey.MemberColumns.Count == 1)
+			if (Table.PrimaryKey.MemberColumns.Count == 1)
 			{
-				return GetCSharpDataTypeByDBColumn(SourceTable.PrimaryKey.MemberColumns[0]);
+				return GetCSharpDataTypeByDBColumn(Table.PrimaryKey.MemberColumns[0]);
 			}
 			else
 			{
@@ -252,11 +250,11 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
 	
 	public ColumnSchema GetPrimaryKeyColumn()
 	{
-		if (SourceTable.PrimaryKey != null)
+		if (Table.PrimaryKey != null)
 		{
-			if (SourceTable.PrimaryKey.MemberColumns.Count == 1)
+			if (Table.PrimaryKey.MemberColumns.Count == 1)
 			{
-				return SourceTable.PrimaryKey.MemberColumns[0];
+				return Table.PrimaryKey.MemberColumns[0];
 			}
 			else
 			{
@@ -271,11 +269,11 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
 	
 	public string GetPrimaryKeyName()
 	{
-		if (SourceTable.PrimaryKey != null)
+		if (Table.PrimaryKey != null)
 		{
-			if (SourceTable.PrimaryKey.MemberColumns.Count == 1)
+			if (Table.PrimaryKey.MemberColumns.Count == 1)
 			{
-				return SourceTable.PrimaryKey.MemberColumns[0].Name;
+				return Table.PrimaryKey.MemberColumns[0].Name;
 			}
 			else
 			{
@@ -290,12 +288,12 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
 	
 	public string GetPrimaryKeySize()
 	{
-		return SourceTable.PrimaryKey.MemberColumns[0].Size.ToString();
+		return Table.PrimaryKey.MemberColumns[0].Size.ToString();
 	}
 	
 	public string GetPrimaryKeySqlDbType()
 	{
-		return GetDbType(SourceTable.PrimaryKey.MemberColumns[0]);
+		return GetDbType(Table.PrimaryKey.MemberColumns[0]);
 	}
 	
 	public string GetPrimaryKeyFieldName()
@@ -310,16 +308,16 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
 	
 	public string GetInsertSql()
 	{
-		string sql = "\"INSERT INTO " + SourceTable.Name + "(";
-		foreach(ColumnSchema column in SourceTable.Columns)
+		string sql = "\"INSERT INTO " + Table.Name + "(";
+		foreach(ColumnSchema column in Table.Columns)
 		{
 			sql += column.Name + ",";
 		}
 		sql = sql.Substring(0,sql.Length-1);
 		sql += ")\" +\n";
 		
-		sql += "\t\t\t\t\" values(";
-		foreach(ColumnSchema column in SourceTable.Columns)
+		sql += "\t\t\t\t\" VALUES(";
+		foreach(ColumnSchema column in Table.Columns)
 		{
 			sql += "@" + column.Name + ",";
 		}
@@ -331,9 +329,9 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
 	
 	public string GetUpdateSql()
 	{
-		string sql = "\"UPDATE " + SourceTable.Name + " SET \" +\n";
+		string sql = "\"UPDATE " + Table.Name + " SET \" +\n";
 		sql += "\t\t\t\t\"";
-		foreach(ColumnSchema column in SourceTable.NonPrimaryKeyColumns)
+		foreach(ColumnSchema column in Table.NonPrimaryKeyColumns)
 		{
 			sql += column.Name + "=@" + column.Name + ",";
 		}
@@ -347,7 +345,7 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
 	
 	public string GetSelectOneModelSql()
 	{
-		string sql = "\"SELECT * FROM "+ SourceTable.Name +" WHERE " 
+		string sql = "\"SELECT * FROM "+ Table.Name +" WHERE " 
             + GetPrimaryKeyName() + "=@" + GetPrimaryKeyName() + "\"";
 		
 		return sql;
@@ -355,14 +353,14 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
 	
     public string GetSelectModelSql()
 	{
-		string sql = "\"SELECT * FROM " + SourceTable.Name + " WHERE 1=1 \"";
+		string sql = "\"SELECT * FROM " + Table.Name + " WHERE 1=1 \"";
 		
 		return sql;
 	}
     
 	public string GetSelectAllModelSql()
 	{
-		string sql = "\"SELECT * FROM " + SourceTable.Name + "\"";
+		string sql = "\"SELECT * FROM " + Table.Name + "\"";
 		
 		return sql;
 	}

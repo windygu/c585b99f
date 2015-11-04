@@ -50,21 +50,6 @@ namespace CarManage.DataAccess.MySql
                 //var r = base.Load<QuestionInfo>("select * from Question where Id=@Id", connection, param: new { Id = 1 });
                 //var list = connection.Query<QuestionInfo>(commandText, q);
 
-                StringBuilder filter = new StringBuilder();
-
-                string filterText = string.Empty;
-
-                if (filter.Length > 0)
-                {
-                    filterText = filter.ToString().TrimStart(' ').Remove(0, 3).Insert(0, " WHERE ");
-                }
-
-                string commandText = string.Format("SELECT COUNT(*) FROM Question {0}", filterText);
-
-                int count = base.ExecuteObject<int>(commandText, connection);
-
-                //if (queryInfo.TotalCount.Equals(0))
-                //    return brandList;
             }
             //try
             //{
