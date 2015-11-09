@@ -66,6 +66,8 @@
     <Compile Include="DataAccess\MySql\DBUtil.cs" />
     <Compile Include="DataAccess\SqlServer\DBUtil.cs" />
     <Compile Include="Event\DelegateCollection.cs" />
+    <Compile Include="Transaction\Transaction.cs" />
+    <Compile Include="Transaction\TransactionScope.cs" />
     <Compile Include="WorkingProcess\EventHandlerList.cs" />
     <Compile Include="WorkingProcess\WorkProcessingEventArgs.cs" />
     <Compile Include="WorkingProcess\WorkCompleteEventArgs.cs" />

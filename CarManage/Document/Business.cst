@@ -26,17 +26,17 @@ Description: 根据数据库的内容生成模型层代码
 using System;
 using System.Collections.Generic;
 
-using ClassLibrary.Utility.ExceptionHandling;
+using ClassLibrary.ExceptionHandling;
 using ClassLibrary.Utility.Common;
 using <%=SystemNamespace%>.Factory.DataAccess;
 using <%=SystemNamespace%>.Interface.DataAccess;
 using <%=SystemNamespace%>.Model.<%=SubNamespace%>;
 using <%=SystemNamespace%>.Model.Enum;
 
-namespace <%=SystemNamespace%>.<%=SubNamespace%>
+namespace <%=SystemNamespace%>.Business.<%=SubNamespace%>
 {
     ///<summary>
-	///<summary><%=Table.Description%>业务对象</summary>
+	///<summary><%=ObjectName%>业务对象</summary>
 	///<creator><%=Author%></creator>
 	///<createdate><%=NowDate()%></createdate>
 	///<modifier></modifier>

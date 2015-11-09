@@ -33,16 +33,31 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessDemo.cs" />
+    <Compile Include="Customer\Car.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CarManage.Configuration\CarManage.Configuration.csproj">
+      <Project>{04c0dd06-4121-412f-ac99-45ccc2c7f9cb}</Project>
+      <Name>CarManage.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarManage.Factory.DataAccess\CarManage.Factory.DataAccess.csproj">
+      <Project>{868b12fc-ae59-4761-9526-856d2e4ec4de}</Project>
+      <Name>CarManage.Factory.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarManage.Interface.DataAccess\CarManage.Interface.DataAccess.csproj">
+      <Project>{8da4186b-df2a-4a19-ba54-e1ad5f4e823d}</Project>
+      <Name>CarManage.Interface.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarManage.Model\CarManage.Model.csproj">
+      <Project>{a4721732-f4c1-46c2-8ea0-986efb2c78b4}</Project>
+      <Name>CarManage.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj">
       <Project>{d2aa8df7-41bb-40bd-91b3-9d23e1025360}</Project>
       <Name>ClassLibrary</Name>

@@ -32,15 +32,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="Customer\CarInfo.cs" />
+    <Compile Include="Customer\CustomerInfo.cs" />
     <Compile Include="Enum\CustomerCharacter.cs" />
     <Compile Include="Enum\InsuranceItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

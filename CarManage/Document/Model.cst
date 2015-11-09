@@ -35,7 +35,7 @@ using <%=SystemNameSpace%>.Model;
 namespace <%=SystemNameSpace%>.Model.<%=SubSystemNameSpace%>
 {
 	///<summary>
-	///<summary><%=Table.Description%>对象</summary>
+	///<summary><%=ObjectName%>对象</summary>
 	///<creator><%=Author%></creator>
 	///<createdate><%=NowDate()%></createdate>
 	///<modifier></modifier>

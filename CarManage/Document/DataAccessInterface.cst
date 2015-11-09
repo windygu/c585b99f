@@ -30,7 +30,7 @@ using System.Collections.Generic;
 
 using <%=SystemNamespace%>.Model.<%=SubNamespace%>;
 
-namespace <%=SystemNamespace%>.<%=SubNamespace%>
+namespace <%=SystemNamespace%>.Interface<%=SubNamespace%>
 {
     ///<summary>
 	///<summary><%=ObjectName%>数据访问接口对象</summary>
@@ -41,7 +41,7 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
     ///<modifydate></modifydate>
     ///<other></other>    
 	///</summary>
-     public inerface I<%=Table.Name %>
+     public interface I<%=Table.Name %>
      {
         /// <summary>
         /// 新增<%=ObjectName%>

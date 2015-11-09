@@ -7,7 +7,7 @@ namespace CarManage.Factory.DataAccess
 {
     public class DataAccessFactory
     {
-        public static T CreateInstance<T>(T instance) where T:class
+        public static T CreateInstance<T>() where T : class
         {
             T result = null;
 

@@ -22,7 +22,7 @@ namespace CarManage.DataAccess.MySql
 
             questionInfo.Title = "Dapper单表实体插入";
             questionInfo.Content = "简单测试";
-            questionInfo.Rank = 1;
+            questionInfo.Rank = RankType.a;
             questionInfo.Rate = 2.88888m;
             questionInfo.Remark = "无";
             questionInfo.Description = "desc";
@@ -32,23 +32,24 @@ namespace CarManage.DataAccess.MySql
 
             //DapperExtensions.DapperExtensions.DefaultMapper = typeof(CustomTableMapper<>);
 
-//            string commandText = @"INSERT INTO Question(Title,Content,Rank,Rate,Remark,Description,CreateDate,Valid)
-//                                        VALUES(@Title,@Content,@Rank,@Rate,@Remark,@Description,@CreateDate,@Valid)";
+            string commandText = @"INSERT INTO Question(Title,Content,Rank,Rate,Remark,Description,CreateDate,Valid)
+                                        VALUES(@Title,@Content,@Rank,@Rate,@Remark,@Description,@CreateDate,@Valid)";
 
             using (IDbConnection connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString))
             {
+                ss(connection);
                 //connection.Open();
-                //connection.Execute(commandText, questionInfo);
+                connection.Execute(commandText, questionInfo);
                 //int rsult = base.Execute(commandText, connection, param: questionInfo);
                 //var info = base.Get<QuestionInfo>(29, connection);
 
-                //commandText = "select * from Question where id=@id and Title like concat('%',@Title,'%')";
-                //QuestionInfo q = new QuestionInfo();
-                //q.Id = 8;
-                //q.Title = "a";
+                commandText = "select * from Question where id=@id and Title like concat('%',@Title,'%')";
+                QuestionInfo q = new QuestionInfo();
+                q.Id = 8;
+                q.Title = "a";
                 //var reuslt = base.Query<QuestionInfo>(commandText, connection);
                 //var r = base.Load<QuestionInfo>("select * from Question where Id=@Id", connection, param: new { Id = 1 });
-                //var list = connection.Query<QuestionInfo>(commandText, q);
+                var list = connection.Query<QuestionInfo>(commandText, q);
 
             }
             //try
@@ -60,6 +61,13 @@ namespace CarManage.DataAccess.MySql
             //{
             //    DataAccessExceptionHandler.HandlerException("新增信息失败！", ex);
             //}
+
+            
+        }
+
+        private void ss(IDbConnection c)
+        {
+            c.Open();
         }
     }
     
@@ -72,7 +80,7 @@ namespace CarManage.DataAccess.MySql
 
         public string Content { get; set; }
 
-        public int? Rank { get; set; }
+        public RankType Rank { get; set; }
 
         public decimal? Rate { get; set; }
 
@@ -86,6 +94,11 @@ namespace CarManage.DataAccess.MySql
 
 
         public List<AnswerInfo> Answers { get; set; }
+    }
+
+    public enum RankType
+    { 
+        a=1
     }
 
     public class AnswerInfo
