@@ -61,6 +61,7 @@ namespace CarManage.DataAccess.DataAccess.MySql.Insurance
             }
             catch (Exception ex)
             {
+                base.Rollback(transaction);
                 DataAccessExceptionHandler.HandlerException("新增保险信息失败！", ex);
             }
             finally
@@ -100,6 +101,7 @@ namespace CarManage.DataAccess.DataAccess.MySql.Insurance
             }
             catch (Exception ex)
             {
+                base.Rollback(transaction);
                 DataAccessExceptionHandler.HandlerException("更新保险信息失败！", ex);
             }
             finally
@@ -120,7 +122,7 @@ namespace CarManage.DataAccess.DataAccess.MySql.Insurance
 
             try
             {
-                base.Execute(commandText, connectionString: CarManageConfig.Instance.ConnectionString, param: new { Id = id });
+                base.Execute(commandText, transaction:transaction, param: new { Id = id });
 
                 commandText = "DELETE FROM InsuranceItem WHERE InsuranceId=@InsuranceId";
 
@@ -130,6 +132,7 @@ namespace CarManage.DataAccess.DataAccess.MySql.Insurance
             }
             catch (Exception ex)
             {
+                base.Rollback(transaction);
                 DataAccessExceptionHandler.HandlerException("删除保险信息失败！", ex);
             }
             finally
