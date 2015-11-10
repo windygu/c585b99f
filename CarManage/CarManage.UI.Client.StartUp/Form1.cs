@@ -80,6 +80,48 @@ namespace CarManage.UI.Client.StartUp
                 ClassLibrary.ExceptionHandling.UserInterfaceExceptionHandler.HandlerException("456", ref ex);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CarManage.Business.Customer.Car car = new Business.Customer.Car();
+            CarManage.Model.Customer.CarInfo carInfo = new Model.Customer.CarInfo();
+
+            carInfo.Id = Guid.NewGuid().ToString();
+            carInfo.CustomerId = Guid.NewGuid().ToString();
+            carInfo.Number = "Number";
+            carInfo.Brand = "Brand";
+            carInfo.Model = "Model";
+            carInfo.Displacement = 1;
+            carInfo.FrameNumber = "FrameNumber";
+            carInfo.EngineNumber = "EngineNumber";
+            carInfo.BodyColor = "BodyColor";
+            carInfo.InteriorColor = "InteriorColor";
+            carInfo.InvoiceDate = null;
+            carInfo.BuyMileage = 2;
+            carInfo.RegisterDate = DateTime.Now;
+            carInfo.Mileage = 3;
+            carInfo.MaintenancePeriod = 4;
+            carInfo.MaintenanceMileage = 5;
+            carInfo.NextMaintenanceDate =DateTime.Now;
+            carInfo.NextMaintenanceMileage = 6;
+            carInfo.GuaranteePeriod = 7;
+            carInfo.GuaranteeMileage = 8;
+            carInfo.ActualGuaranteeDate = DateTime.Now;
+            carInfo.ActualGuaranteeMileage = CarManage.Model.Enum.CustomerCharacter.主导型;
+            carInfo.CreateDate = DateTime.Now;
+            carInfo.UpdateDate = DateTime.Now;
+            carInfo.Creator = "Creator";
+            carInfo.Operator = "Operator";
+            carInfo.Valid = true;
+
+            car.Add(carInfo);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CarManage.Business.Customer.Car car = new Business.Customer.Car();
+            CarManage.Model.Customer.CarInfo carInfo = car.Load("166ca143-1ebc-4cc2-a7a4-4013a6fa42ab");
+        }
     }
 
     public class DapperInfo

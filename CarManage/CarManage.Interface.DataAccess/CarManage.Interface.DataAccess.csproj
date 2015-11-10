@@ -36,6 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer\ICar.cs" />
+    <Compile Include="Customer\ICustomer.cs" />
+    <Compile Include="Insurance\IInsurance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -22,7 +22,7 @@ using CarManage.Interface.DataAccess.Customer;
 using CarManage.Model.Customer;
 using CarManage.DataAccess.MySql;
 
-namespace CarManage.Customer
+namespace CarManage.DataAccess.MySql.Customer
 {
     ///<summary>
     ///<summary>车辆信息数据访问对象</summary>
@@ -96,7 +96,7 @@ namespace CarManage.Customer
         /// 根据主键删除指定车辆信息数据
         /// </summary>
         /// <param name="id">车辆信息Id</param>
-        public void Delete(Guid id)
+        public void Delete(string id)
         {
             string commandText = "DELETE FROM Car WHERE Id=@Id";
 
@@ -116,7 +116,7 @@ namespace CarManage.Customer
         /// </summary>
         /// <param name="recordId">主键</param>
         /// <returns>返回产品实体类。如果没有符合条件的数据则返回null。</returns>
-        public CarInfo Load(Guid id)
+        public CarInfo Load(string id)
         {
             CarInfo carInfo = null;
             IDbConnection connection = null;
@@ -125,7 +125,7 @@ namespace CarManage.Customer
             try
             {
                 connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
-                base.Load<QuestionInfo>(commandText, connection, param: new { Id = id });
+                carInfo = base.Load<CarInfo>(commandText, connection, param: new { Id = id });
             }
             catch (Exception ex)
             {

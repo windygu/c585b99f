@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,6 +42,10 @@
     <ProjectReference Include="..\CarManage.Configuration\CarManage.Configuration.csproj">
       <Project>{04c0dd06-4121-412f-ac99-45ccc2c7f9cb}</Project>
       <Name>CarManage.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj">
+      <Project>{d2aa8df7-41bb-40bd-91b3-9d23e1025360}</Project>
+      <Name>ClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,6 +7,7 @@ namespace ClassLibrary.Configuration
     {
         void ProcessSection(XmlNode node);
         string Type { get; }
+
         event EventHandler<EventArgs> OnSave;
     }
 }

@@ -12,12 +12,11 @@ using System;
 using System.Collections.Generic;
 
 using CarManage.Model;
-using CarManage.Model.Enum;
 
-namespace CarManage.Model.Customer
+namespace CarManage.Model.Insurance
 {
     ///<summary>
-    ///<summary>客户信息对象</summary>
+    ///<summary>保险信息对象</summary>
     ///<creator>王旭</creator>
     ///<createdate>2015-11-10</createdate>
     ///<modifier></modifier>
@@ -26,16 +25,16 @@ namespace CarManage.Model.Customer
     ///<other></other>    
     ///</summary>
     [Serializable]
-    public class CustomerInfo : BaseModel
+    public class InsuranceInfo : BaseModel
     {
         #region 构造函数
 
         ///<summary>
         ///构造函数
         ///</summary>
-        public CustomerInfo()
+        public InsuranceInfo()
         {
-
+            Items = new List<InsuranceItemInfo>();
         }
 
         #endregion
@@ -48,84 +47,64 @@ namespace CarManage.Model.Customer
         public string Id { get; set; }
 
         ///<summary>
-        ///车主
+        ///车牌号
         ///</summary>
-        public string Owner { get; set; }
+        public string CarNumber { get; set; }
 
         ///<summary>
-        ///车主地址
+        ///车架号
         ///</summary>
-        public string OwnerAddress { get; set; }
+        public string FrameNumber { get; set; }
 
         ///<summary>
-        ///车辆使用人
+        ///发动机号
         ///</summary>
-        public string UserName { get; set; }
+        public string EngineNumber { get; set; }
 
         ///<summary>
-        ///性别（1：男，2：女）
+        ///被保险人
         ///</summary>
-        public Sex Sex { get; set; }
+        public string Insurant { get; set; }
 
         ///<summary>
-        ///称呼
+        ///被保险人电话
         ///</summary>
-        public string Alias { get; set; }
+        public string InsurantPhone { get; set; }
 
         ///<summary>
-        ///住宅电话
+        ///被保险人身份证号
         ///</summary>
-        public string Tel { get; set; }
+        public string InsurantId { get; set; }
 
         ///<summary>
-        ///移动电话
+        ///保险公司
         ///</summary>
-        public string Mobile { get; set; }
+        public int InsuranceCompany { get; set; }
 
         ///<summary>
-        ///客户地址
+        ///保险金额
         ///</summary>
-        public string UserAddress { get; set; }
+        public decimal Amount { get; set; }
 
         ///<summary>
-        ///邮箱
+        ///本店投保
         ///</summary>
-        public string Email { get; set; }
+        public bool Local { get; set; }
 
         ///<summary>
-        ///微信号
+        ///投保日期
         ///</summary>
-        public string WeChat { get; set; }
+        public DateTime InsuranceDate { get; set; }
 
         ///<summary>
-        ///习惯接电话时间
+        ///续保日期
         ///</summary>
-        public FreeTime FreeTime { get; set; }
+        public DateTime NextInsuranceDate { get; set; }
 
         ///<summary>
-        ///喜欢的售后市场活动
+        ///续保提醒日期
         ///</summary>
-        public string PreferSupport { get; set; }
-
-        ///<summary>
-        ///喜欢的销售市场活动
-        ///</summary>
-        public string PreferSale { get; set; }
-
-        /// <summary>
-        /// 喜欢的饮品
-        /// </summary>
-        public string PreferDrink { get; set; }
-
-        ///<summary>
-        ///性格类型
-        ///</summary>
-        public CustomerCharacter Character { get; set; }
-
-        ///<summary>
-        ///销售类型
-        ///</summary>
-        public int SaleType { get; set; }
+        public DateTime RemindDate { get; set; }
 
         ///<summary>
         ///创建日期
@@ -156,6 +135,8 @@ namespace CarManage.Model.Customer
         #endregion
 
         #region 扩展属性
+
+        public List<InsuranceItemInfo> Items { get; set; }
 
         #endregion
     }

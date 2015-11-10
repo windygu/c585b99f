@@ -42,14 +42,14 @@ namespace CarManage.Interface.DataAccess.Customer
         /// 删除车辆信息
         /// </summary>
         /// <param name="id">车辆信息Id</param>
-        void Delete(Guid id);
+        void Delete(string id);
         
         /// <summary>
         /// 获取车辆信息对象
         /// </summary>
         /// <param name="id">主键</param>
         /// <returns>返回车辆信息对象，如果无匹配则返回null。</returns>
-        CarInfo Load(Guid id);
+        CarInfo Load(string id);
         
         /// <summary>
         /// 查询车辆信息

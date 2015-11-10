@@ -94,7 +94,7 @@ namespace CarManage.Model.Customer
         ///<summary>
         ///发票日期
         ///</summary>
-        public DateTime InvoiceDate { get; set; }
+        public DateTime? InvoiceDate { get; set; }
 
         ///<summary>
         ///购买车辆里程
@@ -149,7 +149,7 @@ namespace CarManage.Model.Customer
         ///<summary>
         ///实际质保里程
         ///</summary>
-        public int ActualGuaranteeMileage { get; set; }
+        public Enum.CustomerCharacter ActualGuaranteeMileage { get; set; }
 
         ///<summary>
         ///创建日期
@@ -175,7 +175,6 @@ namespace CarManage.Model.Customer
         ///是否有效
         ///</summary>
         public bool Valid { get; set; }
-
 
         #endregion
 

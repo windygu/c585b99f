@@ -11,6 +11,7 @@
     <AssemblyName>CarManage.Business</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,13 +40,10 @@
   <ItemGroup>
     <Compile Include="BusinessDemo.cs" />
     <Compile Include="Customer\Car.cs" />
+    <Compile Include="Customer\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CarManage.Configuration\CarManage.Configuration.csproj">
-      <Project>{04c0dd06-4121-412f-ac99-45ccc2c7f9cb}</Project>
-      <Name>CarManage.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CarManage.Factory.DataAccess\CarManage.Factory.DataAccess.csproj">
       <Project>{868b12fc-ae59-4761-9526-856d2e4ec4de}</Project>
       <Name>CarManage.Factory.DataAccess</Name>

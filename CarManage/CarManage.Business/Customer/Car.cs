@@ -69,7 +69,7 @@ namespace CarManage.Business.Customer
         /// 删除车辆信息
         /// </summary>
         /// <param name="id">车辆信息Id</param>
-        public void Delete(Guid id)
+        public void Delete(string id)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace CarManage.Business.Customer
         /// </summary>
         /// <param name="id">主键</param>
         /// <returns>返回车辆信息对象，如果无匹配则返回null。</returns>
-        public CarInfo Load(Guid id)
+        public CarInfo Load(string id)
         {
             CarInfo carInfo = null;
 

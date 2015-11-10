@@ -38,7 +38,7 @@ using <%=SystemNamespace%>.Interface.DataAccess.<%=SubNamespace%>;
 using <%=SystemNamespace%>.Model.<%=SubNamespace%>;
 using <%=SystemNamespace%>.DataAccess.MySql;
 
-namespace <%=SystemNamespace%>.<%=SubNamespace%>
+namespace <%=SystemNamespace%>.DataAccess.MySql.<%=SubNamespace%>
 {
     ///<summary>
 	///<summary><%=ObjectName%>数据访问对象</summary>
@@ -119,7 +119,7 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
             try
             {
                 connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
-				base.Load<QuestionInfo>(commandText, connection, param: new { <%=GetPrimaryKeyName()%> = <%=GetPrimaryKeyFieldName()%> });
+				<%=GetModelParameterName()%>Info = base.Load<<%=GetModelName()%>Info>(commandText, connection, param: new { <%=GetPrimaryKeyName()%> = <%=GetPrimaryKeyFieldName()%> });
             }
             catch (Exception ex)
             {
@@ -331,8 +331,8 @@ namespace <%=SystemNamespace%>.<%=SubNamespace%>
 	
 	public string GetUpdateSql()
 	{
-		string sql = "\"UPDATE " + Table.Name + " SET \" +\n";
-		sql += "\t\t\t\t\"";
+		string sql = "\"UPDATE " + Table.Name + " SET \" \n";
+		sql += "\t\t\t\t+ \"";
 		foreach(ColumnSchema column in Table.NonPrimaryKeyColumns)
 		{
 			sql += column.Name + "=@" + column.Name + ",";

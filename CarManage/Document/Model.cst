@@ -123,6 +123,7 @@ public string GetSimpleType(ColumnSchema column)
 		case DbType.Single: strType = "int";break;
 		case DbType.String:strType = "string";break;
         case DbType.UInt16:strType = "bool";break;
+        case DbType.Decimal:strType = "decimal";break;
             
 		default:
 		{

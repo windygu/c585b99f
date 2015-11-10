@@ -29,7 +29,7 @@ using System.Collections.Generic;
 using ClassLibrary.ExceptionHandling;
 using ClassLibrary.Utility.Common;
 using <%=SystemNamespace%>.Factory.DataAccess;
-using <%=SystemNamespace%>.Interface.DataAccess;
+using <%=SystemNamespace%>.Interface.DataAccess.I<%=SubNamespace%>;
 using <%=SystemNamespace%>.Model.<%=SubNamespace%>;
 using <%=SystemNamespace%>.Model.Enum;
 
@@ -46,7 +46,7 @@ namespace <%=SystemNamespace%>.Business.<%=SubNamespace%>
 	///</summary>
      public class <%=Table.Name %>
      {
-         private static <%=SystemNamespace%>.<%=SubNamespace%>.I<%=GetModelName()%> <%=GetModelParameterName()%> = DataAccessFactory.CreateInstance<I<%=GetModelName()%>>();
+         private static <%=SystemNamespace%>.Interface.DataAccess.<%=SubNamespace%>.I<%=GetModelName()%> <%=GetModelParameterName()%> = DataAccessFactory.CreateInstance<I<%=GetModelName()%>>();
             
         /// <summary>
         /// 新增<%=ObjectName%>

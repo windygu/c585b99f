@@ -38,8 +38,12 @@
     <Compile Include="BaseModel.cs" />
     <Compile Include="Customer\CarInfo.cs" />
     <Compile Include="Customer\CustomerInfo.cs" />
+    <Compile Include="Enum\FreeTime.cs" />
     <Compile Include="Enum\CustomerCharacter.cs" />
     <Compile Include="Enum\InsuranceItem.cs" />
+    <Compile Include="Enum\Sex.cs" />
+    <Compile Include="Insurance\InsuranceInfo.cs" />
+    <Compile Include="Insurance\InsuranceItemInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -50,7 +50,7 @@ namespace CarManage.DataAccess.MySql
                 //var reuslt = base.Query<QuestionInfo>(commandText, connection);
                 //var r = base.Load<QuestionInfo>("select * from Question where Id=@Id", connection, param: new { Id = 1 });
                 var list = connection.Query<QuestionInfo>(commandText, q);
-
+                
             }
             //try
             //{
@@ -63,6 +63,18 @@ namespace CarManage.DataAccess.MySql
             //}
 
             
+        }
+
+        public static QuestionInfo ddddd()
+        {
+            QuestionInfo iii = null;
+            Type type = typeof(QuestionInfo);
+            string moduleName = type.Assembly.FullName.Split(',')[0];
+
+            string provider = type.FullName.Replace(moduleName, CarManageConfig.Instance.DataAccessProvider);
+            iii = (QuestionInfo)System.Reflection.Assembly.Load(CarManageConfig.Instance.DataAccessProvider).CreateInstance(provider);
+
+            return iii;
         }
 
         private void ss(IDbConnection c)

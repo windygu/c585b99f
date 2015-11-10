@@ -30,7 +30,7 @@ using System.Collections.Generic;
 
 using <%=SystemNamespace%>.Model.<%=SubNamespace%>;
 
-namespace <%=SystemNamespace%>.Interface<%=SubNamespace%>
+namespace <%=SystemNamespace%>.Interface.DataAccess.<%=SubNamespace%>
 {
     ///<summary>
 	///<summary><%=ObjectName%>数据访问接口对象</summary>
