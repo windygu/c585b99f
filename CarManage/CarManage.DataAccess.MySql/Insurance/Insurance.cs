@@ -41,7 +41,7 @@ namespace CarManage.DataAccess.MySql.Insurance
         /// <param name="insuranceInfo">保险信息对象</param>
         public void Add(InsuranceInfo insuranceInfo)
         {
-            IDbTransaction transaction = base.BeginTransaction(CarManageConfig.Instance.ConnectionString);
+            IDbTransaction transaction = null;
 
             string commandText = @"INSERT INTO Insurance(Id,CarNumber,FrameNumber,EngineNumber,Insurant,"
                 + "InsurantPhone,InsurantId,InsuranceCompany,Amount,Local,InsuranceDate,NextInsuranceDate,"
@@ -51,9 +51,12 @@ namespace CarManage.DataAccess.MySql.Insurance
 
             try
             {
+                transaction = base.BeginTransaction(CarManageConfig.Instance.ConnectionString);
+
                 base.Execute(commandText, transaction:transaction, param: insuranceInfo);
 
-                commandText = "INSERT INTO InsuranceItem(Id,InsuranceId,ItemCode,Amount)VALUES(@Id,@InsuranceId,@ItemCode,@Amount)";
+                commandText = "INSERT INTO InsuranceItem(Id,InsuranceId,ItemCode,Amount)"
+                    + "VALUES(@Id,@InsuranceId,@ItemCode,@Amount)";
 
                 base.Execute(commandText, transaction: transaction, param: insuranceInfo.Items);
 
@@ -93,7 +96,8 @@ namespace CarManage.DataAccess.MySql.Insurance
 
                 base.Execute(commandText, transaction: transaction, param: new { InsuranceId = insuranceInfo.Id });
 
-                commandText = "INSERT INTO InsuranceItem(Id,InsuranceId,ItemCode,Amount)VALUES(@Id,@InsuranceId,@ItemCode,@Amount)";
+                commandText = "INSERT INTO InsuranceItem(Id,InsuranceId,ItemCode,Amount)"
+                    + "VALUES(@Id,@InsuranceId,@ItemCode,@Amount)";
 
                 base.Execute(commandText, transaction: transaction, param: insuranceInfo.Items);
 
@@ -157,8 +161,12 @@ namespace CarManage.DataAccess.MySql.Insurance
                 connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
                 insuranceInfo = base.Load<InsuranceInfo>(commandText, connection, param: new { Id = id });
 
-                commandText = "SELECT * FROM InsuranceItem WHERE InsuranceId=@InsuranceId";
-                insuranceInfo.Items = base.Query<InsuranceItemInfo>(commandText, connection, param: new { InsuranceId = id }).ToList();
+                if (insuranceInfo != null)
+                {
+                    commandText = "SELECT * FROM InsuranceItem WHERE InsuranceId=@InsuranceId";
+                    insuranceInfo.Items = base.Query<InsuranceItemInfo>(commandText, connection,
+                        param: new { InsuranceId = id }).ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -208,7 +216,8 @@ namespace CarManage.DataAccess.MySql.Insurance
 
                 connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
 
-                queryInfo.TotalCount = base.ExecuteObject<int>(commandText: commandText, connection: connection, param: queryInfo);
+                queryInfo.TotalCount = base.ExecuteObject<int>(commandText: commandText, 
+                    connection: connection, param: queryInfo);
 
                 if (queryInfo.TotalCount.Equals(0))
                     return insuranceList;
@@ -223,7 +232,7 @@ namespace CarManage.DataAccess.MySql.Insurance
                 commandText = string.Format("SELECT {0} FROM {1} WHERE {2} ORDER BY {3} LIMIT {4},{5}",
                     field, table, filterText, order, startIndex, queryInfo.PageSize);
 
-                insuranceList = base.Query<InsuranceInfo>(commandText, connection, param: startIndex).ToList();
+                insuranceList = base.Query<InsuranceInfo>(commandText, connection, param: queryInfo).ToList();
             }
             catch (Exception ex)
             {

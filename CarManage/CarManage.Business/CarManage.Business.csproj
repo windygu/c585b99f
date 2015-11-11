@@ -41,6 +41,8 @@
     <Compile Include="BusinessDemo.cs" />
     <Compile Include="Customer\Car.cs" />
     <Compile Include="Customer\Customer.cs" />
+    <Compile Include="Insurance\Insurance.cs" />
+    <Compile Include="Maintenance\Maintenance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +63,7 @@
       <Name>ClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

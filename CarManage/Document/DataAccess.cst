@@ -141,6 +141,8 @@ namespace <%=SystemNamespace%>.DataAccess.MySql.<%=SubNamespace%>
     	/// <returns><%=ObjectName%>集合</returns>
     	public List<<%=Table.Name %>Info> Search(<%=Table.Name %>Info queryInfo)
     	{			
+            IDbConnection connection = null;
+            
             List<<%=Table.Name %>Info> <%=Table.Name.ToLower() %>List =new List<<%=Table.Name %>Info>();
             
 			try
@@ -166,7 +168,7 @@ namespace <%=SystemNamespace%>.DataAccess.MySql.<%=SubNamespace%>
 
                 string commandText = string.Format("SELECT COUNT(*) FROM <%=Table.Name %> {0}", filterText);
                 
-                IDbConnection connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
+                connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
 
                 queryInfo.TotalCount = base.ExecuteObject<int>(commandText: commandText, connection: connection, param: queryInfo);
 
@@ -183,12 +185,16 @@ namespace <%=SystemNamespace%>.DataAccess.MySql.<%=SubNamespace%>
                 commandText = string.Format("SELECT {0} FROM {1} WHERE {2} ORDER BY {3} LIMIT {4},{5}",
                     field, table, filterText, order, startIndex, queryInfo.PageSize);
 
-                <%=Table.Name.ToLower() %>List = base.Query<<%=Table.Name %>Info>(commandText, connection, param: startIndex).ToList();
+                <%=Table.Name.ToLower() %>List = base.Query<<%=Table.Name %>Info>(commandText, connection, param: queryInfo).ToList();
             }
             catch (Exception ex)
             {
                 DataAccessExceptionHandler.HandlerException(
                     "查询<%=ObjectName%>失败！", ex);
+            }
+            finally
+            {
+                CloseConnection(connection);
             }
             
             return <%=Table.Name.ToLower() %>List;

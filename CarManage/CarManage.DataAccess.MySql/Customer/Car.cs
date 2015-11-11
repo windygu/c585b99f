@@ -175,7 +175,8 @@ namespace CarManage.DataAccess.MySql.Customer
 
                 connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
 
-                queryInfo.TotalCount = base.ExecuteObject<int>(commandText: commandText, connection: connection, param: queryInfo);
+                queryInfo.TotalCount = base.ExecuteObject<int>(commandText: commandText, 
+                    connection: connection, param: queryInfo);
 
                 if (queryInfo.TotalCount.Equals(0))
                     return carList;
@@ -190,7 +191,7 @@ namespace CarManage.DataAccess.MySql.Customer
                 commandText = string.Format("SELECT {0} FROM {1} WHERE {2} ORDER BY {3} LIMIT {4},{5}",
                     field, table, filterText, order, startIndex, queryInfo.PageSize);
 
-                carList = base.Query<CarInfo>(commandText, connection, param: startIndex).ToList();
+                carList = base.Query<CarInfo>(commandText, connection, param: queryInfo).ToList();
             }
             catch (Exception ex)
             {

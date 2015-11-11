@@ -181,7 +181,7 @@ namespace CarManage.DataAccess.MySql.Customer
                 commandText = string.Format("SELECT {0} FROM {1} WHERE {2} ORDER BY {3} LIMIT {4},{5}",
                     field, table, filterText, order, startIndex, queryInfo.PageSize);
 
-                customerList = base.Query<CustomerInfo>(commandText, connection, param: startIndex).ToList();
+                customerList = base.Query<CustomerInfo>(commandText, connection, param: queryInfo).ToList();
             }
             catch (Exception ex)
             {

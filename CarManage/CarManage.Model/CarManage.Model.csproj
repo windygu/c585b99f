@@ -41,11 +41,15 @@
     <Compile Include="Enum\FreeTime.cs" />
     <Compile Include="Enum\CustomerCharacter.cs" />
     <Compile Include="Enum\InsuranceItem.cs" />
+    <Compile Include="Enum\MaintenanceStatus.cs" />
     <Compile Include="Enum\Sex.cs" />
     <Compile Include="Insurance\InsuranceInfo.cs" />
     <Compile Include="Insurance\InsuranceItemInfo.cs" />
+    <Compile Include="Maintenance\MaintenanceInfo.cs" />
+    <Compile Include="Maintenance\MaintenanceItemInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

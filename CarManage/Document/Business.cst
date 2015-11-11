@@ -29,7 +29,7 @@ using System.Collections.Generic;
 using ClassLibrary.ExceptionHandling;
 using ClassLibrary.Utility.Common;
 using <%=SystemNamespace%>.Factory.DataAccess;
-using <%=SystemNamespace%>.Interface.DataAccess.I<%=SubNamespace%>;
+using <%=SystemNamespace%>.Interface.DataAccess.<%=SubNamespace%>;
 using <%=SystemNamespace%>.Model.<%=SubNamespace%>;
 using <%=SystemNamespace%>.Model.Enum;
 
