@@ -19,6 +19,8 @@ namespace CarManage.UI.Client.StartUp
             InitializeComponent();
         }
 
+        CarManage.DataAccess.MySql.DataAccessBase data = new DataAccess.MySql.DataAccessBase();
+
         private void button1_Click(object sender, EventArgs e)
         {
             //SqlServerDapper();

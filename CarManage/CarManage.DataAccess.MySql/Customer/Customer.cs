@@ -137,6 +137,7 @@ namespace CarManage.DataAccess.MySql.Customer
         /// <returns>客户信息集合</returns>
         public List<CustomerInfo> Search(CustomerInfo queryInfo)
         {
+            IDbConnection connection = null;
             List<CustomerInfo> customerList = new List<CustomerInfo>();
 
             try
@@ -162,9 +163,10 @@ namespace CarManage.DataAccess.MySql.Customer
 
                 string commandText = string.Format("SELECT COUNT(*) FROM Customer {0}", filterText);
 
-                IDbConnection connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
+                connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
 
-                queryInfo.TotalCount = base.ExecuteObject<int>(commandText: commandText, connection: connection, param: queryInfo);
+                queryInfo.TotalCount = base.ExecuteObject<int>(commandText: commandText,
+                    connection: connection, param: queryInfo);
 
                 if (queryInfo.TotalCount.Equals(0))
                     return customerList;
@@ -185,6 +187,10 @@ namespace CarManage.DataAccess.MySql.Customer
             {
                 DataAccessExceptionHandler.HandlerException(
                     "查询客户信息失败！", ex);
+            }
+            finally
+            {
+                CloseConnection(connection);
             }
 
             return customerList;

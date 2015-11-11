@@ -22,7 +22,7 @@ using CarManage.Interface.DataAccess.Insurance;
 using CarManage.Model.Insurance;
 using CarManage.DataAccess.MySql;
 
-namespace CarManage.DataAccess.DataAccess.MySql.Insurance
+namespace CarManage.DataAccess.MySql.Insurance
 {
     ///<summary>
     ///<summary>保险信息数据访问对象</summary>
@@ -156,6 +156,9 @@ namespace CarManage.DataAccess.DataAccess.MySql.Insurance
             {
                 connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
                 insuranceInfo = base.Load<InsuranceInfo>(commandText, connection, param: new { Id = id });
+
+                commandText = "SELECT * FROM InsuranceItem WHERE InsuranceId=@InsuranceId";
+                insuranceInfo.Items = base.Query<InsuranceItemInfo>(commandText, connection, param: new { InsuranceId = id }).ToList();
             }
             catch (Exception ex)
             {
@@ -177,6 +180,7 @@ namespace CarManage.DataAccess.DataAccess.MySql.Insurance
         /// <returns>保险信息集合</returns>
         public List<InsuranceInfo> Search(InsuranceInfo queryInfo)
         {
+            IDbConnection connection = null;
             List<InsuranceInfo> insuranceList = new List<InsuranceInfo>();
 
             try
@@ -202,7 +206,7 @@ namespace CarManage.DataAccess.DataAccess.MySql.Insurance
 
                 string commandText = string.Format("SELECT COUNT(*) FROM Insurance {0}", filterText);
 
-                IDbConnection connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
+                connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
 
                 queryInfo.TotalCount = base.ExecuteObject<int>(commandText: commandText, connection: connection, param: queryInfo);
 
@@ -225,6 +229,10 @@ namespace CarManage.DataAccess.DataAccess.MySql.Insurance
             {
                 DataAccessExceptionHandler.HandlerException(
                     "查询保险信息失败！", ex);
+            }
+            finally
+            {
+                CloseConnection(connection);
             }
 
             return insuranceList;

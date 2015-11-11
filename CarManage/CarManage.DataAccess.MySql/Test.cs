@@ -35,23 +35,35 @@ namespace CarManage.DataAccess.MySql
             string commandText = @"INSERT INTO Question(Title,Content,Rank,Rate,Remark,Description,CreateDate,Valid)
                                         VALUES(@Title,@Content,@Rank,@Rate,@Remark,@Description,@CreateDate,@Valid)";
 
-            using (IDbConnection connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString))
-            {
-                ss(connection);
-                //connection.Open();
-                connection.Execute(commandText, questionInfo);
-                //int rsult = base.Execute(commandText, connection, param: questionInfo);
-                //var info = base.Get<QuestionInfo>(29, connection);
+            //using (IDbConnection connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString))
+            //{
+            //    connection.Open();
+            //    IDbTransaction tran = connection.BeginTransaction();
+            //    //connection.Open();
+            //    connection.Execute(commandText, transaction: tran, param: questionInfo);
+            //    //int rsult = base.Execute(commandText, connection, param: questionInfo);
+            //    //var info = base.Get<QuestionInfo>(29, connection);
 
-                commandText = "select * from Question where id=@id and Title like concat('%',@Title,'%')";
-                QuestionInfo q = new QuestionInfo();
-                q.Id = 8;
-                q.Title = "a";
-                //var reuslt = base.Query<QuestionInfo>(commandText, connection);
-                //var r = base.Load<QuestionInfo>("select * from Question where Id=@Id", connection, param: new { Id = 1 });
-                var list = connection.Query<QuestionInfo>(commandText, q);
-                
-            }
+            //    commandText = "select * from Question where id=@id and Title like concat('%',@Title,'%')";
+            //    QuestionInfo q = new QuestionInfo();
+            //    q.Id = 8;
+            //    q.Title = "a";
+            //    //var reuslt = base.Query<QuestionInfo>(commandText, connection);
+            //    //var r = base.Load<QuestionInfo>("select * from Question where Id=@Id", connection, param: new { Id = 1 });
+            //    var list = connection.Query<QuestionInfo>(commandText, transaction: tran, param: q);
+            //    q.Id = 5;
+            //    q.Title = "1";
+            //    var ss = connection.Query<QuestionInfo>(commandText, transaction: tran, param: q);
+            //    tran.Commit();
+            //}
+
+            IDbConnection connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
+            
+                connection.Open();
+                IDbCommand com = new MySqlCommand();
+                com.CommandText = "update Question SEt Titles='sss' WHERE id=1";
+                com.Connection = connection;
+            
             //try
             //{
             //    IDbConnection connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);

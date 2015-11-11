@@ -133,9 +133,22 @@ namespace CarManage.DataAccess.MySql
                 command = CreateCommand(commandText, connectionString, connection, transaction);
             }
 
-            if (connection == null && transaction == null)
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
             {
-                if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+                if (transaction != null)
+                {
+                    command.Connection = transaction.Connection;
+                    command.Transaction = transaction;
+
+                    result = command.ExecuteNonQuery();
+                }
+                else if (connection != null)
+                {
+                    command.Connection = connection;
+
+                    result = command.ExecuteNonQuery();
+                }
+                else if (!string.IsNullOrEmpty(connectionString))
                 {
                     using (IDbConnection conn = CreateConnection(connectionString))
                     {
@@ -143,28 +156,60 @@ namespace CarManage.DataAccess.MySql
                         result = command.ExecuteNonQuery();
                     }
                 }
-                else
-                {
-                    IDbTransaction tran = GetTransaction(connectionString);
-
-                    command.Connection = tran.Connection;
-                    command.Transaction = tran;
-
-                    result = command.ExecuteNonQuery();
-                }
             }
             else
             {
+                string connString = connectionString;
+
                 if (transaction != null)
                 {
-                    command.Connection = transaction.Connection;
-                    command.Transaction = transaction;
+                    connString = transaction.Connection.ConnectionString;
                 }
                 else if (connection != null)
-                    command.Connection = connection;
+                {
+                    connString = connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                command.Connection = tran.Connection;
+                command.Transaction = tran;
 
                 result = command.ExecuteNonQuery();
             }
+
+            //if (connection == null && transaction == null)
+            //{
+            //    if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            //    {
+            //        using (IDbConnection conn = CreateConnection(connectionString))
+            //        {
+            //            conn.Open();
+            //            result = command.ExecuteNonQuery();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        IDbTransaction tran = GetTransaction(connectionString);
+
+            //        command.Connection = tran.Connection;
+            //        command.Transaction = tran;
+
+            //        result = command.ExecuteNonQuery();
+            //    }
+            //}
+            //else
+            //{
+            //    if (transaction != null)
+            //    {
+            //        command.Connection = transaction.Connection;
+            //        command.Transaction = transaction;
+            //    }
+            //    else if (connection != null)
+            //        command.Connection = connection;
+
+            //    result = command.ExecuteNonQuery();
+            //}
 
             return result;
         }
@@ -290,9 +335,22 @@ namespace CarManage.DataAccess.MySql
                 command = CreateCommand(commandText, connectionString, connection, transaction);
             }
 
-            if (connection == null && transaction == null)
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
             {
-                if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+                if (transaction != null)
+                {
+                    command.Connection = transaction.Connection;
+                    command.Transaction = transaction;
+
+                    result = command.ExecuteScalar();
+                }
+                else if (connection != null)
+                {
+                    command.Connection = connection;
+
+                    result = command.ExecuteScalar();
+                }
+                else if (!string.IsNullOrEmpty(connectionString))
                 {
                     using (IDbConnection conn = CreateConnection(connectionString))
                     {
@@ -300,28 +358,60 @@ namespace CarManage.DataAccess.MySql
                         result = command.ExecuteScalar();
                     }
                 }
-                else
-                {
-                    IDbTransaction tran = GetTransaction(connectionString);
-
-                    command.Connection = tran.Connection;
-                    command.Transaction = tran;
-
-                    result = command.ExecuteScalar();
-                }
             }
             else
             {
+                string connString = connectionString;
+
                 if (transaction != null)
                 {
-                    command.Connection = transaction.Connection;
-                    command.Transaction = transaction;
+                    connString = transaction.Connection.ConnectionString;
                 }
                 else if (connection != null)
-                    command.Connection = connection;
+                {
+                    connString = connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                command.Connection = tran.Connection;
+                command.Transaction = tran;
 
                 result = command.ExecuteScalar();
             }
+
+            //if (connection == null && transaction == null)
+            //{
+            //    if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            //    {
+            //        using (IDbConnection conn = CreateConnection(connectionString))
+            //        {
+            //            conn.Open();
+            //            result = command.ExecuteScalar();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        IDbTransaction tran = GetTransaction(connectionString);
+
+            //        command.Connection = tran.Connection;
+            //        command.Transaction = tran;
+
+            //        result = command.ExecuteScalar();
+            //    }
+            //}
+            //else
+            //{
+            //    if (transaction != null)
+            //    {
+            //        command.Connection = transaction.Connection;
+            //        command.Transaction = transaction;
+            //    }
+            //    else if (connection != null)
+            //        command.Connection = connection;
+
+            //    result = command.ExecuteScalar();
+            //}
 
             return result;
         }
@@ -427,33 +517,72 @@ namespace CarManage.DataAccess.MySql
 
             int result = 0;
 
-            if (transaction != null)
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
             {
-                OpenConnection(transaction.Connection);
-                result = transaction.Connection.Execute(commandText, param, transaction, commandTimeout, commandType);
-            }
-            else if (connection != null)
-            {
-                OpenConnection(connection);
-                result = connection.Execute(commandText, param, transaction, commandTimeout, commandType);
-            }
-            else if (!string.IsNullOrEmpty(connectionString))
-            {
-                if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+                    result = transaction.Connection.Execute(commandText, param, transaction, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+                    result = connection.Execute(commandText, param: param, commandTimeout: commandTimeout, commandType: commandType);
+                }
+                else if (!string.IsNullOrEmpty(connectionString))
                 {
                     using (IDbConnection conn = CreateConnection(connectionString))
                     {
-                        OpenConnection(conn);
-                        result = conn.Execute(commandText, param, null, commandTimeout, commandType);
+                        conn.Open();
+                        result = conn.Execute(commandText, param: param, commandTimeout: commandTimeout, commandType: commandType);
                     }
                 }
-                else
-                {
-                    IDbTransaction tran = GetTransaction(connectionString);
-                    OpenConnection(tran.Connection);
-                    result = tran.Connection.Execute(commandText, param, null, commandTimeout, commandType);
-                }
             }
+            else
+            {
+                string connString = connectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+                else if (connection != null)
+                {
+                    connString = connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.Execute(commandText, param, tran, commandTimeout, commandType);
+            }
+
+            //if (transaction != null)
+            //{
+            //    OpenConnection(transaction.Connection);
+            //    result = transaction.Connection.Execute(commandText, param, transaction, commandTimeout, commandType);
+            //}
+            //else if (connection != null)
+            //{
+            //    OpenConnection(connection);
+            //    result = connection.Execute(commandText, param, transaction, commandTimeout, commandType);
+            //}
+            //else if (!string.IsNullOrEmpty(connectionString))
+            //{
+            //    if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            //    {
+            //        using (IDbConnection conn = CreateConnection(connectionString))
+            //        {
+            //            OpenConnection(conn);
+            //            result = conn.Execute(commandText, param, null, commandTimeout, commandType);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        IDbTransaction tran = GetTransaction(connectionString);
+            //        OpenConnection(tran.Connection);
+            //        result = tran.Connection.Execute(commandText, param, null, commandTimeout, commandType);
+            //    }
+            //}
 
             return result;
         }
@@ -472,32 +601,71 @@ namespace CarManage.DataAccess.MySql
 
             object result = null;
 
-            if (transaction != null)
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
             {
-                OpenConnection(transaction.Connection);
-                result = transaction.Connection.ExecuteScalar(commandText, param, transaction, commandTimeout, commandType);
-            }
-            else if (connection != null)
-            {
-                OpenConnection(connection);
-                result = connection.ExecuteScalar(commandText, param, transaction, commandTimeout, commandType);
-            }
-            else if (!string.IsNullOrEmpty(connectionString))
-            {
-                if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+                    result = transaction.Connection.ExecuteScalar(commandText, param, transaction, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+                    result = connection.ExecuteScalar(commandText, param: param, commandTimeout: commandTimeout, commandType: commandType);
+                }
+                else if (!string.IsNullOrEmpty(connectionString))
                 {
                     using (IDbConnection conn = CreateConnection(connectionString))
                     {
-                        OpenConnection(conn);
-                        result = conn.ExecuteScalar(commandText, param, null, commandTimeout, commandType);
+                        conn.Open();
+                        result = conn.ExecuteScalar(commandText, param: param, commandTimeout: commandTimeout, commandType: commandType);
                     }
                 }
-                else
-                {
-                    IDbTransaction tran = GetTransaction(connectionString);
-                    result = tran.Connection.ExecuteScalar(commandText, param, null, commandTimeout, commandType);
-                }
             }
+            else
+            {
+                string connString = connectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+                else if (connection != null)
+                {
+                    connString = connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.ExecuteScalar(commandText, param, tran, commandTimeout, commandType);
+            }
+
+            //if (transaction != null)
+            //{
+            //    OpenConnection(transaction.Connection);
+            //    result = transaction.Connection.ExecuteScalar(commandText, param, transaction, commandTimeout, commandType);
+            //}
+            //else if (connection != null)
+            //{
+            //    OpenConnection(connection);
+            //    result = connection.ExecuteScalar(commandText, param, transaction, commandTimeout, commandType);
+            //}
+            //else if (!string.IsNullOrEmpty(connectionString))
+            //{
+            //    if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            //    {
+            //        using (IDbConnection conn = CreateConnection(connectionString))
+            //        {
+            //            OpenConnection(conn);
+            //            result = conn.ExecuteScalar(commandText, param, null, commandTimeout, commandType);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        IDbTransaction tran = GetTransaction(connectionString);
+            //        result = tran.Connection.ExecuteScalar(commandText, param, null, commandTimeout, commandType);
+            //    }
+            //}
 
             return result;
         }
@@ -516,32 +684,71 @@ namespace CarManage.DataAccess.MySql
 
             T result = default(T);
 
-            if (transaction != null)
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
             {
-                OpenConnection(transaction.Connection);
-                result = transaction.Connection.ExecuteScalar<T>(commandText, param, transaction, commandTimeout, commandType);
-            }
-            else if (connection != null)
-            {
-                OpenConnection(connection);
-                result = connection.ExecuteScalar<T>(commandText, param, transaction, commandTimeout, commandType);
-            }
-            else if (!string.IsNullOrEmpty(connectionString))
-            {
-                if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+                    result = transaction.Connection.ExecuteScalar<T>(commandText, param, transaction, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+                    result = connection.ExecuteScalar<T>(commandText, param: param, commandTimeout: commandTimeout, commandType: commandType);
+                }
+                else if (!string.IsNullOrEmpty(connectionString))
                 {
                     using (IDbConnection conn = CreateConnection(connectionString))
                     {
-                        OpenConnection(conn);
-                        result = conn.ExecuteScalar<T>(commandText, param, null, commandTimeout, commandType);
+                        conn.Open();
+                        result = conn.ExecuteScalar<T>(commandText, param: param, commandTimeout: commandTimeout, commandType: commandType);
                     }
                 }
-                else
-                {
-                    IDbTransaction tran = GetTransaction(connectionString);
-                    result = tran.Connection.ExecuteScalar<T>(commandText, param, null, commandTimeout, commandType);
-                }
             }
+            else
+            {
+                string connString = connectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+                else if (connection != null)
+                {
+                    connString = connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.ExecuteScalar<T>(commandText, param, tran, commandTimeout, commandType);
+            }
+
+            //if (transaction != null)
+            //{
+            //    OpenConnection(transaction.Connection);
+            //    result = transaction.Connection.ExecuteScalar<T>(commandText, param, transaction, commandTimeout, commandType);
+            //}
+            //else if (connection != null)
+            //{
+            //    OpenConnection(connection);
+            //    result = connection.ExecuteScalar<T>(commandText, param, transaction, commandTimeout, commandType);
+            //}
+            //else if (!string.IsNullOrEmpty(connectionString))
+            //{
+            //    if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            //    {
+            //        using (IDbConnection conn = CreateConnection(connectionString))
+            //        {
+            //            OpenConnection(conn);
+            //            result = conn.ExecuteScalar<T>(commandText, param, null, commandTimeout, commandType);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        IDbTransaction tran = GetTransaction(connectionString);
+            //        result = tran.Connection.ExecuteScalar<T>(commandText, param, null, commandTimeout, commandType);
+            //    }
+            //}
 
             return result;
         }
@@ -565,46 +772,47 @@ namespace CarManage.DataAccess.MySql
 
             if (!ClassLibrary.Transaction.Transaction.TransactionStart)
             {
-                if (connection == null && transaction == null)
+                if (transaction != null)
                 {
-                    IDbConnection conn = CreateConnection(connectionString);
-                    OpenConnection(conn);
+                    command.Connection = transaction.Connection;
+                    command.Transaction = transaction;
+                    OpenConnection(transaction.Connection);
 
-                    reader = command.ExecuteReader(behavior);
+                    reader = command.ExecuteReader();
                 }
-                else
+                else if (connection != null)
                 {
-                    if (transaction != null)
-                    {
-                        command.Connection = transaction.Connection;
-                        command.Transaction = transaction;
-                    }
-                    else if (connection != null)
-                        command.Connection = connection;
+                    command.Connection = connection;
+                    OpenConnection(transaction.Connection);
 
-                    reader = command.ExecuteReader(behavior);
+                    reader = command.ExecuteReader();
+                }
+                else if (!string.IsNullOrEmpty(connectionString))
+                {
+                    using (IDbConnection conn = CreateConnection(connectionString))
+                    {
+                        conn.Open();
+                        reader = command.ExecuteReader();
+                    }
                 }
             }
             else
             {
+                string connString = connectionString;
+
                 if (transaction != null)
                 {
-                    OpenConnection(transaction.Connection);
-                    command.Connection = transaction.Connection;
-                    command.Transaction = transaction;
+                    connString = transaction.Connection.ConnectionString;
                 }
                 else if (connection != null)
                 {
-                    OpenConnection(connection);
-                    command.Connection = connection;
+                    connString = connection.ConnectionString;
                 }
-                else if (!string.IsNullOrEmpty(connectionString))
-                {
-                    IDbTransaction tran = GetTransaction(connectionString);
 
-                    command.Connection = tran.Connection;
-                    command.Transaction = tran;
-                }
+                IDbTransaction tran = GetTransaction(connectionString);
+
+                command.Connection = tran.Connection;
+                command.Transaction = tran;
 
                 reader = command.ExecuteReader();
             }
@@ -725,9 +933,36 @@ namespace CarManage.DataAccess.MySql
         public IDataReader ExecuteResult(string commandText, IDbConnection connection, IDbTransaction transaction = null,
             int? commandTimeout = null, CommandType? commandType = null, object param = null)
         {
-            OpenConnection(connection);
+            IDataReader reader = null;
 
-            return connection.ExecuteReader(commandText, param, transaction, commandTimeout, commandType);
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+                    reader = transaction.Connection.ExecuteReader(commandText, param, transaction, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+                    reader = connection.ExecuteReader(commandText, param: param, commandTimeout: commandTimeout, commandType: commandType);
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                reader = tran.Connection.ExecuteReader(commandText, param, tran, commandTimeout, commandType);
+            }
+
+            return reader;
             //if (!ClassLibrary.Transaction.Transaction.TransactionStart)
             //{
             //    if (connection == null && transaction == null)
@@ -781,36 +1016,178 @@ namespace CarManage.DataAccess.MySql
         public IEnumerable<T> Query<T>(string commandText, IDbConnection connection, IDbTransaction transaction = null,
             bool buffered = true, int? commandTimeout = null, CommandType? commandType = null, object param = null)
         {
-            OpenConnection(connection);
+            IEnumerable<T> result = null;
 
-            return connection.Query<T>(commandText, param, transaction, buffered, commandTimeout, commandType);
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+
+                    result = transaction.Connection.Query<T>(commandText, param, transaction, 
+                        buffered, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+
+                    result = connection.Query<T>(commandText, param: param, buffered: buffered, 
+                        commandTimeout: commandTimeout, commandType: commandType);
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.Query<T>(commandText, param, tran, buffered: buffered, 
+                    commandTimeout: commandTimeout, commandType: commandType);
+            }
+
+            return result;
+            //OpenConnection(connection);
+
+            //return connection.Query<T>(commandText, param, transaction, buffered, commandTimeout, commandType);
         }
 
         public IEnumerable<dynamic> Query(string commandText, IDbConnection connection, IDbTransaction transaction = null,
             bool buffered = true, int? commandTimeout = null, CommandType? commandType = null, object param = null)
         {
-            OpenConnection(connection);
+            IEnumerable<dynamic> result = null;
 
-            return connection.Query(commandText, param, transaction, buffered, commandTimeout, commandType);
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+
+                    result = transaction.Connection.Query<dynamic>(commandText, param, transaction,
+                        buffered, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+
+                    result = connection.Query<dynamic>(commandText, param: param, buffered: buffered,
+                        commandTimeout: commandTimeout, commandType: commandType);
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.Query<dynamic>(commandText, param, tran, buffered: buffered,
+                    commandTimeout: commandTimeout, commandType: commandType);
+            }
+
+            return result;
+
+            //OpenConnection(connection);
+
+            //return connection.Query(commandText, param, transaction, buffered, commandTimeout, commandType);
         }
 
         public IEnumerable<object> Query(Type type, string commandText, IDbConnection connection,
             IDbTransaction transaction = null, bool buffered = true, int? commandTimeout = null,
             CommandType? commandType = null, object param = null)
         {
-            OpenConnection(connection);
+            IEnumerable<object> result = null;
 
-            return connection.Query(type, commandText, param, transaction, buffered, commandTimeout, commandType);
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+
+                    result = transaction.Connection.Query(type, commandText, param: param, transaction: transaction,
+                        buffered: buffered, commandTimeout: commandTimeout, commandType: commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+
+                    result = connection.Query(type, commandText, param: param, buffered: buffered,
+                        commandTimeout: commandTimeout, commandType: commandType);
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.Query(type, commandText, param, tran, buffered: buffered,
+                    commandTimeout: commandTimeout, commandType: commandType);
+            }
+
+            return result;
+
+            //OpenConnection(connection);
+
+            //return connection.Query(type, commandText, param, transaction, buffered, commandTimeout, commandType);
         }
 
-        public IEnumerable<TReturn> Query<TFirst, TSecond, TReturn>(string commandText,
-            Func<TFirst, TSecond, TReturn> map, IDbConnection connection, IDbTransaction transaction = null,
-            bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null,
-            object param = null)
+        public IEnumerable<TReturn> Query<TFirst, TSecond, TReturn>(string commandText, Func<TFirst, TSecond, TReturn> map, 
+            IDbConnection connection, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", 
+            int? commandTimeout = null, CommandType? commandType = null, object param = null)
         {
-            OpenConnection(connection);
+            IEnumerable<TReturn> result = null;
 
-            return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+
+                    result = transaction.Connection.Query<TFirst, TSecond, TReturn>(commandText, map, param, 
+                        transaction, buffered, splitOn, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+
+                    result = connection.Query<TFirst, TSecond, TReturn>(commandText, map, param: param,
+                        buffered: buffered, splitOn: splitOn, commandTimeout: commandTimeout, commandType: commandType);
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.Query<TFirst, TSecond, TReturn>(commandText, map, param,
+                        tran, buffered, splitOn, commandTimeout, commandType);
+            }
+
+            return result;
+
+            //OpenConnection(connection);
+
+            //return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
         public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TReturn>(string commandText,
@@ -818,9 +1195,45 @@ namespace CarManage.DataAccess.MySql
             bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null,
             object param = null)
         {
-            OpenConnection(connection);
+            IEnumerable<TReturn> result = null;
 
-            return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+
+                    result = transaction.Connection.Query<TFirst, TSecond, TThird, TReturn>(commandText, map, param,
+                        transaction, buffered, splitOn, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+
+                    result = connection.Query<TFirst, TSecond, TThird, TReturn>(commandText, map, param: param,
+                        buffered: buffered, splitOn: splitOn, commandTimeout: commandTimeout, commandType: commandType);
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.Query<TFirst, TSecond, TThird, TReturn>(commandText, map, param,
+                        tran, buffered, splitOn, commandTimeout, commandType);
+            }
+
+            return result;
+
+            //OpenConnection(connection);
+
+            //return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
         public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TReturn>(string commandText,
@@ -828,9 +1241,45 @@ namespace CarManage.DataAccess.MySql
             bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null,
             object param = null)
         {
-            OpenConnection(connection);
+            IEnumerable<TReturn> result = null;
 
-            return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+
+                    result = transaction.Connection.Query<TFirst, TSecond, TThird, TFourth, TReturn>(commandText, map, param,
+                        transaction, buffered, splitOn, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+
+                    result = connection.Query<TFirst, TSecond, TThird, TFourth, TReturn>(commandText, map, param: param,
+                        buffered: buffered, splitOn: splitOn, commandTimeout: commandTimeout, commandType: commandType);
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.Query<TFirst, TSecond, TThird, TFourth, TReturn>(commandText, map, param,
+                        tran, buffered, splitOn, commandTimeout, commandType);
+            }
+
+            return result;
+
+            //OpenConnection(connection);
+
+            //return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
         public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(string commandText,
@@ -838,9 +1287,45 @@ namespace CarManage.DataAccess.MySql
             IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null,
             CommandType? commandType = null, object param = null)
         {
-            OpenConnection(connection);
+            IEnumerable<TReturn> result = null;
 
-            return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+
+                    result = transaction.Connection.Query<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(commandText, map, param,
+                        transaction, buffered, splitOn, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+
+                    result = connection.Query<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(commandText, map, param: param,
+                        buffered: buffered, splitOn: splitOn, commandTimeout: commandTimeout, commandType: commandType);
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.Query<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(commandText, map, param,
+                        tran, buffered, splitOn, commandTimeout, commandType);
+            }
+
+            return result;
+
+            //OpenConnection(connection);
+
+            //return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
         public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(string commandText,
@@ -848,9 +1333,45 @@ namespace CarManage.DataAccess.MySql
             IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null,
             CommandType? commandType = null, object param = null)
         {
-            OpenConnection(connection);
+            IEnumerable<TReturn> result = null;
 
-            return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+
+                    result = transaction.Connection.Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(commandText, map, param,
+                        transaction, buffered, splitOn, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+
+                    result = connection.Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(commandText, map, param: param,
+                        buffered: buffered, splitOn: splitOn, commandTimeout: commandTimeout, commandType: commandType);
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(commandText, map, param,
+                        tran, buffered, splitOn, commandTimeout, commandType);
+            }
+
+            return result;
+
+            //OpenConnection(connection);
+
+            //return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
         public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(string commandText,
@@ -858,36 +1379,176 @@ namespace CarManage.DataAccess.MySql
             IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null,
             CommandType? commandType = null, object param = null)
         {
-            OpenConnection(connection);
+            IEnumerable<TReturn> result = null;
 
-            return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+
+                    result = transaction.Connection.Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(commandText, map, param,
+                        transaction, buffered, splitOn, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+
+                    result = connection.Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(commandText, map, param: param,
+                        buffered: buffered, splitOn: splitOn, commandTimeout: commandTimeout, commandType: commandType);
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(commandText, map, param,
+                        tran, buffered, splitOn, commandTimeout, commandType);
+            }
+
+            return result;
+
+            //OpenConnection(connection);
+
+            //return connection.Query(commandText, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
         public IEnumerable<TReturn> Query<TReturn>(string commandText, Type[] types, Func<object[], TReturn> map,
             IDbConnection connection, IDbTransaction transaction = null, bool buffered = true,
             string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null, object param = null)
         {
-            OpenConnection(connection);
+            IEnumerable<TReturn> result = null;
 
-            return connection.Query<TReturn>(commandText, types, map, param, transaction,
-                buffered, splitOn, commandTimeout, commandType);
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+
+                    result = transaction.Connection.Query<TReturn>(commandText, types, map, param,
+                        transaction, buffered, splitOn, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+
+                    result = connection.Query<TReturn>(commandText, types, map, param: param,
+                        buffered: buffered, splitOn: splitOn, commandTimeout: commandTimeout, commandType: commandType);
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.Query<TReturn>(commandText, types, map, param,
+                        tran, buffered, splitOn, commandTimeout, commandType);
+            }
+
+            return result;
+
+            //OpenConnection(connection);
+
+            //return connection.Query<TReturn>(commandText, types, map, param, transaction,
+            //    buffered, splitOn, commandTimeout, commandType);
         }
 
         public SqlMapper.GridReader QueryMultiple(string commandText, IDbConnection connection,
             IDbTransaction transaction = null, object param = null, int? commandTimeout = null,
                 CommandType? commandType = null)
         {
-            OpenConnection(connection);
+            SqlMapper.GridReader result = null;
 
-            return connection.QueryMultiple(commandText, param, transaction, commandTimeout, commandType);
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+
+                    result = transaction.Connection.QueryMultiple(commandText, param, transaction, commandTimeout, commandType);
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+
+                    result = connection.QueryMultiple(commandText, param, commandTimeout: commandTimeout, commandType: commandType);
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.QueryMultiple(commandText, param, tran, commandTimeout, commandType);
+            }
+
+            return result;
+
+            //OpenConnection(connection);
+
+            //return connection.QueryMultiple(commandText, param, transaction, commandTimeout, commandType);
         }
 
         public T Load<T>(string commandText, IDbConnection connection, IDbTransaction transaction = null,
-            bool buffered = true, int? commandTimeout = null, CommandType? commandType = null, object param = null)
+            bool buffered = true, int? commandTimeout = null, CommandType? commandType = null, object param = null) where T : class
         {
-            OpenConnection(connection);
+            T result = null;
 
-            return connection.Query<T>(commandText, param, transaction, buffered, commandTimeout, commandType).FirstOrDefault();
+            if (!ClassLibrary.Transaction.Transaction.TransactionStart)
+            {
+                if (transaction != null)
+                {
+                    OpenConnection(transaction.Connection);
+
+                    result = transaction.Connection.Query<T>(commandText, param, transaction,
+                        buffered, commandTimeout, commandType).FirstOrDefault();
+                }
+                else if (connection != null)
+                {
+                    OpenConnection(connection);
+
+                    result = connection.Query<T>(commandText, param: param, buffered: buffered,
+                        commandTimeout: commandTimeout, commandType: commandType).FirstOrDefault();
+                }
+            }
+            else
+            {
+                string connString = connection.ConnectionString;
+
+                if (transaction != null)
+                {
+                    connString = transaction.Connection.ConnectionString;
+                }
+
+                IDbTransaction tran = GetTransaction(connString);
+
+                result = tran.Connection.Query<T>(commandText, param, tran, buffered: buffered,
+                    commandTimeout: commandTimeout, commandType: commandType).FirstOrDefault();
+            }
+
+            return result;
+            //OpenConnection(connection);
+
+            //return connection.Query<T>(commandText, param, transaction, buffered, commandTimeout, commandType).FirstOrDefault();
         }
 
         //public dynamic Insert<T>(T entity, IDbConnection connection, IDbTransaction transaction = null,

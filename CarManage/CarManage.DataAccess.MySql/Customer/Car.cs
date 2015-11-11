@@ -147,9 +147,9 @@ namespace CarManage.DataAccess.MySql.Customer
         /// <returns>车辆信息集合</returns>
         public List<CarInfo> Search(CarInfo queryInfo)
         {
-            List<CarInfo> carList = new List<CarInfo>();
             IDbConnection connection = null;
-
+            List<CarInfo> carList = new List<CarInfo>();
+            
             try
             {
                 string field = "*";
