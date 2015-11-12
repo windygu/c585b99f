@@ -6,10 +6,11 @@ using System.Linq;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
+using ClassLibrary.Winform.UI.Forms;
 
-namespace DHGateAssistant.UI.Common
+namespace CarManage.UI.Client.Common
 {
-    public partial class Login : Form
+    public partial class Login : CustomTitleBarForm
     {
         #region 私有变量
 
@@ -29,6 +30,8 @@ namespace DHGateAssistant.UI.Common
         public Login()
         {
             InitializeComponent();
+
+            button1.BackgroundImage = CarManage.Resources.Common.ImageResource.Button_BG_Green;
         }
 
         #endregion
@@ -36,6 +39,11 @@ namespace DHGateAssistant.UI.Common
         private void Login_Load(object sender, EventArgs e)
         {
             BindUsers();
+        }
+
+        protected override void Init()
+        {
+            base.Init();
         }
 
         #region 处理方法

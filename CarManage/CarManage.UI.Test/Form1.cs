@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using CarManage.UI.Component.Forms;
+using ClassLibrary.Winform.UI.Forms;
 
 namespace CarManage.UI.Test
 {

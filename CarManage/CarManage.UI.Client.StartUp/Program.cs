@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
+using CarManage.UI.Client.Common;
 
 namespace CarManage.UI.Client.StartUp
 {
@@ -18,7 +19,7 @@ namespace CarManage.UI.Client.StartUp
             Application.SetCompatibleTextRenderingDefault(false);
 
             ClassLibrary.Configuration.ConfigurationManager.Instance.Init();
-            Application.Run(new Form1());
+            Application.Run(new Login());
         }
     }
 }

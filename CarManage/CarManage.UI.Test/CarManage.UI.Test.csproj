@@ -72,9 +72,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CarManage.UI.Component\CarManage.UI.Component.csproj">
-      <Project>{a93fb49e-48f0-415b-8e0d-37a9fa520517}</Project>
-      <Name>CarManage.UI.Component</Name>
+    <ProjectReference Include="..\ClassLibrary.Winform.UI\ClassLibrary.Winform.UI.csproj">
+      <Project>{5170771b-3195-4ee5-9990-a57c41a8c1c2}</Project>
+      <Name>ClassLibrary.Winform.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
