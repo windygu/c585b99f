@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F757B0C-7F09-4EEB-8326-6B59DD73AEF9}</ProjectGuid>
+    <ProjectGuid>{A93FB49E-48F0-415B-8E0D-37A9FA520517}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CarManage.Business</RootNamespace>
-    <AssemblyName>CarManage.Business</AssemblyName>
+    <RootNamespace>CarManage.UI.Component</RootNamespace>
+    <AssemblyName>CarManage.UI.Component</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,38 +32,34 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessDemo.cs" />
-    <Compile Include="Customer\Car.cs" />
-    <Compile Include="Customer\Customer.cs" />
-    <Compile Include="Insurance\Insurance.cs" />
-    <Compile Include="Maintenance\Maintenance.cs" />
+    <Compile Include="Forms\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomTitleBarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomTitleBarForm.Designer.cs">
+      <DependentUpon>CustomTitleBarForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Solicit\Solicit.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CarManage.Factory.DataAccess\CarManage.Factory.DataAccess.csproj">
-      <Project>{868b12fc-ae59-4761-9526-856d2e4ec4de}</Project>
-      <Name>CarManage.Factory.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CarManage.Interface.DataAccess\CarManage.Interface.DataAccess.csproj">
-      <Project>{8da4186b-df2a-4a19-ba54-e1ad5f4e823d}</Project>
-      <Name>CarManage.Interface.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CarManage.Model\CarManage.Model.csproj">
-      <Project>{a4721732-f4c1-46c2-8ea0-986efb2c78b4}</Project>
-      <Name>CarManage.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj">
-      <Project>{d2aa8df7-41bb-40bd-91b3-9d23e1025360}</Project>
-      <Name>ClassLibrary</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Forms\CustomTitleBarForm.resx">
+      <DependentUpon>CustomTitleBarForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

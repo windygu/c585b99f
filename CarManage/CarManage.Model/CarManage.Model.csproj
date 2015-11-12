@@ -43,11 +43,14 @@
     <Compile Include="Enum\InsuranceItem.cs" />
     <Compile Include="Enum\MaintenanceStatus.cs" />
     <Compile Include="Enum\Sex.cs" />
+    <Compile Include="Enum\SolicitResult.cs" />
+    <Compile Include="Enum\SolicitStatus.cs" />
     <Compile Include="Insurance\InsuranceInfo.cs" />
     <Compile Include="Insurance\InsuranceItemInfo.cs" />
     <Compile Include="Maintenance\MaintenanceInfo.cs" />
     <Compile Include="Maintenance\MaintenanceItemInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solicit\SolicitInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
