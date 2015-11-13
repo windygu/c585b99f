@@ -41,6 +41,7 @@
     <Compile Include="Maintenance\IMaintenance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solicit\SolicitInfo.cs" />
+    <Compile Include="User\IUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CarManage.Model\CarManage.Model.csproj">

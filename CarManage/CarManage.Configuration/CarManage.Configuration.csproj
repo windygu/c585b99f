@@ -36,6 +36,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CarManageConfig.cs" />
@@ -47,6 +48,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CarManage.Model\CarManage.Model.csproj">
+      <Project>{a4721732-f4c1-46c2-8ea0-986efb2c78b4}</Project>
+      <Name>CarManage.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj">
       <Project>{d2aa8df7-41bb-40bd-91b3-9d23e1025360}</Project>
       <Name>ClassLibrary</Name>

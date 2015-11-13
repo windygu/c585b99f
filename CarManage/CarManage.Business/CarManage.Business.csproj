@@ -45,8 +45,13 @@
     <Compile Include="Maintenance\Maintenance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solicit\Solicit.cs" />
+    <Compile Include="User\User.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CarManage.Configuration\CarManage.Configuration.csproj">
+      <Project>{04c0dd06-4121-412f-ac99-45ccc2c7f9cb}</Project>
+      <Name>CarManage.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CarManage.Factory.DataAccess\CarManage.Factory.DataAccess.csproj">
       <Project>{868b12fc-ae59-4761-9526-856d2e4ec4de}</Project>
       <Name>CarManage.Factory.DataAccess</Name>

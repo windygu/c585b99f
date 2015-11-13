@@ -8,8 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.IO;
+using System.Xml.Linq;
 
 using ClassLibrary.Configuration;
+using CarManage.Model.User;
 
 namespace CarManage.Configuration
 {
@@ -223,6 +225,65 @@ namespace CarManage.Configuration
             }
         }
 
+        private List<UserInfo> recentUsers;
+
+        public List<UserInfo> RecentUsers
+        {
+            get
+            {
+                if (recentUsers != null)
+                    return recentUsers;
+
+                recentUsers = new List<UserInfo>();
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load("CustomSettings.config");
+
+                XmlNode userNode = doc.SelectSingleNode("descendant::recentUsers");
+
+                if (userNode == null)
+                    return recentUsers;
+
+                foreach (XmlNode node in userNode.ChildNodes)
+                {
+                    recentUsers.Add(new UserInfo { 
+                        UserName = node.Attributes["userName"].Value, 
+                        Password = node.Attributes["password"].Value 
+                    });
+                }
+
+                return recentUsers;
+            }
+        }
+
+        public void SaveRecentUser(string userName, string password)
+        {
+            try
+            {
+                XDocument settings = XDocument.Load("CustomSettings.config");
+                XElement users = settings.Element("configuration").Element("recentUsers");
+
+                if (users == null)
+                    settings.Add(new XElement("recentUsers"));
+
+                XElement userNode = users.Descendants("user").FirstOrDefault(info => info.Attribute("userName").Value.Equals(userName));
+
+                if (userNode != null)
+                    userNode.Remove();
+
+                users.AddFirst(new XElement("user", 
+                    new XAttribute("userName", userName), 
+                    new XAttribute("password", password))
+                    );
+
+                settings.Save("CustomSettings.config");
+            }
+            catch
+            { 
+                
+            }
+        }
+
         public void ProcessSection(XmlNode node)
         {
             foreach (XmlNode childNode in node.ChildNodes)
@@ -271,25 +332,25 @@ namespace CarManage.Configuration
 
         public void Save()
         {
-            string configPath =
-                System.Configuration.ConfigurationManager.AppSettings["ConfigFile"];
+            //string configPath =
+            //    System.Configuration.ConfigurationManager.AppSettings["ConfigFile"];
 
-            XmlDocument document = new XmlDocument();
-            document.Load(configPath);
+            //XmlDocument document = new XmlDocument();
+            //document.Load(configPath);
 
-            XmlNode node = document.SelectSingleNode(
-                "descendant::carConfiguration");
+            //XmlNode node = document.SelectSingleNode(
+            //    "descendant::carConfiguration");
 
-            if (node == null)
-                return;
+            //if (node == null)
+            //    return;
 
-            foreach (XmlNode childNode in node.ChildNodes)
-            {
-                if (!childNode.NodeType.Equals(XmlNodeType.Element))
-                    continue;
-            }
+            //foreach (XmlNode childNode in node.ChildNodes)
+            //{
+            //    if (!childNode.NodeType.Equals(XmlNodeType.Element))
+            //        continue;
+            //}
 
-            document.Save(configPath);
+            //document.Save(configPath);
         }
 
         public string Type
