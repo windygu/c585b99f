@@ -49,17 +49,23 @@
     <Compile Include="Controls\ComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Label.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Label.Designer.cs">
+      <DependentUpon>Label.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\TextBox.designer.cs">
       <DependentUpon>TextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControl1.cs">
+    <Compile Include="Controls\UserControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <Compile Include="Controls\UserControlBase.Designer.cs">
+      <DependentUpon>UserControlBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\BaseForm.cs">
       <SubType>Form</SubType>

@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessDemo.cs" />
+    <Compile Include="Common\CodeBook.cs" />
     <Compile Include="Customer\Car.cs" />
     <Compile Include="Customer\Customer.cs" />
     <Compile Include="Insurance\Insurance.cs" />

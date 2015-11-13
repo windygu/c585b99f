@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="Common\CodeBookInfo.cs" />
     <Compile Include="Customer\CarInfo.cs" />
     <Compile Include="Customer\CustomerInfo.cs" />
     <Compile Include="Enum\FreeTime.cs" />

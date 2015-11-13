@@ -284,6 +284,11 @@ namespace CarManage.Configuration
             }
         }
 
+        /// <summary>
+        /// 登录用户信息
+        /// </summary>
+        public UserInfo UserData { get; set; }
+
         public void ProcessSection(XmlNode node)
         {
             foreach (XmlNode childNode in node.ChildNodes)

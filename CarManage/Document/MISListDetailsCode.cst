@@ -102,7 +102,7 @@ public partial class <%=Table.Name %>Details : System.Web.UI.Page
         if (<%=Table.Name.ToLower() %> != null)
         {
             <%for(int i=1;i<Table.Columns.Count;i++) {%>
-            txt<%=Table.Columns[i].Name %>.Text = <%=Table.Name.ToLower() %>.<%=Table.Columns[i].Name %>.ToString();
+            txt<%=Table.Columns[i].Name %>.Text = <%=Table.Name.ToLower() %>Info.<%=Table.Columns[i].Name %>;
             <%} %>
         }
     }
@@ -167,27 +167,26 @@ public partial class <%=Table.Name %>Details : System.Web.UI.Page
         if (uid != null && uid != "")
          {
         <%if(Table.Columns[0].SystemType.FullName == "System.Guid") {%>
-        <%=Table.Name.ToLower() %>.<%=Table.Columns[0].Name %> =new Guid(uid);
+        <%=Table.Name.ToLower() %>.<%=Table.Columns[0].Name %>Info =new Guid(uid);
         <%} %>
         <%if(Table.Columns[0].SystemType.FullName == "System.Int32") {%>
-        <%=Table.Name.ToLower() %>.<%=Table.Columns[0].Name %> =Convert.ToInt32(uid);
+        <%=Table.Name.ToLower() %>.<%=Table.Columns[0].Name %>Info =Convert.ToInt32(uid);
         <%} %>
          <%if(Table.Columns[0].SystemType.FullName == "System.String") {%>
-          <%=Table.Name.ToLower() %>.<%=Table.Columns[0].Name %> =uid;
+          <%=Table.Name.ToLower() %>.<%=Table.Columns[0].Name %>Info =uid;
         <%} %>
         }
         <%--根据数据类型，循环给其它项赋值，可以添加其它数据类型判断--%>
         <%for(int i=1;i<Table.Columns.Count;i++){ %>
         <%if(Table.Columns[i].SystemType.FullName == "System.Int32" ) {%>
-            <%=Table.Name.ToLower() %>.<%=Table.Columns[i].Name %> = Convert.ToInt32(ComFun.StrReplace(txt<%=Table.Columns[i].Name %>.Text.Trim()));
+            <%=Table.Name.ToLower() %>Info.<%=Table.Columns[i].Name %> = Convert.ToInt32(CommonUtil.FilterInput(txt<%=Table.Columns[i].Name %>.Text));
         <%}else if(Table.Columns[i].SystemType.FullName == "System.DateTime"){ %>
-        <%=Table.Name.ToLower() %>.<%=Table.Columns[i].Name %> = Convert.ToDateTime(ComFun.StrReplace(txt<%=Table.Columns[i].Name %>.Text.Trim()));
+        <%=Table.Name.ToLower() %>Info.<%=Table.Columns[i].Name %> = Convert.ToDateTime(CommonUtil.FilterInput(txt<%=Table.Columns[i].Name %>.Text));
         <%}else if(Table.Columns[i].SystemType.FullName == "System.Decimal"){ %>
-        <%=Table.Name.ToLower() %>.<%=Table.Columns[i].Name %> = Convert.ToDecimal(ComFun.StrReplace(txt<%=Table.Columns[i].Name %>.Text.Trim()));
-        <%}else if(Table.Columns[i].SystemType.FullName == "System.Guid"){%>
-        <%=Table.Name.ToLower() %>.<%=Table.Columns[i].Name %> = new Guid(ComFun.StrReplace(txt<%=Table.Columns[i].Name %>.Text.Trim()));
+        <%=Table.Name.ToLower() %>Info.<%=Table.Columns[i].Name %> = Convert.ToDecimal(CommonUtil.FilterInput(txt<%=Table.Columns[i].Name %>.Text));
+        <%=Table.Name.ToLower() %>Info.<%=Table.Columns[i].Name %> = new Guid(CommonUtil.FilterInput(txt<%=Table.Columns[i].Name %>.Text));
         <%}else{ %>
-        <%=Table.Name.ToLower() %>.<%=Table.Columns[i].Name %> = ComFun.StrReplace(txt<%=Table.Columns[i].Name %>.Text.Trim());
+        <%=Table.Name.ToLower() %>Info.<%=Table.Columns[i].Name %> = CommonUtil.FilterInput(txt<%=Table.Columns[i].Name %>.Text);
         <%}%>
         <%} %>
         

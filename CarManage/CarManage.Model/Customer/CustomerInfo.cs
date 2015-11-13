@@ -125,7 +125,7 @@ namespace CarManage.Model.Customer
         ///<summary>
         ///销售类型
         ///</summary>
-        public int SaleType { get; set; }
+        public string SaleType { get; set; }
 
         ///<summary>
         ///创建日期

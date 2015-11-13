@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary.Winform.UI.Controls
 {
-    partial class UserControl1
+    partial class UserControlBase
     {
         /// <summary> 
         /// 必需的设计器变量。

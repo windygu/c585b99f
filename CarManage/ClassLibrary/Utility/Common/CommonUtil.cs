@@ -37,6 +37,16 @@ namespace ClassLibrary.Utility.Common
         }
 
         /// <summary>
+        /// 判断object对象是否为Null或者是空字符串
+        /// </summary>
+        /// <param name="input">object对象</param>
+        /// <returns>返回布尔值结果，true表示为Null或空字符串。</returns>
+        public static bool IsNullOrEmpty(object input)
+        {
+            return input == null || string.IsNullOrEmpty(input.ToString());
+        }
+
+        /// <summary>
         /// 深度复制对象
         /// </summary>
         /// <typeparam name="T">源对象泛型</typeparam>

@@ -35,6 +35,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ICodeBook.cs" />
     <Compile Include="Customer\ICar.cs" />
     <Compile Include="Customer\ICustomer.cs" />
     <Compile Include="Insurance\IInsurance.cs" />

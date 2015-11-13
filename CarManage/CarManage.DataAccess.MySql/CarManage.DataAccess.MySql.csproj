@@ -40,6 +40,7 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CodeBook.cs" />
     <Compile Include="Customer\Car.cs" />
     <Compile Include="Customer\Customer.cs" />
     <Compile Include="DataAccessBase.cs" />
