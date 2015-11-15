@@ -33,6 +33,9 @@
             // TextBox
             // 
             this.BackColor = System.Drawing.SystemColors.Window;
+            this.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
+            this.Leave += new System.EventHandler(this.TextBox_Leave);
             this.ResumeLayout(false);
 
         }

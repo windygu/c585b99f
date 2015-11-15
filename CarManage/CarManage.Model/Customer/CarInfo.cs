@@ -99,12 +99,12 @@ namespace CarManage.Model.Customer
         ///<summary>
         ///购买车辆里程
         ///</summary>
-        public int BuyMileage { get; set; }
+        public int? BuyMileage { get; set; }
 
         ///<summary>
         ///上牌日期
         ///</summary>
-        public DateTime RegisterDate { get; set; }
+        public DateTime? RegisterDate { get; set; }
 
         ///<summary>
         ///行驶里程

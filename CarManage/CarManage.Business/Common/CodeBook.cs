@@ -58,6 +58,16 @@ namespace CarManage.Business.Common
         /// </summary>
         public static readonly string SaleTypeCodeType = "";
 
+        /// <summary>
+        /// 保养周期代码类型编号
+        /// </summary>
+        public static readonly string MaintenancePeriodCodeType = "";
+
+        /// <summary>
+        /// 保养间隔里程代码类型编号
+        /// </summary>
+        public static readonly string MaintenanceMileageCodeType = "";
+
         #endregion
 
         private static CarManage.Interface.DataAccess.Common.ICodeBook codeBook = 

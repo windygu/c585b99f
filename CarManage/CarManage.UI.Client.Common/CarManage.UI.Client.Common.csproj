@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer\CarEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Customer\CarEdit.Designer.cs">
+      <DependentUpon>CarEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer\CustomerEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -56,6 +62,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Customer\CarEdit.resx">
+      <DependentUpon>CarEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customer\CustomerEdit.resx">
       <DependentUpon>CustomerEdit.cs</DependentUpon>
     </EmbeddedResource>

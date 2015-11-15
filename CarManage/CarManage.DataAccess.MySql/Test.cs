@@ -4,6 +4,7 @@ using System.Data;
 using System.Text;
 using MySql.Data.MySqlClient;
 using Dapper;
+using System.Linq;
 
 using CarManage.Configuration;
 using ClassLibrary.ExceptionHandling;
@@ -77,6 +78,18 @@ namespace CarManage.DataAccess.MySql
             
         }
 
+        public List<QuestionInfo> GetQuestions()
+        {
+            using (IDbConnection connection = base.CreateConnection("server=55ae29342ce85.gz.cdb.myqcloud.com;port=13451;database=CarManage;uid=root;pwd=Zh100083;charset='utf8'"))
+            {
+                return connection.Query<QuestionInfo>("select * from Question").ToList();
+            }
+
+
+        }
+
+
+
         public static QuestionInfo ddddd()
         {
             QuestionInfo iii = null;
@@ -122,7 +135,8 @@ namespace CarManage.DataAccess.MySql
 
     public enum RankType
     { 
-        a=1
+        a=1,
+        b=0
     }
 
     public class AnswerInfo

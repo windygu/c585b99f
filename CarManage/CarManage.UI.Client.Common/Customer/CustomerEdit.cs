@@ -71,6 +71,8 @@ namespace CarManage.UI.Client.Common.Customer
                 //绑定销售类型
                 ControlUtil.BindListControl(cbxAlias, customer.GetSaleType(), "Value", "Key",
                     "请选择", string.Empty, 0);
+
+                BindCustomer();
             }
             catch (Exception ex)
             {
@@ -78,7 +80,7 @@ namespace CarManage.UI.Client.Common.Customer
             }
         }
 
-        private void BindCustomer()
+        public void BindCustomer()
         {
             try
             {

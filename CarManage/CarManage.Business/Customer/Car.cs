@@ -10,11 +10,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using ClassLibrary.ExceptionHandling;
 using ClassLibrary.Utility.Common;
 using CarManage.Factory.DataAccess;
 using CarManage.Interface.DataAccess.Customer;
+using CarManage.Business.Common;
 using CarManage.Model.Customer;
 using CarManage.Model.Enum;
 
@@ -32,6 +34,8 @@ namespace CarManage.Business.Customer
     public class Car
     {
         private static ICar car = DataAccessFactory.CreateInstance<ICar>();
+
+        private CodeBook codeBook = new CodeBook();
 
         /// <summary>
         /// 新增车辆信息
@@ -120,6 +124,24 @@ namespace CarManage.Business.Customer
             }
 
             return carList;
+        }
+
+        /// <summary>
+        /// 获取车辆保养周期字典集合
+        /// </summary>
+        /// <returns>返回喜欢的销售活动字典集合</returns>
+        public Dictionary<string, string> GetMaintenancePeriod()
+        {
+            return codeBook.GetCodes(CodeBook.MaintenancePeriodCodeType).ToDictionary(k => k.Code, v => v.Name);
+        }
+
+        /// <summary>
+        /// 获取保养间隔里程字典集合
+        /// </summary>
+        /// <returns>返回喜欢的销售活动字典集合</returns>
+        public Dictionary<string, string> GetMaintenanceMileage()
+        {
+            return codeBook.GetCodes(CodeBook.MaintenanceMileageCodeType).ToDictionary(k => k.Code, v => v.Name);
         }
     }
 }

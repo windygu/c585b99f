@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ControlManager.cs" />
     <Compile Include="Controls\CheckBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -47,6 +48,9 @@
       <DependentUpon>CheckBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Label.cs">

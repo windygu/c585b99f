@@ -3,11 +3,81 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace ClassLibrary.Winform.UI.Controls
 {
     public partial class TextBox : System.Windows.Forms.TextBox
     {
+        private Regex regex;
+
+        private TextMode textMode;
+
+        /// <summary>
+        /// 输入类型
+        /// </summary>
+        public TextMode TextMode
+        {
+            get { return textMode; }
+
+            set
+            {
+                textMode = value;
+
+                if (textMode.Equals(TextMode.Numeric))
+                    regex = new Regex(GetExpression());
+            }
+        }
+
+        private decimal minValue;
+
+        /// <summary>
+        /// 最小值（仅当输入类型为非字符串时有效）
+        /// </summary>
+        public decimal MinValue
+        {
+            get { return minValue; }
+
+            set
+            {
+                minValue = value;
+                regex = new Regex(GetExpression());
+            }
+        }
+
+        private decimal maxValue;
+
+        /// <summary>
+        /// 最大值（仅当输入类型为非字符串时有效）
+        /// </summary>
+        public decimal MaxValue
+        {
+            get { return maxValue; }
+
+            set
+            {
+                maxValue = value;
+                regex = new Regex(GetExpression());
+            }
+        }
+
+        private int decimalPrecision;
+
+        /// <summary>
+        /// 小数精度（仅当输入类型为Numeric时有效）
+        /// </summary>
+        public int DecimalPrecision
+        {
+            get { return decimalPrecision; }
+
+            set
+            {
+                decimalPrecision = value;
+
+                regex = new Regex(GetExpression());
+            }
+        }
+
         public TextBox()
         {
             InitializeComponent();
@@ -15,6 +85,8 @@ namespace ClassLibrary.Winform.UI.Controls
             BorderColor = Color.FromArgb(226, 226, 226);
             BorderWidth = 1;
             this.BorderStyle = BorderStyle.FixedSingle;
+
+            InitControl();
         }
 
         public TextBox(IContainer container)
@@ -26,6 +98,16 @@ namespace ClassLibrary.Winform.UI.Controls
             BorderColor = Color.FromArgb(226, 226, 226);
             BorderWidth = 1;
             this.BorderStyle = BorderStyle.FixedSingle;
+
+            InitControl();
+        }
+
+        private void InitControl()
+        {
+            textMode = TextMode.String;
+
+            minValue = 0;
+            maxValue = int.MaxValue;
         }
 
         /// <summary>
@@ -104,5 +186,180 @@ namespace ClassLibrary.Winform.UI.Controls
 
         #endregion
 
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 8 || e.KeyChar == 22)
+                return;
+
+            if (textMode.Equals(TextMode.Numeric))
+            {
+                if ((e.KeyChar < 48 || e.KeyChar > 57) &&
+                    e.KeyChar != 45 && e.KeyChar != 46)
+                {
+                    e.Handled = true;
+                    return;
+                }
+
+                if (e.KeyChar == 45)
+                {
+                    if (minValue >= 0 || this.SelectionStart > 0 ||
+                        this.Text.Trim().StartsWith("-"))
+                    {
+                        e.Handled = true;
+                    }
+
+                    return;
+                }
+
+                if (e.KeyChar == 46 && this.Text.Contains("."))
+                {
+                    e.Handled = true;
+                    return;
+                }
+
+                if (decimalPrecision > 0)
+                {
+                    int index = this.Text.IndexOf('.');
+
+                    if (index > -1 && this.SelectionStart > index)
+                    {
+                        if (this.Text.Length - 1 - index >= decimalPrecision)
+                        {
+                            e.Handled = true;
+                            return;
+                        }
+                    }
+                }
+            }
+            else if (textMode.Equals(TextMode.Integer))
+            {
+                if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 45)
+                {
+                    e.Handled = true;
+                }
+
+                if (e.KeyChar == 45)
+                {
+                    if (minValue >= 0 || this.SelectionStart > 0 ||
+                        this.Text.Trim().StartsWith("-"))
+                    {
+                        e.Handled = true;
+                    }
+
+                    return;
+                }
+            }
+        }
+
+        private void TextBox_Leave(object sender, EventArgs e)
+        {
+            if (textMode.Equals(TextMode.Integer) ||
+                textMode.Equals(TextMode.Numeric))
+            {
+                decimal result = 0;
+
+                if (!decimal.TryParse(this.Text.Trim(), out result))
+                {
+                    this.Text = string.Empty;
+                    return;
+                }
+
+                this.Text = result.ToString();
+
+                if (!regex.IsMatch(this.Text))
+                    this.Text = string.Empty;
+
+                if (result < minValue)
+                {
+                    this.Text = minValue.ToString();
+                    this.SelectionStart = this.Text.Length;
+                }
+
+                if (result > maxValue)
+                {
+                    this.Text = maxValue.ToString();
+                    this.SelectionStart = this.Text.Length;
+                }
+            }
+        }
+
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (textMode.Equals(TextMode.Numeric) ||
+                textMode.Equals(TextMode.Integer))
+            {
+                string input = this.Text.Trim();
+
+                if (string.IsNullOrEmpty(input) || input.Equals("-") || input.Equals("."))
+                    return;
+
+                decimal value = 0;
+
+                if (!decimal.TryParse(this.Text.Trim(), out value))
+                {
+                    this.Text = string.Empty;
+                    return;
+                }
+
+                //if (value < minValue)
+                //{
+                //    this.Text = minValue.ToString();
+                //    this.SelectionStart = this.Text.Length;
+                //}
+
+                if (value > maxValue)
+                {
+                    this.Text = maxValue.ToString();
+                    this.SelectionStart = this.Text.Length;
+                }
+
+            }
+        }
+
+        private string GetExpression()
+        {
+            string expression = string.Empty;
+
+            if (textMode.Equals(TextMode.Numeric))
+            {
+                expression = "^";
+
+                if (minValue < 0)
+                {
+                    expression += "\\-?";
+                }
+
+                expression += "[0-9]+";
+
+                if (decimalPrecision > 0)
+                    expression += "(.[0-9]{0," + decimalPrecision + "})?";
+                else
+                {
+                    expression = "^(-?\\d+)(\\.\\d+)?";
+                }
+
+                expression += "$";
+            }
+            else if (textMode.Equals(TextMode.Integer))
+            {
+                expression = "^";
+
+                if (minValue < 0)
+                {
+                    expression += "\\-?";
+                }
+
+                expression += "[0-9]*$";
+            }
+
+            return expression;
+        }
+    }
+
+    public enum TextMode
+    {
+        String,
+        Integer,
+        Numeric
     }
 }
