@@ -7,7 +7,8 @@ namespace CarManage.Model.Enum
     /// </summary>
     public enum FreeTime
     {
-        上午 = 1,
-        下午 = 2
+        全天 = 1,
+        上午 = 2,
+        下午 = 3
     }
 }

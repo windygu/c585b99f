@@ -109,7 +109,7 @@ namespace CarManage.UI.Client.StartUp
             carInfo.GuaranteePeriod = 7;
             carInfo.GuaranteeMileage = 8;
             carInfo.ActualGuaranteeDate = DateTime.Now;
-            carInfo.ActualGuaranteeMileage = CarManage.Model.Enum.CustomerCharacter.主导型;
+            carInfo.ActualGuaranteeMileage = 1;
             carInfo.CreateDate = DateTime.Now;
             carInfo.UpdateDate = DateTime.Now;
             carInfo.Creator = "Creator";

@@ -71,6 +71,12 @@
     <Compile Include="Controls\UserControlBase.Designer.cs">
       <DependentUpon>UserControlBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DataGridView.designer.cs">
+      <DependentUpon>DataGridView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\TextBox.resx">
       <DependentUpon>TextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataGridView.resx">
+      <DependentUpon>DataGridView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomTitleBarForm.resx">
       <DependentUpon>CustomTitleBarForm.cs</DependentUpon>

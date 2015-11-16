@@ -45,6 +45,7 @@ namespace CarManage.Business.Customer
         {
             try
             {
+                SetGuaratee(carInfo);
                 car.Add(carInfo);
             }
             catch (Exception ex)
@@ -61,6 +62,7 @@ namespace CarManage.Business.Customer
         {
             try
             {
+                SetGuaratee(carInfo);
                 car.Update(carInfo);
             }
             catch (Exception ex)
@@ -142,6 +144,21 @@ namespace CarManage.Business.Customer
         public Dictionary<string, string> GetMaintenanceMileage()
         {
             return codeBook.GetCodes(CodeBook.MaintenanceMileageCodeType).ToDictionary(k => k.Code, v => v.Name);
+        }
+
+        /// <summary>
+        /// 设置实际质保到期日期及里程
+        /// </summary>
+        /// <param name="carInfo">车辆信息对象</param>
+        private void SetGuaratee(CarInfo carInfo)
+        {
+            if (carInfo.InvoiceDate.HasValue && carInfo.GuaranteePeriod.HasValue)
+            {
+                carInfo.ActualGuaranteeDate = carInfo.InvoiceDate.Value.AddYears(carInfo.GuaranteePeriod.Value);
+            }
+
+            if (carInfo.GuaranteeMileage.HasValue)
+                carInfo.ActualGuaranteeMileage = carInfo.GuaranteeMileage.Value;
         }
     }
 }

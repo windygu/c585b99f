@@ -7,9 +7,10 @@ namespace CarManage.Model.Enum
     /// </summary>
     public enum CustomerCharacter
     {
-        表达型 = 1,
-        主导型 = 2,
-        分析型 = 3,
-        和蔼型 = 4
+        其他 = 1,
+        表达型 = 2,
+        主导型 = 3,
+        分析型 = 4,
+        和蔼型 = 5
     }
 }

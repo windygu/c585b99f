@@ -69,7 +69,7 @@ namespace CarManage.Model.Customer
         ///<summary>
         ///排量
         ///</summary>
-        public Decimal Displacement { get; set; }
+        public decimal? Displacement { get; set; }
 
         ///<summary>
         ///车架号
@@ -124,32 +124,32 @@ namespace CarManage.Model.Customer
         ///<summary>
         ///下次保养日期
         ///</summary>
-        public DateTime NextMaintenanceDate { get; set; }
+        public DateTime? NextMaintenanceDate { get; set; }
 
         ///<summary>
         ///下次保养里程
         ///</summary>
-        public int NextMaintenanceMileage { get; set; }
+        public int? NextMaintenanceMileage { get; set; }
 
         ///<summary>
         ///质保年限
         ///</summary>
-        public int GuaranteePeriod { get; set; }
+        public int? GuaranteePeriod { get; set; }
 
         ///<summary>
         ///质保里程
         ///</summary>
-        public int GuaranteeMileage { get; set; }
+        public int? GuaranteeMileage { get; set; }
 
         ///<summary>
         ///实际质保日期
         ///</summary>
-        public DateTime ActualGuaranteeDate { get; set; }
+        public DateTime? ActualGuaranteeDate { get; set; }
 
         ///<summary>
         ///实际质保里程
         ///</summary>
-        public Enum.CustomerCharacter ActualGuaranteeMileage { get; set; }
+        public int? ActualGuaranteeMileage { get; set; }
 
         ///<summary>
         ///创建日期
