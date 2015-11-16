@@ -50,7 +50,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Button_BG_Green.jpg" />
+    <Content Include="Images\List_Header_Lower_BG.PNG" />
+    <Content Include="Images\List_Header_Higher_BG.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

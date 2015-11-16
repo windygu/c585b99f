@@ -63,9 +63,19 @@ namespace CarManage.Resources.Common {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap Button_BG_Green {
+        public static System.Drawing.Bitmap List_Header_Higher_BG {
             get {
-                object obj = ResourceManager.GetObject("Button_BG_Green", resourceCulture);
+                object obj = ResourceManager.GetObject("List_Header_Higher_BG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap List_Header_Lower_BG {
+            get {
+                object obj = ResourceManager.GetObject("List_Header_Lower_BG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

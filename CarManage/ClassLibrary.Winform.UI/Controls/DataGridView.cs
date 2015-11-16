@@ -78,8 +78,12 @@ namespace ClassLibrary.Winform.UI.Controls
         [Browsable(true), Description("当点击表头全选复选框时引发的事件")]
         public event DataGridViewCheckBoxHeaderEventHander OnCheckedAllClick;
 
-
         public bool CheckedAll { get; set; }
+
+        /// <summary>
+        /// 全选表头单元格
+        /// </summary>
+        private CheckBoxColumnHeaderCell checkAllHeaderCell;
 
         #endregion
 
@@ -288,9 +292,15 @@ namespace ClassLibrary.Winform.UI.Controls
             if (string.IsNullOrEmpty(checkAllColumnName) || !this.Columns.Contains(checkAllColumnName))
                 return;
 
-            CheckBoxColumnHeaderCell chkHeaderCell = new CheckBoxColumnHeaderCell(this, this.Columns[checkAllColumnName].Index, CheckedAll);
+            if (checkAllHeaderCell == null)
+            {
+                checkAllHeaderCell = new CheckBoxColumnHeaderCell(this, 
+                    this.Columns[checkAllColumnName].Index, CheckedAll);
 
-            chkHeaderCell.OnCheckBoxClicked += new DataGridViewCheckBoxHeaderEventHander(chkheadercell_OnCheckBoxClicked);
+                checkAllHeaderCell.OnCheckBoxClicked += new DataGridViewCheckBoxHeaderEventHander(
+                    chkheadercell_OnCheckBoxClicked);
+            }
+
             this.Columns[checkAllColumnName].Width = 30;
 
             foreach (DataGridViewColumn column in this.Columns)

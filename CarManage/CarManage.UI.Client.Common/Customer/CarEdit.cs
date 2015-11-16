@@ -12,6 +12,7 @@ using ClassLibrary.Utility.Common;
 using ClassLibrary.Utility.Form;
 using CarManage.Configuration;
 using ClassLibrary.Winform.UI.Controls;
+using CarManage.Resources.Common;
 using CarManage.Model.Customer;
 using CarManage.Model.Enum;
 
@@ -36,6 +37,12 @@ namespace CarManage.UI.Client.Common.Customer
         public CarEdit()
         {
             InitializeComponent();
+            InitControl();
+        }
+
+        private void InitControl()
+        {
+            dgvCars.ColumnHeaderBackgroundImage = ImageResource.List_Header_Higher_BG;
         }
 
         protected override void Init()
@@ -101,8 +108,11 @@ namespace CarManage.UI.Client.Common.Customer
 
                 txtMileage.Text = carInfo.Mileage.ToString();
 
-                ControlUtil.SetListControlSelectedByValue(cbxMaintenancePeriod, carInfo.MaintenancePeriod.ToString());
-                ControlUtil.SetListControlSelectedByValue(cbxMaitenanceMileage, carInfo.NextMaintenanceMileage.ToString());
+                ControlUtil.SetListControlSelectedByValue(cbxMaintenancePeriod, 
+                    carInfo.MaintenancePeriod.ToString());
+
+                ControlUtil.SetListControlSelectedByValue(cbxMaitenanceMileage, 
+                    carInfo.NextMaintenanceMileage.ToString());
 
                 if (carInfo.NextMaintenanceDate.HasValue)
                     dtpNextMaintenanceDate.Text = carInfo.NextMaintenanceDate.Value.ToShortDateString();
