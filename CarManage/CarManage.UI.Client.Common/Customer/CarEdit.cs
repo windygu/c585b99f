@@ -86,11 +86,7 @@ namespace CarManage.UI.Client.Common.Customer
             if (string.IsNullOrEmpty(CustomerId))
                 return;
 
-            //List<CarInfo> carList = car.GetCars(CustomerId);
-            List<CarInfo> carList = new List<CarInfo>();
-            CarInfo c = new CarInfo();
-            c.Number = "123";
-            carList.Add(c);
+            List<CarInfo> carList = car.GetCars(CustomerId);
 
             if (carList.Count > 0)
             {
