@@ -28,22 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new ClassLibrary.Winform.UI.Controls.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.userControl21 = new CarManage.UI.Test.UserControl2();
-            this.userControl11 = new CarManage.UI.Test.UserControl1();
+            this.textBox1 = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.customerEdit1 = new CarManage.UI.Client.Common.Customer.CustomerEdit();
+            this.carEdit1 = new CarManage.UI.Client.Common.Customer.CarEdit();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 12);
+            this.button1.Location = new System.Drawing.Point(2, 8);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(50, 15);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -51,9 +57,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(84, 12);
+            this.button2.Location = new System.Drawing.Point(56, 8);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(50, 15);
             this.button2.TabIndex = 1;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
@@ -66,8 +73,9 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1267, 51);
+            this.panel1.Size = new System.Drawing.Size(845, 34);
             this.panel1.TabIndex = 2;
             // 
             // textBox1
@@ -77,7 +85,8 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.BorderWidth = 1;
             this.textBox1.DecimalPrecision = 0;
-            this.textBox1.Location = new System.Drawing.Point(184, 7);
+            this.textBox1.Location = new System.Drawing.Point(123, 5);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.MaxValue = new decimal(new int[] {
             2147483647,
             0,
@@ -89,48 +98,81 @@
             0,
             -2147483648});
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 28);
+            this.textBox1.Size = new System.Drawing.Size(67, 21);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.Numeric;
             // 
-            // panel2
+            // tabControl1
             // 
-            this.panel2.Controls.Add(this.userControl21);
-            this.panel2.Controls.Add(this.userControl11);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 51);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1267, 592);
-            this.panel2.TabIndex = 3;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(2, 39);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(843, 510);
+            this.tabControl1.TabIndex = 3;
             // 
-            // userControl21
+            // tabPage1
             // 
-            this.userControl21.Location = new System.Drawing.Point(65, 37);
-            this.userControl21.Name = "userControl21";
-            this.userControl21.Size = new System.Drawing.Size(1320, 675);
-            this.userControl21.TabIndex = 1;
-            this.userControl21.Load += new System.EventHandler(this.userControl21_Load);
+            this.tabPage1.Controls.Add(this.customerEdit1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(835, 361);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // userControl11
+            // tabPage2
             // 
-            this.userControl11.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.userControl11.Location = new System.Drawing.Point(23, 6);
-            this.userControl11.Name = "userControl11";
-            this.userControl11.Size = new System.Drawing.Size(1113, 642);
-            this.userControl11.TabIndex = 0;
+            this.tabPage2.Controls.Add(this.carEdit1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(835, 484);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // customerEdit1
+            // 
+            this.customerEdit1.BackColor = System.Drawing.Color.White;
+            this.customerEdit1.CustomerId = null;
+            this.customerEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customerEdit1.Location = new System.Drawing.Point(3, 3);
+            this.customerEdit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.customerEdit1.Name = "customerEdit1";
+            this.customerEdit1.Size = new System.Drawing.Size(829, 355);
+            this.customerEdit1.TabIndex = 0;
+            // 
+            // carEdit1
+            // 
+            this.carEdit1.BackColor = System.Drawing.Color.White;
+            this.carEdit1.CarId = null;
+            this.carEdit1.CustomerId = null;
+            this.carEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.carEdit1.Location = new System.Drawing.Point(3, 3);
+            this.carEdit1.Margin = new System.Windows.Forms.Padding(2);
+            this.carEdit1.Name = "carEdit1";
+            this.carEdit1.Size = new System.Drawing.Size(829, 478);
+            this.carEdit1.TabIndex = 0;
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1267, 643);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(845, 550);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form2";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -140,9 +182,11 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private UserControl2 userControl21;
-        private UserControl1 userControl11;
         private ClassLibrary.Winform.UI.Controls.TextBox textBox1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private Client.Common.Customer.CustomerEdit customerEdit1;
+        private Client.Common.Customer.CarEdit carEdit1;
     }
 }

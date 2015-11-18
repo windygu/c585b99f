@@ -125,6 +125,10 @@
     <None Include="Logging\LogConfig.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(ProjectDir)Include\MySql.Data.dll" "$(SolutionDir)CarManage.UI.Client.StartUp\bin\$(ConfigurationName)\MySql.Data.dll"
+copy "$(ProjectDir)Include\MySql.Data.dll" "$(SolutionDir)CarManage.UI.Test\bin\$(ConfigurationName)\MySql.Data.dll"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

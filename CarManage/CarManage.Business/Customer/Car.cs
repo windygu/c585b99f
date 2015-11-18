@@ -109,6 +109,27 @@ namespace CarManage.Business.Customer
         }
 
         /// <summary>
+        /// 获取车辆信息对象集合
+        /// </summary>
+        /// <param name="customerId">客户主键</param>
+        /// <returns>返回车辆信息对象集合</returns>
+        public List<CarInfo> GetCars(string customerId)
+        {
+            List<CarInfo> carList = new List<CarInfo>();
+
+            try
+            {
+                carList = car.GetCars(customerId);
+            }
+            catch (Exception ex)
+            {
+                BusinessExceptionHandler.HandlerException("获取车辆列表信息失败！", ex);
+            }
+
+            return carList;
+        }
+
+        /// <summary>
         /// 查询车辆信息
         /// </summary>
         /// <returns>车辆信息集合</returns>

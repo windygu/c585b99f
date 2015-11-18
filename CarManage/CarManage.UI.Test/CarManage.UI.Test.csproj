@@ -32,10 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\WindowsFormsApplication1\WindowsFormsApplication1\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -93,6 +89,10 @@
       <DependentUpon>UserControl2.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="CarManage.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -104,6 +104,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CarManage.Business\CarManage.Business.csproj">
+      <Project>{5f757b0c-7f09-4eeb-8326-6b59dd73aef9}</Project>
+      <Name>CarManage.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarManage.Configuration\CarManage.Configuration.csproj">
+      <Project>{04c0dd06-4121-412f-ac99-45ccc2c7f9cb}</Project>
+      <Name>CarManage.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CarManage.DataAccess.MySql\CarManage.DataAccess.MySql.csproj">
       <Project>{2ef144a1-5070-46ac-bb30-8b002d776d84}</Project>
       <Name>CarManage.DataAccess.MySql</Name>
@@ -112,9 +120,17 @@
       <Project>{a4721732-f4c1-46c2-8ea0-986efb2c78b4}</Project>
       <Name>CarManage.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CarManage.UI.Client.Common\CarManage.UI.Client.Common.csproj">
+      <Project>{a202196b-76f2-4e8a-8dbd-5f47fa1f5844}</Project>
+      <Name>CarManage.UI.Client.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassLibrary.Winform.UI\ClassLibrary.Winform.UI.csproj">
       <Project>{5170771b-3195-4ee5-9990-a57c41a8c1c2}</Project>
       <Name>ClassLibrary.Winform.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj">
+      <Project>{d2aa8df7-41bb-40bd-91b3-9d23e1025360}</Project>
+      <Name>ClassLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dapper\Dapper.csproj">
       <Project>{bf3debcf-0910-4454-accd-eb617f0d27a8}</Project>

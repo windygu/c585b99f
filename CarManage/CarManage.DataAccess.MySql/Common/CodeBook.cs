@@ -204,6 +204,7 @@ namespace CarManage.DataAccess.MySql.Common
 
             try
             {
+                connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
                 codeList = base.Query<CodeBookInfo>(commandText, connection, param: new { Type = type }).ToList();
             }
             catch (Exception ex)

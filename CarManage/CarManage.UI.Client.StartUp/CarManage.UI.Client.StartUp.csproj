@@ -108,10 +108,6 @@
       <Project>{04c0dd06-4121-412f-ac99-45ccc2c7f9cb}</Project>
       <Name>CarManage.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CarManage.DataAccess.MySql\CarManage.DataAccess.MySql.csproj">
-      <Project>{2ef144a1-5070-46ac-bb30-8b002d776d84}</Project>
-      <Name>CarManage.DataAccess.MySql</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CarManage.Model\CarManage.Model.csproj">
       <Project>{a4721732-f4c1-46c2-8ea0-986efb2c78b4}</Project>
       <Name>CarManage.Model</Name>

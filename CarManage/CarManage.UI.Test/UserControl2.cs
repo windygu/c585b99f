@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
 using Dapper;
 using CarManage.DataAccess.MySql;
 
@@ -23,7 +23,7 @@ namespace CarManage.UI.Test
 
         private void UserControl2_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = GetQuestions();
+            //dataGridView1.DataSource = GetQuestions();
         }
 
         protected override CreateParams CreateParams
@@ -36,14 +36,14 @@ namespace CarManage.UI.Test
             }
         }    
 
-        public List<QuestionInfo> GetQuestions()
-        {
-            using (IDbConnection connection = new MySqlConnection("server=55ae29342ce85.gz.cdb.myqcloud.com;port=13451;database=test;uid=root;pwd=Zh100083;charset='utf8'"))
-            {
-                return connection.Query<QuestionInfo>("select * from Question").ToList();
-            }
+        //public List<QuestionInfo> GetQuestions()
+        //{
+        //    using (IDbConnection connection = new MySqlConnection("server=55ae29342ce85.gz.cdb.myqcloud.com;port=13451;database=test;uid=root;pwd=Zh100083;charset='utf8'"))
+        //    {
+        //        return connection.Query<QuestionInfo>("select * from Question").ToList();
+        //    }
 
 
-        }
+        //}
     }
 }

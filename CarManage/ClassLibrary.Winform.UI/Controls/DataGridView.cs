@@ -292,14 +292,20 @@ namespace ClassLibrary.Winform.UI.Controls
             if (string.IsNullOrEmpty(checkAllColumnName) || !this.Columns.Contains(checkAllColumnName))
                 return;
 
-            if (checkAllHeaderCell == null)
-            {
-                checkAllHeaderCell = new CheckBoxColumnHeaderCell(this, 
+            //if (checkAllHeaderCell == null)
+            //{
+            //    checkAllHeaderCell = new CheckBoxColumnHeaderCell(this, 
+            //        this.Columns[checkAllColumnName].Index, CheckedAll);
+
+            //    checkAllHeaderCell.OnCheckBoxClicked += new DataGridViewCheckBoxHeaderEventHander(
+            //        chkheadercell_OnCheckBoxClicked);
+            //}
+
+            CheckBoxColumnHeaderCell c = new CheckBoxColumnHeaderCell(this,
                     this.Columns[checkAllColumnName].Index, CheckedAll);
 
-                checkAllHeaderCell.OnCheckBoxClicked += new DataGridViewCheckBoxHeaderEventHander(
-                    chkheadercell_OnCheckBoxClicked);
-            }
+            c.OnCheckBoxClicked += new DataGridViewCheckBoxHeaderEventHander(
+                chkheadercell_OnCheckBoxClicked);
 
             this.Columns[checkAllColumnName].Width = 30;
 

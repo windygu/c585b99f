@@ -22,15 +22,21 @@ namespace CarManage.UI.Client.Common.Customer
     {
         #region 公共属性
 
+        /// <summary>
+        /// 客户主键
+        /// </summary>
         public string CustomerId { get; set; }
+
+        /// <summary>
+        /// 车辆主键
+        /// </summary>
+        public string CarId { get; set; }
 
         #endregion
 
         #region 私有变量
 
         CarManage.Business.Customer.Car car;
-
-        private string currentCarId = string.Empty;
 
         #endregion
 
@@ -43,6 +49,7 @@ namespace CarManage.UI.Client.Common.Customer
         private void InitControl()
         {
             dgvCars.ColumnHeaderBackgroundImage = ImageResource.List_Header_Higher_BG;
+            dgvCars.AutoGenerateColumns = false;
         }
 
         protected override void Init()
@@ -63,7 +70,9 @@ namespace CarManage.UI.Client.Common.Customer
                 //绑定性别
                 ControlUtil.BindListControl(cbxMaitenanceMileage, car.GetMaintenanceMileage(), "Value", "Key",
                     "请选择", string.Empty, 0);
-                
+
+
+                BindCars();
             }
             catch (Exception ex)
             {
@@ -71,14 +80,41 @@ namespace CarManage.UI.Client.Common.Customer
             }
         }
 
-        public void BindCustomer()
+
+        public void BindCars()
+        {
+            if (string.IsNullOrEmpty(CustomerId))
+                return;
+
+            //List<CarInfo> carList = car.GetCars(CustomerId);
+            List<CarInfo> carList = new List<CarInfo>();
+            CarInfo c = new CarInfo();
+            c.Number = "123";
+            carList.Add(c);
+
+            if (carList.Count > 0)
+            {
+                dgvCars.DataSource = carList;
+
+                dgvCars.CurrentCell = dgvCars.Rows[0].Cells[colCarNumber.Name];
+                CarId = dgvCars.Rows[0].Cells[colId.Name].Value.ToString();
+
+                BindCarDetail();
+            }
+            else
+            {
+                dgvCars.DataSource = null;
+            }
+        }
+
+        public void BindCarDetail()
         {
             try
             {
                 if (string.IsNullOrEmpty(CustomerId))
                     return;
 
-                CarInfo carInfo = GetCarInfo(currentCarId);
+                CarInfo carInfo = GetCarInfo(CarId);
 
                 if (carInfo == null)
                 {
@@ -136,7 +172,7 @@ namespace CarManage.UI.Client.Common.Customer
         {
             CarInfo carInfo = new CarInfo();
 
-            if (string.IsNullOrEmpty(currentCarId))
+            if (string.IsNullOrEmpty(CarId))
             {
                 carInfo.Id = Guid.NewGuid().ToString();
                 carInfo.CreateDate = DateTime.Now;
@@ -144,7 +180,7 @@ namespace CarManage.UI.Client.Common.Customer
             }
             else
             {
-                carInfo = car.Load(currentCarId);
+                carInfo = car.Load(CarId);
             }
 
             carInfo.CustomerId = CustomerId;
@@ -170,7 +206,7 @@ namespace CarManage.UI.Client.Common.Customer
             carInfo.Operator = CarManageConfig.Instance.UserData.UserName;
             carInfo.Valid = true;
 
-            if (string.IsNullOrEmpty(currentCarId))
+            if (string.IsNullOrEmpty(CarId))
             {
                 car.Add(carInfo);
                 carInfo.Id = Guid.NewGuid().ToString();

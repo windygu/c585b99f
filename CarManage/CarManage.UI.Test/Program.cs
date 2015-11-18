@@ -15,6 +15,9 @@ namespace CarManage.UI.Test
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            ClassLibrary.Configuration.ConfigurationManager.Instance.Init();
+
             Application.Run(new Form2());
         }
     }
