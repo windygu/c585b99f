@@ -760,12 +760,10 @@
             // 
             // chkCheckAll
             // 
-            this.chkCheckAll.FalseValue = "";
             this.chkCheckAll.HeaderText = "";
             this.chkCheckAll.Name = "chkCheckAll";
             this.chkCheckAll.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.chkCheckAll.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.chkCheckAll.TrueValue = "";
             this.chkCheckAll.Width = 20;
             // 
             // colCarNumber

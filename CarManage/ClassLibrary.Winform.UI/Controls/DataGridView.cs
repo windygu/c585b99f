@@ -607,13 +607,13 @@ namespace ClassLibrary.Winform.UI.Controls
                     {
                         RePaintCheckBox(false);
                     }
-                    bool value = (bool)BindDataGridView.CurrentCell.EditedFormattedValue;
-                    BindDataGridView.CurrentCell.Value = value;
+                    //bool value = (bool)BindDataGridView.CurrentCell.EditedFormattedValue;
+                    //BindDataGridView.CurrentCell.Value = value;
                 }
 
-                //DataGridViewCell currentCell = BindDataGridView.CurrentCell;
-                //BindDataGridView.CurrentCell = null;
-                //BindDataGridView.CurrentCell = currentCell;
+                DataGridViewCell currentCell = BindDataGridView.CurrentCell;
+                BindDataGridView.CurrentCell = null;
+                BindDataGridView.CurrentCell = currentCell;
                 //if (!BindDataGridView.CurrentCell.ReadOnly)
                 //{
                 //    BindDataGridView.CurrentCell.Value = null;
@@ -633,14 +633,14 @@ namespace ClassLibrary.Winform.UI.Controls
             {
                 if (e.RowIndex != -1)
                 {
-                    //if (CheckedAll(BindDataGridView, e.RowIndex))
-                    //{
-                    //    //RePaintCheckBox(true);
-                    //}
-                    //else
-                    //{
-                    //    //RePaintCheckBox(false);
-                    //}
+                    if (CheckedAll(BindDataGridView, e.RowIndex))
+                    {
+                        RePaintCheckBox(true);
+                    }
+                    else
+                    {
+                        RePaintCheckBox(false);
+                    }
                 }
 
                 //DataGridViewCell curcell = BindDataGridView.CurrentCell;
@@ -652,20 +652,13 @@ namespace ClassLibrary.Winform.UI.Controls
 
             }
         }
-        DataGridViewCheckboxHeaderCell headerCell;
+        
 
         private void RePaintCheckBox(bool isChecked)
         {
-            if (headerCell == null)
-            {
-                headerCell = new DataGridViewCheckboxHeaderCell(isChecked);
-                headerCell.OnCheckBoxClicked += new DataGridViewCheckBoxHeaderEventHander(ch_OnCheckBoxClicked);//关联单击事件
+            DataGridViewCheckboxHeaderCell headerCell = new DataGridViewCheckboxHeaderCell(isChecked);
+            headerCell.OnCheckBoxClicked += new DataGridViewCheckBoxHeaderEventHander(ch_OnCheckBoxClicked);//关联单击事件
 
-            }
-            else
-            {
-                headerCell.Value = isChecked;
-            }
             try
             {
                 DataGridViewCheckBoxColumn chkColumn = BindDataGridView.Columns[CheckAllColumnIndex] as DataGridViewCheckBoxColumn;
