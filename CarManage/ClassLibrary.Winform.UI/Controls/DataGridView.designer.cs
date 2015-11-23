@@ -34,12 +34,14 @@
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // UserDataGridView
+            // DataGridView
             // 
             this.RowTemplate.Height = 23;
             this.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DataGridView_CellPainting);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.DataGridView_Paint);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         #endregion

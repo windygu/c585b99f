@@ -81,6 +81,15 @@ namespace ClassLibrary.Winform.UI.Controls
         public bool CheckedAll { get; set; }
 
         /// <summary>
+        /// 获取或设置DataGridView边框的颜色
+        /// 只有将BorderStyle设置为FixedSingle时才有效
+        /// </summary>
+        [Browsable(true),
+        Category(ControlManager.CustomPropertyCategory),
+        Description("边框颜色")]
+        public Color BorderColor { get; set; }
+
+        /// <summary>
         /// 全选表头单元格
         /// </summary>
         private CheckBoxColumnHeaderCell checkAllHeaderCell;
@@ -265,21 +274,6 @@ namespace ClassLibrary.Winform.UI.Controls
         }
 
         /// <summary>
-        /// 设置头部背景颜色
-        /// </summary>
-        /// <param name="color"></param>
-        private void SetHeaderColor(System.Drawing.Color color)
-        {
-            this.EnableHeadersVisualStyles = false;
-
-            this.RowHeadersDefaultCellStyle.BackColor =
-                Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-
-            this.ColumnHeadersDefaultCellStyle.BackColor =
-                Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-        }
-
-        /// <summary>
         /// 初始化页面控件
         /// </summary>
         private void InitDataGridViewList()
@@ -297,14 +291,6 @@ namespace ClassLibrary.Winform.UI.Controls
 
                 checkAllHeaderCell.OnCheckBoxClicked += new DataGridViewCheckBoxHeaderEventHander(
                     chkheadercell_OnCheckBoxClicked);
-            }
-
-            //this.Columns[checkAllColumnName].Width = 30;
-
-            foreach (DataGridViewColumn column in this.Columns)
-            {
-                if (column.Index == this.Columns[checkAllColumnName].Index)
-                    column.ReadOnly = false;
             }
         }
 
@@ -350,6 +336,17 @@ namespace ClassLibrary.Winform.UI.Controls
 
                 e.PaintContent(e.CellBounds);
                 e.Handled = true;
+            }
+        }
+
+        private void DataGridView_Paint(object sender, PaintEventArgs e)
+        {
+            if (this.BorderStyle.Equals(BorderStyle.FixedSingle) && BorderColor != null && !BorderColor.Equals(Color.Empty))
+            {
+                using (Pen pen = new Pen(BorderColor))
+                {
+                    e.Graphics.DrawRectangle(pen, new Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                }
             }
         }
     }

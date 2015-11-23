@@ -30,8 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.txtGuaranteeMileage = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.txtGuaranteePeriod = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
@@ -69,9 +75,7 @@
             this.txtMileage = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.dtpRegisterDate = new System.Windows.Forms.DateTimePicker();
             this.dtpInvoiceDate = new System.Windows.Forms.DateTimePicker();
-            this.tlpCars = new System.Windows.Forms.TableLayoutPanel();
             this.dgvCars = new ClassLibrary.Winform.UI.Controls.DataGridView();
-            this.chkCheckAll = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colCarNumber = new System.Windows.Forms.DataGridViewLinkColumn();
             this.colModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDisplacement = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,7 +85,6 @@
             this.colNextMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tlpCars.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,18 +134,19 @@
             this.tableLayoutPanel1.Controls.Add(this.dtpInvoiceDate, 1, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(982, 360);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(655, 243);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // txtGuaranteeMileage
@@ -153,7 +157,8 @@
             this.txtGuaranteeMileage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGuaranteeMileage.BorderWidth = 1;
             this.txtGuaranteeMileage.DecimalPrecision = 0;
-            this.txtGuaranteeMileage.Location = new System.Drawing.Point(656, 326);
+            this.txtGuaranteeMileage.Location = new System.Drawing.Point(438, 219);
+            this.txtGuaranteeMileage.Margin = new System.Windows.Forms.Padding(2);
             this.txtGuaranteeMileage.MaxLength = 50;
             this.txtGuaranteeMileage.MaxValue = new decimal(new int[] {
             2147483647,
@@ -166,7 +171,7 @@
             0,
             0});
             this.txtGuaranteeMileage.Name = "txtGuaranteeMileage";
-            this.txtGuaranteeMileage.Size = new System.Drawing.Size(323, 28);
+            this.txtGuaranteeMileage.Size = new System.Drawing.Size(215, 21);
             this.txtGuaranteeMileage.TabIndex = 60;
             this.txtGuaranteeMileage.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.Integer;
             // 
@@ -178,7 +183,8 @@
             this.txtGuaranteePeriod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGuaranteePeriod.BorderWidth = 1;
             this.txtGuaranteePeriod.DecimalPrecision = 0;
-            this.txtGuaranteePeriod.Location = new System.Drawing.Point(166, 326);
+            this.txtGuaranteePeriod.Location = new System.Drawing.Point(111, 219);
+            this.txtGuaranteePeriod.Margin = new System.Windows.Forms.Padding(2);
             this.txtGuaranteePeriod.MaxLength = 50;
             this.txtGuaranteePeriod.MaxValue = new decimal(new int[] {
             2147483647,
@@ -191,7 +197,7 @@
             0,
             0});
             this.txtGuaranteePeriod.Name = "txtGuaranteePeriod";
-            this.txtGuaranteePeriod.Size = new System.Drawing.Size(321, 28);
+            this.txtGuaranteePeriod.Size = new System.Drawing.Size(214, 21);
             this.txtGuaranteePeriod.TabIndex = 59;
             this.txtGuaranteePeriod.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.Integer;
             // 
@@ -203,7 +209,8 @@
             this.txtNextMaintenanceMileage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNextMaintenanceMileage.BorderWidth = 1;
             this.txtNextMaintenanceMileage.DecimalPrecision = 0;
-            this.txtNextMaintenanceMileage.Location = new System.Drawing.Point(656, 286);
+            this.txtNextMaintenanceMileage.Location = new System.Drawing.Point(438, 192);
+            this.txtNextMaintenanceMileage.Margin = new System.Windows.Forms.Padding(2);
             this.txtNextMaintenanceMileage.MaxLength = 50;
             this.txtNextMaintenanceMileage.MaxValue = new decimal(new int[] {
             2147483647,
@@ -216,16 +223,17 @@
             0,
             0});
             this.txtNextMaintenanceMileage.Name = "txtNextMaintenanceMileage";
-            this.txtNextMaintenanceMileage.Size = new System.Drawing.Size(323, 28);
+            this.txtNextMaintenanceMileage.Size = new System.Drawing.Size(215, 21);
             this.txtNextMaintenanceMileage.TabIndex = 58;
             this.txtNextMaintenanceMileage.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.Integer;
             // 
             // dtpNextMaintenanceDate
             // 
             this.dtpNextMaintenanceDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpNextMaintenanceDate.Location = new System.Drawing.Point(166, 286);
+            this.dtpNextMaintenanceDate.Location = new System.Drawing.Point(111, 192);
+            this.dtpNextMaintenanceDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpNextMaintenanceDate.Name = "dtpNextMaintenanceDate";
-            this.dtpNextMaintenanceDate.Size = new System.Drawing.Size(321, 28);
+            this.dtpNextMaintenanceDate.Size = new System.Drawing.Size(214, 21);
             this.dtpNextMaintenanceDate.TabIndex = 57;
             // 
             // txtEngineNumber
@@ -236,7 +244,8 @@
             this.txtEngineNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEngineNumber.BorderWidth = 1;
             this.txtEngineNumber.DecimalPrecision = 0;
-            this.txtEngineNumber.Location = new System.Drawing.Point(656, 206);
+            this.txtEngineNumber.Location = new System.Drawing.Point(438, 138);
+            this.txtEngineNumber.Margin = new System.Windows.Forms.Padding(2);
             this.txtEngineNumber.MaxLength = 50;
             this.txtEngineNumber.MaxValue = new decimal(new int[] {
             2147483647,
@@ -249,7 +258,7 @@
             0,
             0});
             this.txtEngineNumber.Name = "txtEngineNumber";
-            this.txtEngineNumber.Size = new System.Drawing.Size(323, 28);
+            this.txtEngineNumber.Size = new System.Drawing.Size(215, 21);
             this.txtEngineNumber.TabIndex = 56;
             this.txtEngineNumber.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.String;
             // 
@@ -261,7 +270,8 @@
             this.txtFrameNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFrameNumber.BorderWidth = 1;
             this.txtFrameNumber.DecimalPrecision = 0;
-            this.txtFrameNumber.Location = new System.Drawing.Point(166, 206);
+            this.txtFrameNumber.Location = new System.Drawing.Point(111, 138);
+            this.txtFrameNumber.Margin = new System.Windows.Forms.Padding(2);
             this.txtFrameNumber.MaxLength = 50;
             this.txtFrameNumber.MaxValue = new decimal(new int[] {
             2147483647,
@@ -274,7 +284,7 @@
             0,
             0});
             this.txtFrameNumber.Name = "txtFrameNumber";
-            this.txtFrameNumber.Size = new System.Drawing.Size(321, 28);
+            this.txtFrameNumber.Size = new System.Drawing.Size(214, 21);
             this.txtFrameNumber.TabIndex = 55;
             this.txtFrameNumber.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.String;
             // 
@@ -282,9 +292,10 @@
             // 
             this.lblGuaranteePeriod.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblGuaranteePeriod.AutoSize = true;
-            this.lblGuaranteePeriod.Location = new System.Drawing.Point(71, 331);
+            this.lblGuaranteePeriod.Location = new System.Drawing.Point(48, 223);
+            this.lblGuaranteePeriod.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGuaranteePeriod.Name = "lblGuaranteePeriod";
-            this.lblGuaranteePeriod.Size = new System.Drawing.Size(89, 18);
+            this.lblGuaranteePeriod.Size = new System.Drawing.Size(59, 12);
             this.lblGuaranteePeriod.TabIndex = 52;
             this.lblGuaranteePeriod.Text = "质保年限:";
             // 
@@ -292,18 +303,20 @@
             // 
             this.cbxMaitenanceMileage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxMaitenanceMileage.FormattingEnabled = true;
-            this.cbxMaitenanceMileage.Location = new System.Drawing.Point(656, 247);
+            this.cbxMaitenanceMileage.Location = new System.Drawing.Point(438, 165);
+            this.cbxMaitenanceMileage.Margin = new System.Windows.Forms.Padding(2);
             this.cbxMaitenanceMileage.Name = "cbxMaitenanceMileage";
-            this.cbxMaitenanceMileage.Size = new System.Drawing.Size(323, 26);
+            this.cbxMaitenanceMileage.Size = new System.Drawing.Size(215, 20);
             this.cbxMaitenanceMileage.TabIndex = 48;
             // 
             // cbxMaintenancePeriod
             // 
             this.cbxMaintenancePeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxMaintenancePeriod.FormattingEnabled = true;
-            this.cbxMaintenancePeriod.Location = new System.Drawing.Point(166, 247);
+            this.cbxMaintenancePeriod.Location = new System.Drawing.Point(111, 165);
+            this.cbxMaintenancePeriod.Margin = new System.Windows.Forms.Padding(2);
             this.cbxMaintenancePeriod.Name = "cbxMaintenancePeriod";
-            this.cbxMaintenancePeriod.Size = new System.Drawing.Size(321, 26);
+            this.cbxMaintenancePeriod.Size = new System.Drawing.Size(214, 20);
             this.cbxMaintenancePeriod.TabIndex = 47;
             // 
             // txtBuyMileage
@@ -314,7 +327,8 @@
             this.txtBuyMileage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBuyMileage.BorderWidth = 1;
             this.txtBuyMileage.DecimalPrecision = 0;
-            this.txtBuyMileage.Location = new System.Drawing.Point(656, 166);
+            this.txtBuyMileage.Location = new System.Drawing.Point(438, 111);
+            this.txtBuyMileage.Margin = new System.Windows.Forms.Padding(2);
             this.txtBuyMileage.MaxLength = 50;
             this.txtBuyMileage.MaxValue = new decimal(new int[] {
             2147483647,
@@ -327,7 +341,7 @@
             0,
             0});
             this.txtBuyMileage.Name = "txtBuyMileage";
-            this.txtBuyMileage.Size = new System.Drawing.Size(323, 28);
+            this.txtBuyMileage.Size = new System.Drawing.Size(215, 21);
             this.txtBuyMileage.TabIndex = 36;
             this.txtBuyMileage.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.Integer;
             // 
@@ -339,7 +353,8 @@
             this.txtInteriorColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtInteriorColor.BorderWidth = 1;
             this.txtInteriorColor.DecimalPrecision = 0;
-            this.txtInteriorColor.Location = new System.Drawing.Point(656, 126);
+            this.txtInteriorColor.Location = new System.Drawing.Point(438, 84);
+            this.txtInteriorColor.Margin = new System.Windows.Forms.Padding(2);
             this.txtInteriorColor.MaxLength = 20;
             this.txtInteriorColor.MaxValue = new decimal(new int[] {
             2147483647,
@@ -352,7 +367,7 @@
             0,
             0});
             this.txtInteriorColor.Name = "txtInteriorColor";
-            this.txtInteriorColor.Size = new System.Drawing.Size(323, 28);
+            this.txtInteriorColor.Size = new System.Drawing.Size(215, 21);
             this.txtInteriorColor.TabIndex = 34;
             this.txtInteriorColor.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.String;
             // 
@@ -364,7 +379,8 @@
             this.txtBodyColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBodyColor.BorderWidth = 1;
             this.txtBodyColor.DecimalPrecision = 0;
-            this.txtBodyColor.Location = new System.Drawing.Point(166, 126);
+            this.txtBodyColor.Location = new System.Drawing.Point(111, 84);
+            this.txtBodyColor.Margin = new System.Windows.Forms.Padding(2);
             this.txtBodyColor.MaxLength = 20;
             this.txtBodyColor.MaxValue = new decimal(new int[] {
             2147483647,
@@ -377,7 +393,7 @@
             0,
             0});
             this.txtBodyColor.Name = "txtBodyColor";
-            this.txtBodyColor.Size = new System.Drawing.Size(321, 28);
+            this.txtBodyColor.Size = new System.Drawing.Size(214, 21);
             this.txtBodyColor.TabIndex = 33;
             this.txtBodyColor.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.String;
             // 
@@ -389,7 +405,8 @@
             this.txtDisplacement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDisplacement.BorderWidth = 1;
             this.txtDisplacement.DecimalPrecision = 0;
-            this.txtDisplacement.Location = new System.Drawing.Point(656, 46);
+            this.txtDisplacement.Location = new System.Drawing.Point(438, 30);
+            this.txtDisplacement.Margin = new System.Windows.Forms.Padding(2);
             this.txtDisplacement.MaxLength = 255;
             this.txtDisplacement.MaxValue = new decimal(new int[] {
             2147483647,
@@ -402,7 +419,7 @@
             0,
             0});
             this.txtDisplacement.Name = "txtDisplacement";
-            this.txtDisplacement.Size = new System.Drawing.Size(323, 28);
+            this.txtDisplacement.Size = new System.Drawing.Size(215, 21);
             this.txtDisplacement.TabIndex = 30;
             this.txtDisplacement.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.Numeric;
             // 
@@ -414,7 +431,8 @@
             this.txtModel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtModel.BorderWidth = 1;
             this.txtModel.DecimalPrecision = 0;
-            this.txtModel.Location = new System.Drawing.Point(166, 46);
+            this.txtModel.Location = new System.Drawing.Point(111, 30);
+            this.txtModel.Margin = new System.Windows.Forms.Padding(2);
             this.txtModel.MaxLength = 50;
             this.txtModel.MaxValue = new decimal(new int[] {
             2147483647,
@@ -427,7 +445,7 @@
             0,
             0});
             this.txtModel.Name = "txtModel";
-            this.txtModel.Size = new System.Drawing.Size(321, 28);
+            this.txtModel.Size = new System.Drawing.Size(214, 21);
             this.txtModel.TabIndex = 29;
             this.txtModel.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.String;
             // 
@@ -439,7 +457,8 @@
             this.txtBrand.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBrand.BorderWidth = 1;
             this.txtBrand.DecimalPrecision = 0;
-            this.txtBrand.Location = new System.Drawing.Point(656, 6);
+            this.txtBrand.Location = new System.Drawing.Point(438, 3);
+            this.txtBrand.Margin = new System.Windows.Forms.Padding(2);
             this.txtBrand.MaxLength = 255;
             this.txtBrand.MaxValue = new decimal(new int[] {
             2147483647,
@@ -452,7 +471,7 @@
             0,
             0});
             this.txtBrand.Name = "txtBrand";
-            this.txtBrand.Size = new System.Drawing.Size(323, 28);
+            this.txtBrand.Size = new System.Drawing.Size(215, 21);
             this.txtBrand.TabIndex = 28;
             this.txtBrand.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.String;
             // 
@@ -460,9 +479,10 @@
             // 
             this.lblNextMaintenanceDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNextMaintenanceDate.AutoSize = true;
-            this.lblNextMaintenanceDate.Location = new System.Drawing.Point(35, 291);
+            this.lblNextMaintenanceDate.Location = new System.Drawing.Point(24, 196);
+            this.lblNextMaintenanceDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNextMaintenanceDate.Name = "lblNextMaintenanceDate";
-            this.lblNextMaintenanceDate.Size = new System.Drawing.Size(125, 18);
+            this.lblNextMaintenanceDate.Size = new System.Drawing.Size(83, 12);
             this.lblNextMaintenanceDate.TabIndex = 26;
             this.lblNextMaintenanceDate.Text = "下次保养日期:";
             // 
@@ -470,9 +490,10 @@
             // 
             this.lblBuyMileage.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblBuyMileage.AutoSize = true;
-            this.lblBuyMileage.Location = new System.Drawing.Point(525, 171);
+            this.lblBuyMileage.Location = new System.Drawing.Point(351, 115);
+            this.lblBuyMileage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBuyMileage.Name = "lblBuyMileage";
-            this.lblBuyMileage.Size = new System.Drawing.Size(125, 18);
+            this.lblBuyMileage.Size = new System.Drawing.Size(83, 12);
             this.lblBuyMileage.TabIndex = 18;
             this.lblBuyMileage.Text = "购买车辆里程:";
             // 
@@ -480,9 +501,10 @@
             // 
             this.lblInvoiceDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblInvoiceDate.AutoSize = true;
-            this.lblInvoiceDate.Location = new System.Drawing.Point(71, 171);
+            this.lblInvoiceDate.Location = new System.Drawing.Point(48, 115);
+            this.lblInvoiceDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInvoiceDate.Name = "lblInvoiceDate";
-            this.lblInvoiceDate.Size = new System.Drawing.Size(89, 18);
+            this.lblInvoiceDate.Size = new System.Drawing.Size(59, 12);
             this.lblInvoiceDate.TabIndex = 16;
             this.lblInvoiceDate.Text = "发票日期:";
             // 
@@ -490,9 +512,10 @@
             // 
             this.lblBodyColor.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblBodyColor.AutoSize = true;
-            this.lblBodyColor.Location = new System.Drawing.Point(71, 131);
+            this.lblBodyColor.Location = new System.Drawing.Point(48, 88);
+            this.lblBodyColor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBodyColor.Name = "lblBodyColor";
-            this.lblBodyColor.Size = new System.Drawing.Size(89, 18);
+            this.lblBodyColor.Size = new System.Drawing.Size(59, 12);
             this.lblBodyColor.TabIndex = 12;
             this.lblBodyColor.Text = "车身颜色:";
             // 
@@ -500,9 +523,10 @@
             // 
             this.lblModel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblModel.AutoSize = true;
-            this.lblModel.Location = new System.Drawing.Point(107, 51);
+            this.lblModel.Location = new System.Drawing.Point(72, 34);
+            this.lblModel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblModel.Name = "lblModel";
-            this.lblModel.Size = new System.Drawing.Size(53, 18);
+            this.lblModel.Size = new System.Drawing.Size(35, 12);
             this.lblModel.TabIndex = 4;
             this.lblModel.Text = "型号:";
             // 
@@ -510,9 +534,10 @@
             // 
             this.lblNumber.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNumber.AutoSize = true;
-            this.lblNumber.Location = new System.Drawing.Point(89, 11);
+            this.lblNumber.Location = new System.Drawing.Point(60, 7);
+            this.lblNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNumber.Name = "lblNumber";
-            this.lblNumber.Size = new System.Drawing.Size(71, 18);
+            this.lblNumber.Size = new System.Drawing.Size(47, 12);
             this.lblNumber.TabIndex = 0;
             this.lblNumber.Text = "车牌号:";
             // 
@@ -520,9 +545,10 @@
             // 
             this.lblBrand.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblBrand.AutoSize = true;
-            this.lblBrand.Location = new System.Drawing.Point(597, 11);
+            this.lblBrand.Location = new System.Drawing.Point(399, 7);
+            this.lblBrand.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBrand.Name = "lblBrand";
-            this.lblBrand.Size = new System.Drawing.Size(53, 18);
+            this.lblBrand.Size = new System.Drawing.Size(35, 12);
             this.lblBrand.TabIndex = 1;
             this.lblBrand.Text = "品牌:";
             // 
@@ -530,9 +556,10 @@
             // 
             this.lblMaintenancePeriod.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMaintenancePeriod.AutoSize = true;
-            this.lblMaintenancePeriod.Location = new System.Drawing.Point(71, 251);
+            this.lblMaintenancePeriod.Location = new System.Drawing.Point(48, 169);
+            this.lblMaintenancePeriod.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMaintenancePeriod.Name = "lblMaintenancePeriod";
-            this.lblMaintenancePeriod.Size = new System.Drawing.Size(89, 18);
+            this.lblMaintenancePeriod.Size = new System.Drawing.Size(59, 12);
             this.lblMaintenancePeriod.TabIndex = 23;
             this.lblMaintenancePeriod.Text = "保养周期:";
             // 
@@ -540,9 +567,10 @@
             // 
             this.lblMaintenanceMileage.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMaintenanceMileage.AutoSize = true;
-            this.lblMaintenanceMileage.Location = new System.Drawing.Point(525, 251);
+            this.lblMaintenanceMileage.Location = new System.Drawing.Point(351, 169);
+            this.lblMaintenanceMileage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMaintenanceMileage.Name = "lblMaintenanceMileage";
-            this.lblMaintenanceMileage.Size = new System.Drawing.Size(125, 18);
+            this.lblMaintenanceMileage.Size = new System.Drawing.Size(83, 12);
             this.lblMaintenanceMileage.TabIndex = 24;
             this.lblMaintenanceMileage.Text = "保养间隔里程:";
             // 
@@ -550,9 +578,10 @@
             // 
             this.lblNextMaintenanceMileage.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNextMaintenanceMileage.AutoSize = true;
-            this.lblNextMaintenanceMileage.Location = new System.Drawing.Point(525, 291);
+            this.lblNextMaintenanceMileage.Location = new System.Drawing.Point(351, 196);
+            this.lblNextMaintenanceMileage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNextMaintenanceMileage.Name = "lblNextMaintenanceMileage";
-            this.lblNextMaintenanceMileage.Size = new System.Drawing.Size(125, 18);
+            this.lblNextMaintenanceMileage.Size = new System.Drawing.Size(83, 12);
             this.lblNextMaintenanceMileage.TabIndex = 25;
             this.lblNextMaintenanceMileage.Text = "下次保养里程:";
             // 
@@ -560,9 +589,10 @@
             // 
             this.lblDisplacement.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDisplacement.AutoSize = true;
-            this.lblDisplacement.Location = new System.Drawing.Point(597, 51);
+            this.lblDisplacement.Location = new System.Drawing.Point(399, 34);
+            this.lblDisplacement.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDisplacement.Name = "lblDisplacement";
-            this.lblDisplacement.Size = new System.Drawing.Size(53, 18);
+            this.lblDisplacement.Size = new System.Drawing.Size(35, 12);
             this.lblDisplacement.TabIndex = 14;
             this.lblDisplacement.Text = "排量:";
             // 
@@ -570,9 +600,10 @@
             // 
             this.lblInterriorColor.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblInterriorColor.AutoSize = true;
-            this.lblInterriorColor.Location = new System.Drawing.Point(561, 131);
+            this.lblInterriorColor.Location = new System.Drawing.Point(375, 88);
+            this.lblInterriorColor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInterriorColor.Name = "lblInterriorColor";
-            this.lblInterriorColor.Size = new System.Drawing.Size(89, 18);
+            this.lblInterriorColor.Size = new System.Drawing.Size(59, 12);
             this.lblInterriorColor.TabIndex = 10;
             this.lblInterriorColor.Text = "内饰颜色:";
             // 
@@ -584,7 +615,8 @@
             this.txtNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNumber.BorderWidth = 1;
             this.txtNumber.DecimalPrecision = 0;
-            this.txtNumber.Location = new System.Drawing.Point(166, 6);
+            this.txtNumber.Location = new System.Drawing.Point(111, 3);
+            this.txtNumber.Margin = new System.Windows.Forms.Padding(2);
             this.txtNumber.MaxLength = 50;
             this.txtNumber.MaxValue = new decimal(new int[] {
             2147483647,
@@ -597,7 +629,7 @@
             0,
             0});
             this.txtNumber.Name = "txtNumber";
-            this.txtNumber.Size = new System.Drawing.Size(321, 28);
+            this.txtNumber.Size = new System.Drawing.Size(214, 21);
             this.txtNumber.TabIndex = 27;
             this.txtNumber.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.String;
             // 
@@ -605,9 +637,10 @@
             // 
             this.lblGuaranteeMileage.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblGuaranteeMileage.AutoSize = true;
-            this.lblGuaranteeMileage.Location = new System.Drawing.Point(561, 331);
+            this.lblGuaranteeMileage.Location = new System.Drawing.Point(375, 223);
+            this.lblGuaranteeMileage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGuaranteeMileage.Name = "lblGuaranteeMileage";
-            this.lblGuaranteeMileage.Size = new System.Drawing.Size(89, 18);
+            this.lblGuaranteeMileage.Size = new System.Drawing.Size(59, 12);
             this.lblGuaranteeMileage.TabIndex = 51;
             this.lblGuaranteeMileage.Text = "质保里程:";
             // 
@@ -615,9 +648,10 @@
             // 
             this.lblFrameNumber.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFrameNumber.AutoSize = true;
-            this.lblFrameNumber.Location = new System.Drawing.Point(89, 211);
+            this.lblFrameNumber.Location = new System.Drawing.Point(60, 142);
+            this.lblFrameNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFrameNumber.Name = "lblFrameNumber";
-            this.lblFrameNumber.Size = new System.Drawing.Size(71, 18);
+            this.lblFrameNumber.Size = new System.Drawing.Size(47, 12);
             this.lblFrameNumber.TabIndex = 8;
             this.lblFrameNumber.Text = "车架号:";
             // 
@@ -625,9 +659,10 @@
             // 
             this.lblEngineNumner.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblEngineNumner.AutoSize = true;
-            this.lblEngineNumner.Location = new System.Drawing.Point(561, 211);
+            this.lblEngineNumner.Location = new System.Drawing.Point(375, 142);
+            this.lblEngineNumner.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEngineNumner.Name = "lblEngineNumner";
-            this.lblEngineNumner.Size = new System.Drawing.Size(89, 18);
+            this.lblEngineNumner.Size = new System.Drawing.Size(59, 12);
             this.lblEngineNumner.TabIndex = 6;
             this.lblEngineNumner.Text = "发动机号:";
             // 
@@ -635,9 +670,10 @@
             // 
             this.lblRegisterDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblRegisterDate.AutoSize = true;
-            this.lblRegisterDate.Location = new System.Drawing.Point(561, 91);
+            this.lblRegisterDate.Location = new System.Drawing.Point(375, 61);
+            this.lblRegisterDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRegisterDate.Name = "lblRegisterDate";
-            this.lblRegisterDate.Size = new System.Drawing.Size(89, 18);
+            this.lblRegisterDate.Size = new System.Drawing.Size(59, 12);
             this.lblRegisterDate.TabIndex = 20;
             this.lblRegisterDate.Text = "上牌日期:";
             // 
@@ -645,9 +681,10 @@
             // 
             this.lblMileage.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMileage.AutoSize = true;
-            this.lblMileage.Location = new System.Drawing.Point(71, 91);
+            this.lblMileage.Location = new System.Drawing.Point(48, 61);
+            this.lblMileage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMileage.Name = "lblMileage";
-            this.lblMileage.Size = new System.Drawing.Size(89, 18);
+            this.lblMileage.Size = new System.Drawing.Size(59, 12);
             this.lblMileage.TabIndex = 22;
             this.lblMileage.Text = "行驶里程:";
             // 
@@ -659,7 +696,8 @@
             this.txtMileage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMileage.BorderWidth = 1;
             this.txtMileage.DecimalPrecision = 0;
-            this.txtMileage.Location = new System.Drawing.Point(166, 86);
+            this.txtMileage.Location = new System.Drawing.Point(111, 57);
+            this.txtMileage.Margin = new System.Windows.Forms.Padding(2);
             this.txtMileage.MaxLength = 50;
             this.txtMileage.MaxValue = new decimal(new int[] {
             2147483647,
@@ -672,38 +710,27 @@
             0,
             0});
             this.txtMileage.Name = "txtMileage";
-            this.txtMileage.Size = new System.Drawing.Size(321, 28);
+            this.txtMileage.Size = new System.Drawing.Size(214, 21);
             this.txtMileage.TabIndex = 53;
             this.txtMileage.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.Integer;
             // 
             // dtpRegisterDate
             // 
             this.dtpRegisterDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpRegisterDate.Location = new System.Drawing.Point(656, 86);
+            this.dtpRegisterDate.Location = new System.Drawing.Point(438, 57);
+            this.dtpRegisterDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpRegisterDate.Name = "dtpRegisterDate";
-            this.dtpRegisterDate.Size = new System.Drawing.Size(323, 28);
+            this.dtpRegisterDate.Size = new System.Drawing.Size(215, 21);
             this.dtpRegisterDate.TabIndex = 54;
             // 
             // dtpInvoiceDate
             // 
             this.dtpInvoiceDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpInvoiceDate.Location = new System.Drawing.Point(166, 166);
+            this.dtpInvoiceDate.Location = new System.Drawing.Point(111, 111);
+            this.dtpInvoiceDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpInvoiceDate.Name = "dtpInvoiceDate";
-            this.dtpInvoiceDate.Size = new System.Drawing.Size(321, 28);
+            this.dtpInvoiceDate.Size = new System.Drawing.Size(214, 21);
             this.dtpInvoiceDate.TabIndex = 61;
-            // 
-            // tlpCars
-            // 
-            this.tlpCars.ColumnCount = 1;
-            this.tlpCars.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpCars.Controls.Add(this.dgvCars, 0, 0);
-            this.tlpCars.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpCars.Location = new System.Drawing.Point(0, 360);
-            this.tlpCars.Name = "tlpCars";
-            this.tlpCars.RowCount = 1;
-            this.tlpCars.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.09375F));
-            this.tlpCars.Size = new System.Drawing.Size(982, 290);
-            this.tlpCars.TabIndex = 2;
             // 
             // dgvCars
             // 
@@ -711,9 +738,8 @@
             this.dgvCars.AllowUserToDeleteRows = false;
             this.dgvCars.AllowUserToResizeRows = false;
             this.dgvCars.BackgroundColor = System.Drawing.Color.White;
-            this.dgvCars.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvCars.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.dgvCars.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvCars.CheckAllColumnName = "chkCheckAll";
             this.dgvCars.CheckBoxBorderColor = System.Drawing.Color.Empty;
             this.dgvCars.CheckedAll = false;
             this.dgvCars.CheckedImage = null;
@@ -730,7 +756,6 @@
             this.dgvCars.ColumnHeadersHeight = 42;
             this.dgvCars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvCars.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.chkCheckAll,
             this.colCarNumber,
             this.colModel,
             this.colDisplacement,
@@ -739,110 +764,129 @@
             this.colNextMaintenanceMileage,
             this.colNextMaintenanceDate,
             this.colId});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCars.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvCars.Dock = System.Windows.Forms.DockStyle.Top;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCars.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvCars.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCars.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.dgvCars.Location = new System.Drawing.Point(3, 3);
+            this.dgvCars.Location = new System.Drawing.Point(0, 243);
+            this.dgvCars.Margin = new System.Windows.Forms.Padding(2);
             this.dgvCars.MultiSelect = false;
             this.dgvCars.Name = "dgvCars";
             this.dgvCars.PaintRowNumber = false;
+            this.dgvCars.ReadOnly = true;
             this.dgvCars.RowHeadersVisible = false;
             this.dgvCars.RowTemplate.Height = 23;
-            this.dgvCars.Size = new System.Drawing.Size(976, 246);
-            this.dgvCars.TabIndex = 2;
-            // 
-            // chkCheckAll
-            // 
-            this.chkCheckAll.HeaderText = "";
-            this.chkCheckAll.Name = "chkCheckAll";
-            this.chkCheckAll.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.chkCheckAll.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.chkCheckAll.Width = 20;
+            this.dgvCars.Size = new System.Drawing.Size(655, 118);
+            this.dgvCars.TabIndex = 3;
+            this.dgvCars.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCars_CellContentClick);
             // 
             // colCarNumber
             // 
-            this.colCarNumber.ActiveLinkColor = System.Drawing.Color.Black;
-            this.colCarNumber.DataPropertyName = "CarNumber";
+            this.colCarNumber.DataPropertyName = "Number";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.colCarNumber.DefaultCellStyle = dataGridViewCellStyle2;
             this.colCarNumber.HeaderText = "车牌号";
-            this.colCarNumber.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.colCarNumber.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.colCarNumber.Name = "colCarNumber";
+            this.colCarNumber.ReadOnly = true;
             this.colCarNumber.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colCarNumber.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colCarNumber.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.colCarNumber.Width = 70;
             // 
             // colModel
             // 
             this.colModel.DataPropertyName = "Model";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colModel.DefaultCellStyle = dataGridViewCellStyle3;
             this.colModel.FillWeight = 80F;
             this.colModel.HeaderText = "型号";
             this.colModel.Name = "colModel";
+            this.colModel.ReadOnly = true;
+            this.colModel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // colDisplacement
             // 
             this.colDisplacement.DataPropertyName = "Displacement";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colDisplacement.DefaultCellStyle = dataGridViewCellStyle4;
             this.colDisplacement.HeaderText = "排量";
             this.colDisplacement.Name = "colDisplacement";
+            this.colDisplacement.ReadOnly = true;
+            this.colDisplacement.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colDisplacement.Width = 60;
             // 
             // colMileage
             // 
             this.colMileage.DataPropertyName = "Mileage";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colMileage.DefaultCellStyle = dataGridViewCellStyle5;
             this.colMileage.HeaderText = "里程";
             this.colMileage.Name = "colMileage";
+            this.colMileage.ReadOnly = true;
+            this.colMileage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colMileage.Width = 60;
             // 
             // colInvoiceDate
             // 
             this.colInvoiceDate.DataPropertyName = "InvoiceDate";
-            dataGridViewCellStyle2.Format = "d";
-            this.colInvoiceDate.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.Format = "d";
+            this.colInvoiceDate.DefaultCellStyle = dataGridViewCellStyle6;
             this.colInvoiceDate.HeaderText = "发票日期";
             this.colInvoiceDate.Name = "colInvoiceDate";
+            this.colInvoiceDate.ReadOnly = true;
+            this.colInvoiceDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colInvoiceDate.Width = 80;
             // 
             // colNextMaintenanceMileage
             // 
             this.colNextMaintenanceMileage.DataPropertyName = "NextMaintenanceMileage";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colNextMaintenanceMileage.DefaultCellStyle = dataGridViewCellStyle7;
             this.colNextMaintenanceMileage.HeaderText = "下次保养里程";
             this.colNextMaintenanceMileage.Name = "colNextMaintenanceMileage";
+            this.colNextMaintenanceMileage.ReadOnly = true;
+            this.colNextMaintenanceMileage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colNextMaintenanceMileage.Width = 110;
             // 
             // colNextMaintenanceDate
             // 
             this.colNextMaintenanceDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colNextMaintenanceDate.DataPropertyName = "NextMaintenanceDate";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Format = "d";
+            this.colNextMaintenanceDate.DefaultCellStyle = dataGridViewCellStyle8;
             this.colNextMaintenanceDate.HeaderText = "下次保养日期";
             this.colNextMaintenanceDate.Name = "colNextMaintenanceDate";
+            this.colNextMaintenanceDate.ReadOnly = true;
+            this.colNextMaintenanceDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // colId
             // 
             this.colId.DataPropertyName = "Id";
             this.colId.HeaderText = "主键";
             this.colId.Name = "colId";
+            this.colId.ReadOnly = true;
             this.colId.Visible = false;
             // 
             // CarEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.tlpCars);
+            this.Controls.Add(this.dgvCars);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CarEdit";
-            this.Size = new System.Drawing.Size(982, 650);
+            this.Size = new System.Drawing.Size(655, 361);
             this.Load += new System.EventHandler(this.CarEdit_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.tlpCars.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -888,9 +932,7 @@
         private ClassLibrary.Winform.UI.Controls.TextBox txtGuaranteeMileage;
         private ClassLibrary.Winform.UI.Controls.TextBox txtGuaranteePeriod;
         private System.Windows.Forms.DateTimePicker dtpInvoiceDate;
-        private System.Windows.Forms.TableLayoutPanel tlpCars;
         private ClassLibrary.Winform.UI.Controls.DataGridView dgvCars;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chkCheckAll;
         private System.Windows.Forms.DataGridViewLinkColumn colCarNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn colModel;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDisplacement;

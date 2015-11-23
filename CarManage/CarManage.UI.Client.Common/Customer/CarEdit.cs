@@ -92,7 +92,7 @@ namespace CarManage.UI.Client.Common.Customer
             {
                 dgvCars.DataSource = carList;
 
-                dgvCars.CurrentCell = dgvCars.Rows[0].Cells[colCarNumber.Name];
+                dgvCars.CurrentCell = dgvCars.Rows[0].Cells[colCarNumber.Index];
                 CarId = dgvCars.Rows[0].Cells[colId.Name].Value.ToString();
 
                 BindCarDetail();
@@ -110,7 +110,7 @@ namespace CarManage.UI.Client.Common.Customer
                 if (string.IsNullOrEmpty(CustomerId))
                     return;
 
-                CarInfo carInfo = GetCarInfo(CarId);
+                CarInfo carInfo = car.Load(CarId);
 
                 if (carInfo == null)
                 {
@@ -213,9 +213,20 @@ namespace CarManage.UI.Client.Common.Customer
             }
         }
 
-        private CarInfo GetCarInfo(string id)
+        private void dgvCars_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            return new CarInfo();
+            try
+            {
+                if (e.ColumnIndex.Equals(colCarNumber.Index))
+                {
+                    CarId = dgvCars.Rows[e.RowIndex].Cells[colId.Index].Value.ToString();
+                    BindCarDetail();
+                }
+            }
+            catch (Exception ex)
+            {
+                UserInterfaceExceptionHandler.HandlerException("显示车辆详细信息失败！", ref ex);
+            }
         }
     }
 }
