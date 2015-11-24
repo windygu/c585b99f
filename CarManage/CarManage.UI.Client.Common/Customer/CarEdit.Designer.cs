@@ -781,7 +781,7 @@
             this.dgvCars.PaintRowNumber = false;
             this.dgvCars.ReadOnly = true;
             this.dgvCars.RowHeadersVisible = false;
-            this.dgvCars.RowTemplate.Height = 23;
+            this.dgvCars.RowTemplate.Height = 30;
             this.dgvCars.Size = new System.Drawing.Size(655, 118);
             this.dgvCars.TabIndex = 3;
             this.dgvCars.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCars_CellContentClick);

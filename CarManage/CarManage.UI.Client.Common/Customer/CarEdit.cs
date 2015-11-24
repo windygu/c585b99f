@@ -147,7 +147,16 @@ namespace CarManage.UI.Client.Common.Customer
                     carInfo.NextMaintenanceMileage.ToString());
 
                 if (carInfo.NextMaintenanceDate.HasValue)
+                {
+                    dtpNextMaintenanceDate.Format = DateTimePickerFormat.Long;
                     dtpNextMaintenanceDate.Text = carInfo.NextMaintenanceDate.Value.ToShortDateString();
+                }
+                else
+                {
+                    dtpNextMaintenanceDate.Format = DateTimePickerFormat.Custom;
+                    dtpNextMaintenanceDate.CustomFormat = " ";
+                    dtpNextMaintenanceDate.Text = string.Empty;
+                }
 
                 if (carInfo.NextMaintenanceMileage.HasValue)
                     txtNextMaintenanceMileage.Text = carInfo.NextMaintenanceMileage.Value.ToString();
