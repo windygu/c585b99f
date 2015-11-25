@@ -37,7 +37,8 @@ namespace ClassLibrary.Winform.UI.Controls
             base.MaxDate = Convert.ToDateTime("2100-01-01");
 
             base.Format = DateTimePickerFormat.Custom;
-            base.CustomFormat = "yyyy-MM-dd";
+            base.CustomFormat = " ";
+            base.Text = string.Empty;
         }
 
         public DateTimePicker(IContainer container)
@@ -96,6 +97,29 @@ namespace ClassLibrary.Winform.UI.Controls
             else
             {
                 base.Format = DateTimePickerFormat.Custom;
+            }
+        }
+
+        public override string Text
+        {
+            get
+            {
+                return base.Text;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    //this.Format = DateTimePickerFormat.Custom;
+                    base.CustomFormat = " ";
+                }
+                else
+                {
+                    //this.Format = DateTimePickerFormat.Long;
+                    base.CustomFormat = "yyyy-MM-dd";
+                }
+
+                base.Text = value;
             }
         }
     }
