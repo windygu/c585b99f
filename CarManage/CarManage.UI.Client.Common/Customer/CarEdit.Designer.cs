@@ -42,7 +42,7 @@
             this.txtGuaranteeMileage = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.txtGuaranteePeriod = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.txtNextMaintenanceMileage = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
-            this.dtpNextMaintenanceDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpNextMaintenanceDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker();
             this.txtEngineNumber = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.txtFrameNumber = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.lblGuaranteePeriod = new ClassLibrary.Winform.UI.Controls.Label(this.components);
@@ -73,8 +73,8 @@
             this.lblRegisterDate = new ClassLibrary.Winform.UI.Controls.Label(this.components);
             this.lblMileage = new ClassLibrary.Winform.UI.Controls.Label(this.components);
             this.txtMileage = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
-            this.dtpRegisterDate = new System.Windows.Forms.DateTimePicker();
-            this.dtpInvoiceDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpRegisterDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker();
+            this.dtpInvoiceDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker();
             this.dgvCars = new ClassLibrary.Winform.UI.Controls.DataGridView();
             this.colCarNumber = new System.Windows.Forms.DataGridViewLinkColumn();
             this.colModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -885,14 +885,14 @@
         private ClassLibrary.Winform.UI.Controls.Label lblGuaranteePeriod;
         private ClassLibrary.Winform.UI.Controls.Label lblGuaranteeMileage;
         private ClassLibrary.Winform.UI.Controls.TextBox txtMileage;
-        private System.Windows.Forms.DateTimePicker dtpRegisterDate;
+        private ClassLibrary.Winform.UI.Controls.DateTimePicker dtpRegisterDate;
         private ClassLibrary.Winform.UI.Controls.TextBox txtEngineNumber;
         private ClassLibrary.Winform.UI.Controls.TextBox txtFrameNumber;
         private ClassLibrary.Winform.UI.Controls.TextBox txtNextMaintenanceMileage;
-        private System.Windows.Forms.DateTimePicker dtpNextMaintenanceDate;
+        private ClassLibrary.Winform.UI.Controls.DateTimePicker dtpNextMaintenanceDate;
         private ClassLibrary.Winform.UI.Controls.TextBox txtGuaranteeMileage;
         private ClassLibrary.Winform.UI.Controls.TextBox txtGuaranteePeriod;
-        private System.Windows.Forms.DateTimePicker dtpInvoiceDate;
+        private ClassLibrary.Winform.UI.Controls.DateTimePicker dtpInvoiceDate;
         private ClassLibrary.Winform.UI.Controls.DataGridView dgvCars;
         private System.Windows.Forms.DataGridViewLinkColumn colCarNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn colModel;

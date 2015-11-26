@@ -20,6 +20,7 @@ using ClassLibrary.Utility.Common;
 using CarManage.Configuration;
 using CarManage.Interface.DataAccess.Maintenance;
 using CarManage.Model.Maintenance;
+using CarManage.Model.Common;
 using CarManage.DataAccess.MySql;
 
 namespace CarManage.DataAccess.MySql.Maintenance
@@ -174,6 +175,42 @@ namespace CarManage.DataAccess.MySql.Maintenance
             }
 
             return maintenanceInfo;
+        }
+
+
+        public List<MaintenanceInfo> GetMaintenances(string carId)
+        {
+            IDbConnection connection = null;
+
+            List<MaintenanceInfo> maintenanceList = new List<MaintenanceInfo>();
+
+            try
+            {
+                string commandText = "SELECT * FROM Maintenance WHERE CarId=@CarId";
+                connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
+                maintenanceList = base.Query<MaintenanceInfo>(commandText, connection, 
+                    param: new { CarId = carId }).ToList();
+
+                if (maintenanceList.Count.Equals(0))
+                    return maintenanceList;
+
+                commandText = "SELECT m.*,c.Name FROM MaintenanceItem m JOIN CodeBook c on m.ItemCode=c.Code "
+                    + "WHERE c.Type=@Type AND m.CarId IN @CarIds AND m.Valid=1";
+
+                List<MaintenanceItemInfo> itemList=base.Query<MaintenanceItemInfo>(commandText,connection,
+                    param:new {Type=CodeBookInfo.MaintenanceItemCodeType,new{}}
+            }
+            catch (Exception ex)
+            {
+                DataAccessExceptionHandler.HandlerException(
+                    "查询保养信息失败！", ex);
+            }
+            finally
+            {
+                CloseConnection(connection);
+            }
+
+            return maintenanceList;
         }
 
 

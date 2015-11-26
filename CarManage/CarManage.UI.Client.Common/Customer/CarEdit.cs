@@ -113,9 +113,7 @@ namespace CarManage.UI.Client.Common.Customer
                 CarInfo carInfo = car.Load(CarId);
 
                 if (carInfo == null)
-                {
                     return;
-                }
 
                 txtNumber.Text = carInfo.Number;
                 txtBrand.Text = carInfo.Brand;
@@ -147,16 +145,7 @@ namespace CarManage.UI.Client.Common.Customer
                     carInfo.NextMaintenanceMileage.ToString());
 
                 if (carInfo.NextMaintenanceDate.HasValue)
-                {
-                    dtpNextMaintenanceDate.Format = DateTimePickerFormat.Long;
                     dtpNextMaintenanceDate.Text = carInfo.NextMaintenanceDate.Value.ToShortDateString();
-                }
-                else
-                {
-                    dtpNextMaintenanceDate.Format = DateTimePickerFormat.Custom;
-                    dtpNextMaintenanceDate.CustomFormat = " ";
-                    dtpNextMaintenanceDate.Text = string.Empty;
-                }
 
                 if (carInfo.NextMaintenanceMileage.HasValue)
                     txtNextMaintenanceMileage.Text = carInfo.NextMaintenanceMileage.Value.ToString();
@@ -220,6 +209,30 @@ namespace CarManage.UI.Client.Common.Customer
             {
                 car.Update(carInfo);
             }
+        }
+
+        public void Reset()
+        {
+            CarId = string.Empty;
+
+            txtNumber.Text = string.Empty;
+            txtBrand.Text = string.Empty;
+            txtModel.Text = string.Empty;
+            txtDisplacement.Text = string.Empty;
+            txtFrameNumber.Text = string.Empty;
+            txtEngineNumber.Text = string.Empty;
+            txtBodyColor.Text = string.Empty;
+            txtInteriorColor.Text = string.Empty;
+            dtpInvoiceDate.Text = string.Empty;
+            txtBuyMileage.Text = string.Empty;
+            dtpRegisterDate.Text = string.Empty;
+            txtMileage.Text = string.Empty;
+            cbxMaintenancePeriod.SelectedIndex = 0;
+            cbxMaitenanceMileage.SelectedIndex = 0;
+            dtpNextMaintenanceDate.Text = string.Empty;
+            txtNextMaintenanceMileage.Text = string.Empty;
+            txtGuaranteePeriod.Text = string.Empty;
+            txtGuaranteeMileage.Text = string.Empty;
         }
 
         private void dgvCars_CellContentClick(object sender, DataGridViewCellEventArgs e)
