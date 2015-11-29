@@ -177,7 +177,11 @@ namespace CarManage.DataAccess.MySql.Maintenance
             return maintenanceInfo;
         }
 
-
+        /// <summary>
+        /// 获取车辆保养信息
+        /// </summary>
+        /// <param name="carId">车辆主键</param>
+        /// <returns>返回车辆保养信息对象集合</returns>
         public List<MaintenanceInfo> GetMaintenances(string carId)
         {
             IDbConnection connection = null;
@@ -188,22 +192,25 @@ namespace CarManage.DataAccess.MySql.Maintenance
             {
                 string commandText = "SELECT * FROM Maintenance WHERE CarId=@CarId";
                 connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
-                maintenanceList = base.Query<MaintenanceInfo>(commandText, connection, 
+
+                maintenanceList = base.Query<MaintenanceInfo>(commandText, connection,
                     param: new { CarId = carId }).ToList();
 
                 if (maintenanceList.Count.Equals(0))
                     return maintenanceList;
 
-                commandText = "SELECT m.*,c.Name FROM MaintenanceItem m JOIN CodeBook c on m.ItemCode=c.Code "
-                    + "WHERE c.Type=@Type AND m.CarId IN @CarIds AND m.Valid=1";
+                commandText = "SELECT * FROM MaintenanceItem WHERE CarId = @CarId AND Valid=1";
 
-                List<MaintenanceItemInfo> itemList=base.Query<MaintenanceItemInfo>(commandText,connection,
-                    param:new {Type=CodeBookInfo.MaintenanceItemCodeType,new{}}
+                List<MaintenanceItemInfo> itemList = base.Query<MaintenanceItemInfo>(commandText, connection,
+                    param: new { Type = CodeBookInfo.MaintenanceItemCodeType, CarId = carId }).ToList();
+
+                maintenanceList.ForEach(
+                    info => info.Items = itemList.Where(item => item.MaintenanceId.Equals(info.Id)).ToList());
             }
             catch (Exception ex)
             {
                 DataAccessExceptionHandler.HandlerException(
-                    "查询保养信息失败！", ex);
+                    "获取保养信息失败！", ex);
             }
             finally
             {

@@ -51,15 +51,20 @@ namespace CarManage.Model.Maintenance
         ///</summary>
         public string MaintenanceId { get; set; }
 
-        ///<summary>
-        ///项目编号
-        ///</summary>
-        public string ItemCode { get; set; }
+        /// <summary>
+        /// 车牌号
+        /// </summary>
+        public string CarNumber { get; set; }
 
         /// <summary>
         /// 项目名称
         /// </summary>
         public string ItemName { get; set; }
+
+        ///<summary>
+        ///项目编号
+        ///</summary>
+        public string ItemCode { get; set; }
 
         ///<summary>
         ///是否失销（如果为true则代表进行此项目的保养，否则代表失销）

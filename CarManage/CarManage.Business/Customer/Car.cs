@@ -18,6 +18,7 @@ using CarManage.Factory.DataAccess;
 using CarManage.Interface.DataAccess.Customer;
 using CarManage.Business.Common;
 using CarManage.Model.Customer;
+using CarManage.Model.Common;
 using CarManage.Model.Enum;
 
 namespace CarManage.Business.Customer
@@ -155,7 +156,7 @@ namespace CarManage.Business.Customer
         /// <returns>返回喜欢的销售活动字典集合</returns>
         public Dictionary<string, string> GetMaintenancePeriod()
         {
-            return codeBook.GetCodes(CodeBook.MaintenancePeriodCodeType).ToDictionary(k => k.Code, v => v.Name);
+            return codeBook.GetCodes(CodeBookInfo.MaintenancePeriodCodeType).ToDictionary(k => k.Code, v => v.Name);
         }
 
         /// <summary>
@@ -164,7 +165,7 @@ namespace CarManage.Business.Customer
         /// <returns>返回喜欢的销售活动字典集合</returns>
         public Dictionary<string, string> GetMaintenanceMileage()
         {
-            return codeBook.GetCodes(CodeBook.MaintenanceMileageCodeType).ToDictionary(k => k.Code, v => v.Name);
+            return codeBook.GetCodes(CodeBookInfo.MaintenanceMileageCodeType).ToDictionary(k => k.Code, v => v.Name);
         }
 
         /// <summary>

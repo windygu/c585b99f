@@ -124,6 +124,12 @@
     </None>
     <None Include="Logging\LogConfig.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary.Winform.UI\ClassLibrary.Winform.UI.csproj">
+      <Project>{5170771b-3195-4ee5-9990-a57c41a8c1c2}</Project>
+      <Name>ClassLibrary.Winform.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)Include\MySql.Data.dll" "$(SolutionDir)CarManage.UI.Client.StartUp\bin\$(ConfigurationName)\MySql.Data.dll"

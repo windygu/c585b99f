@@ -10,12 +10,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using ClassLibrary.ExceptionHandling;
 using ClassLibrary.Utility.Common;
 using CarManage.Factory.DataAccess;
 using CarManage.Interface.DataAccess.Maintenance;
 using CarManage.Model.Maintenance;
+using CarManage.Model.Common;
 using CarManage.Model.Enum;
 
 namespace CarManage.Business.Maintenance
@@ -34,6 +36,8 @@ namespace CarManage.Business.Maintenance
         private static CarManage.Interface.DataAccess.Maintenance.IMaintenance maintenance = 
             DataAccessFactory.CreateInstance<IMaintenance>();
 
+        private CarManage.Business.Common.CodeBook codeBook = new Common.CodeBook();
+
         /// <summary>
         /// 新增保养信息
         /// </summary>
@@ -42,6 +46,7 @@ namespace CarManage.Business.Maintenance
         {
             try
             {
+                maintenanceInfo.ItemSummary = GetItemSummary(maintenanceInfo.Items);
                 maintenance.Add(maintenanceInfo);
             }
             catch (Exception ex)
@@ -58,6 +63,7 @@ namespace CarManage.Business.Maintenance
         {
             try
             {
+                maintenanceInfo.ItemSummary = GetItemSummary(maintenanceInfo.Items);
                 maintenance.Update(maintenanceInfo);
             }
             catch (Exception ex)
@@ -104,6 +110,27 @@ namespace CarManage.Business.Maintenance
         }
 
         /// <summary>
+        /// 获取车辆保养信息
+        /// </summary>
+        /// <param name="carId">车辆主键</param>
+        /// <returns>返回车辆保养信息对象集合</returns>
+        List<MaintenanceInfo> GetMaintenances(string carId)
+        {
+            List<MaintenanceInfo> maintenanceList = new List<MaintenanceInfo>();
+
+            try
+            {
+                maintenanceList = maintenance.GetMaintenances(carId);
+            }
+            catch (Exception ex)
+            {
+                BusinessExceptionHandler.HandlerException("获取车辆保养信息失败！", ex);
+            }
+
+            return maintenanceList;
+        }
+
+        /// <summary>
         /// 查询保养信息
         /// </summary>
         /// <returns>保养信息集合</returns>
@@ -121,6 +148,29 @@ namespace CarManage.Business.Maintenance
             }
 
             return maintenanceList;
+        }
+
+        /// <summary>
+        /// 获取保养项目字典集合
+        /// </summary>
+        /// <returns>返回保养项目字典集合</returns>
+        public Dictionary<string, string> GetMaintenanceItems()
+        {
+            return codeBook.GetCodes(CodeBookInfo.MaintenanceItemCodeType).ToDictionary(k => k.Code, v => v.Name);
+        }
+
+        /// <summary>
+        /// 生成保养项目摘要
+        /// </summary>
+        /// <param name="itemList">保养项目信息对象集合</param>
+        /// <returns>返回由分号作为分隔符组成的保养项目摘要</returns>
+        private string GetItemSummary(List<MaintenanceItemInfo> itemList)
+        {
+            string result = string.Empty;
+
+            itemList.ForEach(info => result += info.ItemName + ";");
+
+            return result;
         }
     }
 }

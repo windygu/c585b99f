@@ -38,11 +38,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpCarDetail = new System.Windows.Forms.TableLayoutPanel();
             this.txtGuaranteeMileage = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.txtGuaranteePeriod = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.txtNextMaintenanceMileage = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
-            this.dtpNextMaintenanceDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker();
+            this.dtpNextMaintenanceDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker(this.components);
             this.txtEngineNumber = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.txtFrameNumber = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.lblGuaranteePeriod = new ClassLibrary.Winform.UI.Controls.Label(this.components);
@@ -73,8 +73,8 @@
             this.lblRegisterDate = new ClassLibrary.Winform.UI.Controls.Label(this.components);
             this.lblMileage = new ClassLibrary.Winform.UI.Controls.Label(this.components);
             this.txtMileage = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
-            this.dtpRegisterDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker();
-            this.dtpInvoiceDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker();
+            this.dtpRegisterDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker(this.components);
+            this.dtpInvoiceDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker(this.components);
             this.dgvCars = new ClassLibrary.Winform.UI.Controls.DataGridView();
             this.colCarNumber = new System.Windows.Forms.DataGridViewLinkColumn();
             this.colModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,69 +84,69 @@
             this.colNextMaintenanceMileage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNextMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tlpCarDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tlpCarDetail
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.txtGuaranteeMileage, 3, 8);
-            this.tableLayoutPanel1.Controls.Add(this.txtGuaranteePeriod, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.txtNextMaintenanceMileage, 3, 7);
-            this.tableLayoutPanel1.Controls.Add(this.dtpNextMaintenanceDate, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.txtEngineNumber, 3, 5);
-            this.tableLayoutPanel1.Controls.Add(this.txtFrameNumber, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.lblGuaranteePeriod, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.cbxMaitenanceMileage, 3, 6);
-            this.tableLayoutPanel1.Controls.Add(this.cbxMaintenancePeriod, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.txtBuyMileage, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.txtInteriorColor, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txtBodyColor, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txtDisplacement, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtModel, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtBrand, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblNextMaintenanceDate, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.lblBuyMileage, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lblInvoiceDate, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lblBodyColor, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lblModel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblNumber, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblBrand, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblMaintenancePeriod, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.lblMaintenanceMileage, 2, 6);
-            this.tableLayoutPanel1.Controls.Add(this.lblNextMaintenanceMileage, 2, 7);
-            this.tableLayoutPanel1.Controls.Add(this.lblDisplacement, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblInterriorColor, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txtNumber, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblGuaranteeMileage, 2, 8);
-            this.tableLayoutPanel1.Controls.Add(this.lblFrameNumber, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.lblEngineNumner, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.lblRegisterDate, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblMileage, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtMileage, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.dtpRegisterDate, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.dtpInvoiceDate, 1, 4);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(982, 360);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.tlpCarDetail.AutoSize = true;
+            this.tlpCarDetail.ColumnCount = 4;
+            this.tlpCarDetail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpCarDetail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpCarDetail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpCarDetail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpCarDetail.Controls.Add(this.txtGuaranteeMileage, 3, 8);
+            this.tlpCarDetail.Controls.Add(this.txtGuaranteePeriod, 1, 8);
+            this.tlpCarDetail.Controls.Add(this.txtNextMaintenanceMileage, 3, 7);
+            this.tlpCarDetail.Controls.Add(this.dtpNextMaintenanceDate, 1, 7);
+            this.tlpCarDetail.Controls.Add(this.txtEngineNumber, 3, 5);
+            this.tlpCarDetail.Controls.Add(this.txtFrameNumber, 1, 5);
+            this.tlpCarDetail.Controls.Add(this.lblGuaranteePeriod, 0, 8);
+            this.tlpCarDetail.Controls.Add(this.cbxMaitenanceMileage, 3, 6);
+            this.tlpCarDetail.Controls.Add(this.cbxMaintenancePeriod, 1, 6);
+            this.tlpCarDetail.Controls.Add(this.txtBuyMileage, 3, 4);
+            this.tlpCarDetail.Controls.Add(this.txtInteriorColor, 3, 3);
+            this.tlpCarDetail.Controls.Add(this.txtBodyColor, 1, 3);
+            this.tlpCarDetail.Controls.Add(this.txtDisplacement, 3, 1);
+            this.tlpCarDetail.Controls.Add(this.txtModel, 1, 1);
+            this.tlpCarDetail.Controls.Add(this.txtBrand, 3, 0);
+            this.tlpCarDetail.Controls.Add(this.lblNextMaintenanceDate, 0, 7);
+            this.tlpCarDetail.Controls.Add(this.lblBuyMileage, 2, 4);
+            this.tlpCarDetail.Controls.Add(this.lblInvoiceDate, 0, 4);
+            this.tlpCarDetail.Controls.Add(this.lblBodyColor, 0, 3);
+            this.tlpCarDetail.Controls.Add(this.lblModel, 0, 1);
+            this.tlpCarDetail.Controls.Add(this.lblNumber, 0, 0);
+            this.tlpCarDetail.Controls.Add(this.lblBrand, 2, 0);
+            this.tlpCarDetail.Controls.Add(this.lblMaintenancePeriod, 0, 6);
+            this.tlpCarDetail.Controls.Add(this.lblMaintenanceMileage, 2, 6);
+            this.tlpCarDetail.Controls.Add(this.lblNextMaintenanceMileage, 2, 7);
+            this.tlpCarDetail.Controls.Add(this.lblDisplacement, 2, 1);
+            this.tlpCarDetail.Controls.Add(this.lblInterriorColor, 2, 3);
+            this.tlpCarDetail.Controls.Add(this.txtNumber, 1, 0);
+            this.tlpCarDetail.Controls.Add(this.lblGuaranteeMileage, 2, 8);
+            this.tlpCarDetail.Controls.Add(this.lblFrameNumber, 0, 5);
+            this.tlpCarDetail.Controls.Add(this.lblEngineNumner, 2, 5);
+            this.tlpCarDetail.Controls.Add(this.lblRegisterDate, 2, 2);
+            this.tlpCarDetail.Controls.Add(this.lblMileage, 0, 2);
+            this.tlpCarDetail.Controls.Add(this.txtMileage, 1, 2);
+            this.tlpCarDetail.Controls.Add(this.dtpRegisterDate, 3, 2);
+            this.tlpCarDetail.Controls.Add(this.dtpInvoiceDate, 1, 4);
+            this.tlpCarDetail.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tlpCarDetail.Location = new System.Drawing.Point(0, 0);
+            this.tlpCarDetail.Name = "tlpCarDetail";
+            this.tlpCarDetail.RowCount = 9;
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpCarDetail.Size = new System.Drawing.Size(982, 360);
+            this.tlpCarDetail.TabIndex = 1;
             // 
             // txtGuaranteeMileage
             // 
@@ -225,8 +225,14 @@
             // 
             // dtpNextMaintenanceDate
             // 
+            this.dtpNextMaintenanceDate.AllowDateNull = false;
             this.dtpNextMaintenanceDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpNextMaintenanceDate.Checked = false;
+            this.dtpNextMaintenanceDate.CustomFormat = " ";
+            this.dtpNextMaintenanceDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpNextMaintenanceDate.Location = new System.Drawing.Point(166, 286);
+            this.dtpNextMaintenanceDate.MaxDate = new System.DateTime(2100, 1, 1, 0, 0, 0, 0);
+            this.dtpNextMaintenanceDate.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.dtpNextMaintenanceDate.Name = "dtpNextMaintenanceDate";
             this.dtpNextMaintenanceDate.Size = new System.Drawing.Size(321, 28);
             this.dtpNextMaintenanceDate.TabIndex = 57;
@@ -681,16 +687,28 @@
             // 
             // dtpRegisterDate
             // 
+            this.dtpRegisterDate.AllowDateNull = false;
             this.dtpRegisterDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpRegisterDate.Checked = false;
+            this.dtpRegisterDate.CustomFormat = " ";
+            this.dtpRegisterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpRegisterDate.Location = new System.Drawing.Point(656, 86);
+            this.dtpRegisterDate.MaxDate = new System.DateTime(2100, 1, 1, 0, 0, 0, 0);
+            this.dtpRegisterDate.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.dtpRegisterDate.Name = "dtpRegisterDate";
             this.dtpRegisterDate.Size = new System.Drawing.Size(323, 28);
             this.dtpRegisterDate.TabIndex = 54;
             // 
             // dtpInvoiceDate
             // 
+            this.dtpInvoiceDate.AllowDateNull = false;
             this.dtpInvoiceDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpInvoiceDate.Checked = false;
+            this.dtpInvoiceDate.CustomFormat = " ";
+            this.dtpInvoiceDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpInvoiceDate.Location = new System.Drawing.Point(166, 166);
+            this.dtpInvoiceDate.MaxDate = new System.DateTime(2100, 1, 1, 0, 0, 0, 0);
+            this.dtpInvoiceDate.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.dtpInvoiceDate.Name = "dtpInvoiceDate";
             this.dtpInvoiceDate.Size = new System.Drawing.Size(321, 28);
             this.dtpInvoiceDate.TabIndex = 61;
@@ -842,12 +860,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.dgvCars);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tlpCarDetail);
             this.Name = "CarEdit";
             this.Size = new System.Drawing.Size(982, 542);
             this.Load += new System.EventHandler(this.CarEdit_Load);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tlpCarDetail.ResumeLayout(false);
+            this.tlpCarDetail.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -856,7 +874,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlpCarDetail;
         private ClassLibrary.Winform.UI.Controls.ComboBox cbxMaitenanceMileage;
         private ClassLibrary.Winform.UI.Controls.ComboBox cbxMaintenancePeriod;
         private ClassLibrary.Winform.UI.Controls.TextBox txtBuyMileage;

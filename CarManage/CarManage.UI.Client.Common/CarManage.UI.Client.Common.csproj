@@ -53,6 +53,12 @@
     <Compile Include="Customer\CustomerEdit.Designer.cs">
       <DependentUpon>CustomerEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Customer\MaintenanceEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Customer\MaintenanceEdit.Designer.cs">
+      <DependentUpon>MaintenanceEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\CustomerEdit.resx">
       <DependentUpon>CustomerEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\MaintenanceEdit.resx">
+      <DependentUpon>MaintenanceEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

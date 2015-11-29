@@ -17,6 +17,7 @@ using ClassLibrary.Utility.Common;
 using CarManage.Factory.DataAccess;
 using CarManage.Interface.DataAccess.Customer;
 using CarManage.Model.Customer;
+using CarManage.Model.Common;
 using CarManage.Model.Enum;
 using CarManage.Business.Common;
 
@@ -132,7 +133,7 @@ namespace CarManage.Business.Customer
         /// <returns>返回客户称呼字典集合</returns>
         public Dictionary<string, string> GetAlias()
         {
-            return codeBook.GetCodes(CodeBook.AliasCodeType).ToDictionary(k => k.Code, v => v.Name);
+            return codeBook.GetCodes(CodeBookInfo.AliasCodeType).ToDictionary(k => k.Code, v => v.Name);
         }
 
         /// <summary>
@@ -159,7 +160,7 @@ namespace CarManage.Business.Customer
         /// <returns>返回喜欢的销售活动字典集合</returns>
         public Dictionary<string, string> GetPreferSale()
         {
-            return codeBook.GetCodes(CodeBook.PreferSaleCodeType).ToDictionary(k => k.Code, v => v.Name);
+            return codeBook.GetCodes(CodeBookInfo.PreferSaleCodeType).ToDictionary(k => k.Code, v => v.Name);
         }
 
         /// <summary>
@@ -168,7 +169,7 @@ namespace CarManage.Business.Customer
         /// <returns>返回喜欢的售后活动字典集合</returns>
         public Dictionary<string, string> GetPreferSupport()
         {
-            return codeBook.GetCodes(CodeBook.PreferSupportCodeType).ToDictionary(k => k.Code, v => v.Name);
+            return codeBook.GetCodes(CodeBookInfo.PreferSupportCodeType).ToDictionary(k => k.Code, v => v.Name);
         }
 
         /// <summary>
@@ -177,7 +178,7 @@ namespace CarManage.Business.Customer
         /// <returns>返回喜欢的饮品字典集合</returns>
         public Dictionary<string, string> GetPreferDrink()
         {
-            return codeBook.GetCodes(CodeBook.PreferDrinkCodeType).ToDictionary(k => k.Code, v => v.Name);
+            return codeBook.GetCodes(CodeBookInfo.PreferDrinkCodeType).ToDictionary(k => k.Code, v => v.Name);
         }
 
         /// <summary>
@@ -195,7 +196,7 @@ namespace CarManage.Business.Customer
         /// <returns>返回销售类型字典集合</returns>
         public Dictionary<string, string> GetSaleType()
         {
-            return codeBook.GetCodes(CodeBook.SaleTypeCodeType).ToDictionary(k => k.Code, v => v.Name);
+            return codeBook.GetCodes(CodeBookInfo.SaleTypeCodeType).ToDictionary(k => k.Code, v => v.Name);
         }
     }
 }
