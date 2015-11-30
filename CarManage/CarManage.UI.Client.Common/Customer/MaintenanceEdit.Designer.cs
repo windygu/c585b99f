@@ -29,23 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCars = new ClassLibrary.Winform.UI.Controls.DataGridView();
-            this.colCarNumber = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.colModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDisplacement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colItemSummary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLoseSales = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMileage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNextMaintenanceMileage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNextMaintenanceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNextDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNextMileage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtpNextDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker(this.components);
             this.dtpDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker(this.components);
@@ -64,14 +58,18 @@
             this.txtAmount = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.txtPrevMileage = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.tlpCarDetail = new System.Windows.Forms.TableLayoutPanel();
-            this.lblNextMileage = new ClassLibrary.Winform.UI.Controls.Label(this.components);
-            this.txtNextMileage = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
+            this.chklstNextMaintenance = new ClassLibrary.Winform.UI.Controls.CheckBoxList();
             this.lblMaintenance = new ClassLibrary.Winform.UI.Controls.Label(this.components);
             this.chklstMaintenance = new ClassLibrary.Winform.UI.Controls.CheckBoxList();
             this.lblNextMaintenance = new ClassLibrary.Winform.UI.Controls.Label(this.components);
-            this.chklstNextMaintenance = new ClassLibrary.Winform.UI.Controls.CheckBoxList();
+            this.lblNextMileage = new ClassLibrary.Winform.UI.Controls.Label(this.components);
+            this.txtNextMileage = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
+            this.lblStatus = new ClassLibrary.Winform.UI.Controls.Label(this.components);
+            this.cbxStatus = new ClassLibrary.Winform.UI.Controls.ComboBox();
+            this.tlpNext = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).BeginInit();
             this.tlpCarDetail.SuspendLayout();
+            this.tlpNext.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvCars
@@ -87,128 +85,106 @@
             this.dgvCars.CheckedImage = null;
             this.dgvCars.ColumnHeaderBackgroundImage = null;
             this.dgvCars.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCars.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
-            this.dgvCars.ColumnHeadersHeight = 42;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCars.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvCars.ColumnHeadersHeight = 21;
             this.dgvCars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvCars.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colCarNumber,
-            this.colModel,
-            this.colDisplacement,
+            this.colItemSummary,
+            this.colAmount,
+            this.colLoseSales,
+            this.colDate,
             this.colMileage,
-            this.colInvoiceDate,
-            this.colNextMaintenanceMileage,
-            this.colNextMaintenanceDate,
+            this.colNextDate,
+            this.colNextMileage,
             this.colId});
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCars.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCars.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCars.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCars.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.dgvCars.Location = new System.Drawing.Point(0, 360);
+            this.dgvCars.Location = new System.Drawing.Point(0, 270);
+            this.dgvCars.Margin = new System.Windows.Forms.Padding(2);
             this.dgvCars.MultiSelect = false;
             this.dgvCars.Name = "dgvCars";
             this.dgvCars.PaintRowNumber = false;
             this.dgvCars.ReadOnly = true;
             this.dgvCars.RowHeadersVisible = false;
             this.dgvCars.RowTemplate.Height = 30;
-            this.dgvCars.Size = new System.Drawing.Size(982, 182);
+            this.dgvCars.Size = new System.Drawing.Size(655, 116);
             this.dgvCars.TabIndex = 62;
             // 
-            // colCarNumber
+            // colItemSummary
             // 
-            this.colCarNumber.DataPropertyName = "Number";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.colCarNumber.DefaultCellStyle = dataGridViewCellStyle20;
-            this.colCarNumber.HeaderText = "车牌号";
-            this.colCarNumber.Name = "colCarNumber";
-            this.colCarNumber.ReadOnly = true;
-            this.colCarNumber.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colCarNumber.Width = 70;
+            this.colItemSummary.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colItemSummary.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colItemSummary.HeaderText = "保养项目";
+            this.colItemSummary.Name = "colItemSummary";
+            this.colItemSummary.ReadOnly = true;
+            this.colItemSummary.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // colModel
+            // colAmount
             // 
-            this.colModel.DataPropertyName = "Model";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colModel.DefaultCellStyle = dataGridViewCellStyle21;
-            this.colModel.FillWeight = 80F;
-            this.colModel.HeaderText = "型号";
-            this.colModel.Name = "colModel";
-            this.colModel.ReadOnly = true;
-            this.colModel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colAmount.HeaderText = "金额";
+            this.colAmount.Name = "colAmount";
+            this.colAmount.ReadOnly = true;
+            this.colAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colAmount.Width = 50;
             // 
-            // colDisplacement
+            // colLoseSales
             // 
-            this.colDisplacement.DataPropertyName = "Displacement";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colDisplacement.DefaultCellStyle = dataGridViewCellStyle22;
-            this.colDisplacement.HeaderText = "排量";
-            this.colDisplacement.Name = "colDisplacement";
-            this.colDisplacement.ReadOnly = true;
-            this.colDisplacement.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colDisplacement.Width = 60;
+            this.colLoseSales.HeaderText = "失销金额";
+            this.colLoseSales.Name = "colLoseSales";
+            this.colLoseSales.ReadOnly = true;
+            this.colLoseSales.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colLoseSales.Width = 60;
+            // 
+            // colDate
+            // 
+            this.colDate.HeaderText = "保养日期";
+            this.colDate.Name = "colDate";
+            this.colDate.ReadOnly = true;
+            this.colDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDate.Width = 60;
             // 
             // colMileage
             // 
-            this.colMileage.DataPropertyName = "Mileage";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colMileage.DefaultCellStyle = dataGridViewCellStyle23;
             this.colMileage.HeaderText = "里程";
             this.colMileage.Name = "colMileage";
             this.colMileage.ReadOnly = true;
             this.colMileage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colMileage.Width = 60;
+            this.colMileage.Width = 40;
             // 
-            // colInvoiceDate
+            // colNextDate
             // 
-            this.colInvoiceDate.DataPropertyName = "InvoiceDate";
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.Format = "d";
-            this.colInvoiceDate.DefaultCellStyle = dataGridViewCellStyle24;
-            this.colInvoiceDate.HeaderText = "发票日期";
-            this.colInvoiceDate.Name = "colInvoiceDate";
-            this.colInvoiceDate.ReadOnly = true;
-            this.colInvoiceDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colInvoiceDate.Width = 80;
+            this.colNextDate.HeaderText = "下次保养日期";
+            this.colNextDate.Name = "colNextDate";
+            this.colNextDate.ReadOnly = true;
+            this.colNextDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colNextDate.Width = 90;
             // 
-            // colNextMaintenanceMileage
+            // colNextMileage
             // 
-            this.colNextMaintenanceMileage.DataPropertyName = "NextMaintenanceMileage";
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colNextMaintenanceMileage.DefaultCellStyle = dataGridViewCellStyle25;
-            this.colNextMaintenanceMileage.HeaderText = "下次保养里程";
-            this.colNextMaintenanceMileage.Name = "colNextMaintenanceMileage";
-            this.colNextMaintenanceMileage.ReadOnly = true;
-            this.colNextMaintenanceMileage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colNextMaintenanceMileage.Width = 110;
-            // 
-            // colNextMaintenanceDate
-            // 
-            this.colNextMaintenanceDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colNextMaintenanceDate.DataPropertyName = "NextMaintenanceDate";
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle26.Format = "d";
-            this.colNextMaintenanceDate.DefaultCellStyle = dataGridViewCellStyle26;
-            this.colNextMaintenanceDate.HeaderText = "下次保养日期";
-            this.colNextMaintenanceDate.Name = "colNextMaintenanceDate";
-            this.colNextMaintenanceDate.ReadOnly = true;
-            this.colNextMaintenanceDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colNextMileage.HeaderText = "下次保养里程";
+            this.colNextMileage.Name = "colNextMileage";
+            this.colNextMileage.ReadOnly = true;
+            this.colNextMileage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colNextMileage.Width = 90;
             // 
             // colId
             // 
-            this.colId.DataPropertyName = "Id";
             this.colId.HeaderText = "主键";
             this.colId.Name = "colId";
             this.colId.ReadOnly = true;
@@ -221,11 +197,12 @@
             this.dtpNextDate.Checked = false;
             this.dtpNextDate.CustomFormat = " ";
             this.dtpNextDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpNextDate.Location = new System.Drawing.Point(166, 166);
+            this.dtpNextDate.Location = new System.Drawing.Point(111, 3);
+            this.dtpNextDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpNextDate.MaxDate = new System.DateTime(2100, 1, 1, 0, 0, 0, 0);
             this.dtpNextDate.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.dtpNextDate.Name = "dtpNextDate";
-            this.dtpNextDate.Size = new System.Drawing.Size(321, 28);
+            this.dtpNextDate.Size = new System.Drawing.Size(214, 21);
             this.dtpNextDate.TabIndex = 64;
             // 
             // dtpDate
@@ -235,11 +212,12 @@
             this.dtpDate.Checked = false;
             this.dtpDate.CustomFormat = " ";
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(166, 46);
+            this.dtpDate.Location = new System.Drawing.Point(111, 30);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpDate.MaxDate = new System.DateTime(2100, 1, 1, 0, 0, 0, 0);
             this.dtpDate.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(321, 28);
+            this.dtpDate.Size = new System.Drawing.Size(214, 21);
             this.dtpDate.TabIndex = 63;
             // 
             // cbxCars
@@ -248,9 +226,10 @@
             this.cbxCars.BackColor = System.Drawing.Color.White;
             this.cbxCars.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCars.FormattingEnabled = true;
-            this.cbxCars.Location = new System.Drawing.Point(166, 7);
+            this.cbxCars.Location = new System.Drawing.Point(111, 3);
+            this.cbxCars.Margin = new System.Windows.Forms.Padding(2);
             this.cbxCars.Name = "cbxCars";
-            this.cbxCars.Size = new System.Drawing.Size(321, 26);
+            this.cbxCars.Size = new System.Drawing.Size(214, 20);
             this.cbxCars.TabIndex = 62;
             this.cbxCars.SelectedIndexChanged += new System.EventHandler(this.cbxCars_SelectedIndexChanged);
             // 
@@ -261,11 +240,12 @@
             this.dtpPrevDate.Checked = false;
             this.dtpPrevDate.CustomFormat = " ";
             this.dtpPrevDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPrevDate.Location = new System.Drawing.Point(166, 126);
+            this.dtpPrevDate.Location = new System.Drawing.Point(111, 84);
+            this.dtpPrevDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpPrevDate.MaxDate = new System.DateTime(2100, 1, 1, 0, 0, 0, 0);
             this.dtpPrevDate.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.dtpPrevDate.Name = "dtpPrevDate";
-            this.dtpPrevDate.Size = new System.Drawing.Size(321, 28);
+            this.dtpPrevDate.Size = new System.Drawing.Size(214, 21);
             this.dtpPrevDate.TabIndex = 54;
             // 
             // txtLoseSales
@@ -276,7 +256,8 @@
             this.txtLoseSales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLoseSales.BorderWidth = 1;
             this.txtLoseSales.DecimalPrecision = 0;
-            this.txtLoseSales.Location = new System.Drawing.Point(656, 86);
+            this.txtLoseSales.Location = new System.Drawing.Point(438, 57);
+            this.txtLoseSales.Margin = new System.Windows.Forms.Padding(2);
             this.txtLoseSales.MaxLength = 50;
             this.txtLoseSales.MaxValue = new decimal(new int[] {
             2147483647,
@@ -289,7 +270,7 @@
             0,
             0});
             this.txtLoseSales.Name = "txtLoseSales";
-            this.txtLoseSales.Size = new System.Drawing.Size(323, 28);
+            this.txtLoseSales.Size = new System.Drawing.Size(215, 21);
             this.txtLoseSales.TabIndex = 53;
             this.txtLoseSales.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.Numeric;
             // 
@@ -297,9 +278,10 @@
             // 
             this.lblMileage1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMileage1.AutoSize = true;
-            this.lblMileage1.Location = new System.Drawing.Point(561, 91);
+            this.lblMileage1.Location = new System.Drawing.Point(375, 61);
+            this.lblMileage1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMileage1.Name = "lblMileage1";
-            this.lblMileage1.Size = new System.Drawing.Size(89, 18);
+            this.lblMileage1.Size = new System.Drawing.Size(59, 12);
             this.lblMileage1.TabIndex = 22;
             this.lblMileage1.Text = "失销金额:";
             // 
@@ -307,9 +289,10 @@
             // 
             this.lblPrevDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPrevDate.AutoSize = true;
-            this.lblPrevDate.Location = new System.Drawing.Point(35, 131);
+            this.lblPrevDate.Location = new System.Drawing.Point(24, 88);
+            this.lblPrevDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrevDate.Name = "lblPrevDate";
-            this.lblPrevDate.Size = new System.Drawing.Size(125, 18);
+            this.lblPrevDate.Size = new System.Drawing.Size(83, 12);
             this.lblPrevDate.TabIndex = 20;
             this.lblPrevDate.Text = "上次保养日期:";
             // 
@@ -317,9 +300,10 @@
             // 
             this.lblNextDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNextDate.AutoSize = true;
-            this.lblNextDate.Location = new System.Drawing.Point(35, 171);
+            this.lblNextDate.Location = new System.Drawing.Point(24, 7);
+            this.lblNextDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNextDate.Name = "lblNextDate";
-            this.lblNextDate.Size = new System.Drawing.Size(125, 18);
+            this.lblNextDate.Size = new System.Drawing.Size(83, 12);
             this.lblNextDate.TabIndex = 10;
             this.lblNextDate.Text = "下次保养日期:";
             // 
@@ -327,9 +311,10 @@
             // 
             this.lblAmount.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblAmount.AutoSize = true;
-            this.lblAmount.Location = new System.Drawing.Point(107, 91);
+            this.lblAmount.Location = new System.Drawing.Point(72, 61);
+            this.lblAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(53, 18);
+            this.lblAmount.Size = new System.Drawing.Size(35, 12);
             this.lblAmount.TabIndex = 14;
             this.lblAmount.Text = "金额:";
             // 
@@ -337,9 +322,10 @@
             // 
             this.lblDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(71, 51);
+            this.lblDate.Location = new System.Drawing.Point(48, 34);
+            this.lblDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(89, 18);
+            this.lblDate.Size = new System.Drawing.Size(59, 12);
             this.lblDate.TabIndex = 1;
             this.lblDate.Text = "保养日期:";
             // 
@@ -347,9 +333,10 @@
             // 
             this.lblNumber.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNumber.AutoSize = true;
-            this.lblNumber.Location = new System.Drawing.Point(89, 11);
+            this.lblNumber.Location = new System.Drawing.Point(60, 7);
+            this.lblNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNumber.Name = "lblNumber";
-            this.lblNumber.Size = new System.Drawing.Size(71, 18);
+            this.lblNumber.Size = new System.Drawing.Size(47, 12);
             this.lblNumber.TabIndex = 0;
             this.lblNumber.Text = "车牌号:";
             // 
@@ -357,9 +344,10 @@
             // 
             this.lblMileage.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblMileage.AutoSize = true;
-            this.lblMileage.Location = new System.Drawing.Point(561, 51);
+            this.lblMileage.Location = new System.Drawing.Point(375, 34);
+            this.lblMileage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMileage.Name = "lblMileage";
-            this.lblMileage.Size = new System.Drawing.Size(89, 18);
+            this.lblMileage.Size = new System.Drawing.Size(59, 12);
             this.lblMileage.TabIndex = 4;
             this.lblMileage.Text = "保养里程:";
             // 
@@ -367,9 +355,10 @@
             // 
             this.lblPrevMileage.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblPrevMileage.AutoSize = true;
-            this.lblPrevMileage.Location = new System.Drawing.Point(525, 131);
+            this.lblPrevMileage.Location = new System.Drawing.Point(351, 88);
+            this.lblPrevMileage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrevMileage.Name = "lblPrevMileage";
-            this.lblPrevMileage.Size = new System.Drawing.Size(125, 18);
+            this.lblPrevMileage.Size = new System.Drawing.Size(83, 12);
             this.lblPrevMileage.TabIndex = 12;
             this.lblPrevMileage.Text = "上次保养里程:";
             // 
@@ -381,7 +370,8 @@
             this.txtMileage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMileage.BorderWidth = 1;
             this.txtMileage.DecimalPrecision = 0;
-            this.txtMileage.Location = new System.Drawing.Point(656, 46);
+            this.txtMileage.Location = new System.Drawing.Point(438, 30);
+            this.txtMileage.Margin = new System.Windows.Forms.Padding(2);
             this.txtMileage.MaxLength = 50;
             this.txtMileage.MaxValue = new decimal(new int[] {
             2147483647,
@@ -394,7 +384,7 @@
             0,
             0});
             this.txtMileage.Name = "txtMileage";
-            this.txtMileage.Size = new System.Drawing.Size(323, 28);
+            this.txtMileage.Size = new System.Drawing.Size(215, 21);
             this.txtMileage.TabIndex = 29;
             this.txtMileage.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.Integer;
             // 
@@ -406,7 +396,8 @@
             this.txtAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAmount.BorderWidth = 1;
             this.txtAmount.DecimalPrecision = 0;
-            this.txtAmount.Location = new System.Drawing.Point(166, 86);
+            this.txtAmount.Location = new System.Drawing.Point(111, 57);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(2);
             this.txtAmount.MaxLength = 255;
             this.txtAmount.MaxValue = new decimal(new int[] {
             2147483647,
@@ -419,7 +410,7 @@
             0,
             0});
             this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(321, 28);
+            this.txtAmount.Size = new System.Drawing.Size(214, 21);
             this.txtAmount.TabIndex = 30;
             this.txtAmount.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.Numeric;
             // 
@@ -431,7 +422,8 @@
             this.txtPrevMileage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPrevMileage.BorderWidth = 1;
             this.txtPrevMileage.DecimalPrecision = 0;
-            this.txtPrevMileage.Location = new System.Drawing.Point(656, 126);
+            this.txtPrevMileage.Location = new System.Drawing.Point(438, 84);
+            this.txtPrevMileage.Margin = new System.Windows.Forms.Padding(2);
             this.txtPrevMileage.MaxLength = 20;
             this.txtPrevMileage.MaxValue = new decimal(new int[] {
             2147483647,
@@ -444,7 +436,7 @@
             0,
             0});
             this.txtPrevMileage.Name = "txtPrevMileage";
-            this.txtPrevMileage.Size = new System.Drawing.Size(323, 28);
+            this.txtPrevMileage.Size = new System.Drawing.Size(215, 21);
             this.txtPrevMileage.TabIndex = 33;
             this.txtPrevMileage.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.Integer;
             // 
@@ -456,7 +448,6 @@
             this.tlpCarDetail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tlpCarDetail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tlpCarDetail.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tlpCarDetail.Controls.Add(this.chklstNextMaintenance, 1, 7);
             this.tlpCarDetail.Controls.Add(this.lblNumber, 0, 0);
             this.tlpCarDetail.Controls.Add(this.cbxCars, 1, 0);
             this.tlpCarDetail.Controls.Add(this.txtMileage, 3, 1);
@@ -471,37 +462,80 @@
             this.tlpCarDetail.Controls.Add(this.dtpPrevDate, 1, 3);
             this.tlpCarDetail.Controls.Add(this.lblPrevMileage, 2, 3);
             this.tlpCarDetail.Controls.Add(this.txtPrevMileage, 3, 3);
-            this.tlpCarDetail.Controls.Add(this.lblNextDate, 0, 4);
-            this.tlpCarDetail.Controls.Add(this.dtpNextDate, 1, 4);
-            this.tlpCarDetail.Controls.Add(this.lblNextMileage, 2, 4);
-            this.tlpCarDetail.Controls.Add(this.txtNextMileage, 3, 4);
-            this.tlpCarDetail.Controls.Add(this.lblMaintenance, 0, 5);
-            this.tlpCarDetail.Controls.Add(this.chklstMaintenance, 1, 5);
-            this.tlpCarDetail.Controls.Add(this.lblNextMaintenance, 0, 7);
+            this.tlpCarDetail.Controls.Add(this.lblMaintenance, 0, 4);
+            this.tlpCarDetail.Controls.Add(this.chklstMaintenance, 1, 4);
+            this.tlpCarDetail.Controls.Add(this.lblStatus, 0, 6);
+            this.tlpCarDetail.Controls.Add(this.cbxStatus, 1, 6);
             this.tlpCarDetail.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlpCarDetail.Location = new System.Drawing.Point(0, 0);
+            this.tlpCarDetail.Margin = new System.Windows.Forms.Padding(2);
             this.tlpCarDetail.Name = "tlpCarDetail";
-            this.tlpCarDetail.RowCount = 9;
-            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpCarDetail.Size = new System.Drawing.Size(982, 360);
+            this.tlpCarDetail.RowCount = 7;
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tlpCarDetail.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tlpCarDetail.Size = new System.Drawing.Size(655, 189);
             this.tlpCarDetail.TabIndex = 2;
+            // 
+            // chklstNextMaintenance
+            // 
+            this.tlpNext.SetColumnSpan(this.chklstNextMaintenance, 3);
+            this.chklstNextMaintenance.DataTextField = null;
+            this.chklstNextMaintenance.DataValueField = null;
+            this.chklstNextMaintenance.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chklstNextMaintenance.Location = new System.Drawing.Point(111, 29);
+            this.chklstNextMaintenance.Margin = new System.Windows.Forms.Padding(2);
+            this.chklstNextMaintenance.Name = "chklstNextMaintenance";
+            this.chklstNextMaintenance.Size = new System.Drawing.Size(542, 50);
+            this.chklstNextMaintenance.TabIndex = 70;
+            // 
+            // lblMaintenance
+            // 
+            this.lblMaintenance.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblMaintenance.AutoSize = true;
+            this.lblMaintenance.Location = new System.Drawing.Point(24, 115);
+            this.lblMaintenance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMaintenance.Name = "lblMaintenance";
+            this.lblMaintenance.Size = new System.Drawing.Size(83, 12);
+            this.lblMaintenance.TabIndex = 67;
+            this.lblMaintenance.Text = "此次保养项目:";
+            // 
+            // chklstMaintenance
+            // 
+            this.tlpCarDetail.SetColumnSpan(this.chklstMaintenance, 3);
+            this.chklstMaintenance.DataTextField = null;
+            this.chklstMaintenance.DataValueField = null;
+            this.chklstMaintenance.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chklstMaintenance.Location = new System.Drawing.Point(111, 110);
+            this.chklstMaintenance.Margin = new System.Windows.Forms.Padding(2);
+            this.chklstMaintenance.Name = "chklstMaintenance";
+            this.tlpCarDetail.SetRowSpan(this.chklstMaintenance, 2);
+            this.chklstMaintenance.Size = new System.Drawing.Size(542, 50);
+            this.chklstMaintenance.TabIndex = 68;
+            // 
+            // lblNextMaintenance
+            // 
+            this.lblNextMaintenance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNextMaintenance.AutoSize = true;
+            this.lblNextMaintenance.Location = new System.Drawing.Point(24, 33);
+            this.lblNextMaintenance.Margin = new System.Windows.Forms.Padding(2, 6, 2, 0);
+            this.lblNextMaintenance.Name = "lblNextMaintenance";
+            this.lblNextMaintenance.Size = new System.Drawing.Size(83, 12);
+            this.lblNextMaintenance.TabIndex = 69;
+            this.lblNextMaintenance.Text = "下次保养项目:";
             // 
             // lblNextMileage
             // 
             this.lblNextMileage.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblNextMileage.AutoSize = true;
-            this.lblNextMileage.Location = new System.Drawing.Point(525, 171);
+            this.lblNextMileage.Location = new System.Drawing.Point(351, 7);
+            this.lblNextMileage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNextMileage.Name = "lblNextMileage";
-            this.lblNextMileage.Size = new System.Drawing.Size(125, 18);
+            this.lblNextMileage.Size = new System.Drawing.Size(83, 12);
             this.lblNextMileage.TabIndex = 65;
             this.lblNextMileage.Text = "下次保养里程:";
             // 
@@ -513,7 +547,8 @@
             this.txtNextMileage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNextMileage.BorderWidth = 1;
             this.txtNextMileage.DecimalPrecision = 0;
-            this.txtNextMileage.Location = new System.Drawing.Point(656, 166);
+            this.txtNextMileage.Location = new System.Drawing.Point(438, 3);
+            this.txtNextMileage.Margin = new System.Windows.Forms.Padding(2);
             this.txtNextMileage.MaxLength = 20;
             this.txtNextMileage.MaxValue = new decimal(new int[] {
             2147483647,
@@ -526,67 +561,71 @@
             0,
             0});
             this.txtNextMileage.Name = "txtNextMileage";
-            this.txtNextMileage.Size = new System.Drawing.Size(323, 28);
+            this.txtNextMileage.Size = new System.Drawing.Size(215, 21);
             this.txtNextMileage.TabIndex = 66;
             this.txtNextMileage.TextMode = ClassLibrary.Winform.UI.Controls.TextMode.Integer;
             // 
-            // lblMaintenance
+            // lblStatus
             // 
-            this.lblMaintenance.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblMaintenance.AutoSize = true;
-            this.lblMaintenance.Location = new System.Drawing.Point(35, 211);
-            this.lblMaintenance.Name = "lblMaintenance";
-            this.lblMaintenance.Size = new System.Drawing.Size(125, 18);
-            this.lblMaintenance.TabIndex = 67;
-            this.lblMaintenance.Text = "此次保养项目:";
+            this.lblStatus.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(72, 169);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(35, 12);
+            this.lblStatus.TabIndex = 71;
+            this.lblStatus.Text = "状态:";
             // 
-            // chklstMaintenance
+            // cbxStatus
             // 
-            this.tlpCarDetail.SetColumnSpan(this.chklstMaintenance, 3);
-            this.chklstMaintenance.DataTextField = null;
-            this.chklstMaintenance.DataValueField = null;
-            this.chklstMaintenance.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chklstMaintenance.Location = new System.Drawing.Point(166, 203);
-            this.chklstMaintenance.Name = "chklstMaintenance";
-            this.tlpCarDetail.SetRowSpan(this.chklstMaintenance, 2);
-            this.chklstMaintenance.Size = new System.Drawing.Size(813, 74);
-            this.chklstMaintenance.TabIndex = 68;
+            this.cbxStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxStatus.FormattingEnabled = true;
+            this.cbxStatus.Location = new System.Drawing.Point(112, 165);
+            this.cbxStatus.Name = "cbxStatus";
+            this.cbxStatus.Size = new System.Drawing.Size(212, 20);
+            this.cbxStatus.TabIndex = 72;
+            this.cbxStatus.SelectedIndexChanged += new System.EventHandler(this.cbxStatus_SelectedIndexChanged);
             // 
-            // lblNextMaintenance
+            // tlpNext
             // 
-            this.lblNextMaintenance.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblNextMaintenance.AutoSize = true;
-            this.lblNextMaintenance.Location = new System.Drawing.Point(35, 291);
-            this.lblNextMaintenance.Name = "lblNextMaintenance";
-            this.lblNextMaintenance.Size = new System.Drawing.Size(125, 18);
-            this.lblNextMaintenance.TabIndex = 69;
-            this.lblNextMaintenance.Text = "下次保养项目:";
-            // 
-            // chklstNextMaintenance
-            // 
-            this.tlpCarDetail.SetColumnSpan(this.chklstNextMaintenance, 3);
-            this.chklstNextMaintenance.DataTextField = null;
-            this.chklstNextMaintenance.DataValueField = null;
-            this.chklstNextMaintenance.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chklstNextMaintenance.Location = new System.Drawing.Point(166, 283);
-            this.chklstNextMaintenance.Name = "chklstNextMaintenance";
-            this.tlpCarDetail.SetRowSpan(this.chklstNextMaintenance, 2);
-            this.chklstNextMaintenance.Size = new System.Drawing.Size(813, 74);
-            this.chklstNextMaintenance.TabIndex = 70;
+            this.tlpNext.ColumnCount = 4;
+            this.tlpNext.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.67F));
+            this.tlpNext.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
+            this.tlpNext.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.67F));
+            this.tlpNext.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
+            this.tlpNext.Controls.Add(this.lblNextDate, 0, 0);
+            this.tlpNext.Controls.Add(this.dtpNextDate, 1, 0);
+            this.tlpNext.Controls.Add(this.lblNextMileage, 2, 0);
+            this.tlpNext.Controls.Add(this.txtNextMileage, 3, 0);
+            this.tlpNext.Controls.Add(this.lblNextMaintenance, 0, 1);
+            this.tlpNext.Controls.Add(this.chklstNextMaintenance, 1, 1);
+            this.tlpNext.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tlpNext.Location = new System.Drawing.Point(0, 189);
+            this.tlpNext.Name = "tlpNext";
+            this.tlpNext.RowCount = 2;
+            this.tlpNext.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tlpNext.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
+            this.tlpNext.Size = new System.Drawing.Size(655, 81);
+            this.tlpNext.TabIndex = 63;
             // 
             // MaintenanceEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.dgvCars);
+            this.Controls.Add(this.tlpNext);
             this.Controls.Add(this.tlpCarDetail);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MaintenanceEdit";
-            this.Size = new System.Drawing.Size(982, 542);
+            this.Size = new System.Drawing.Size(655, 386);
             this.Load += new System.EventHandler(this.MaintenanceEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).EndInit();
             this.tlpCarDetail.ResumeLayout(false);
             this.tlpCarDetail.PerformLayout();
+            this.tlpNext.ResumeLayout(false);
+            this.tlpNext.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -595,14 +634,6 @@
         #endregion
 
         private ClassLibrary.Winform.UI.Controls.DataGridView dgvCars;
-        private System.Windows.Forms.DataGridViewLinkColumn colCarNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colModel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDisplacement;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMileage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colInvoiceDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNextMaintenanceMileage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNextMaintenanceDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
         private ClassLibrary.Winform.UI.Controls.DateTimePicker dtpNextDate;
         private ClassLibrary.Winform.UI.Controls.DateTimePicker dtpDate;
         private ClassLibrary.Winform.UI.Controls.ComboBox cbxCars;
@@ -626,5 +657,16 @@
         private ClassLibrary.Winform.UI.Controls.CheckBoxList chklstMaintenance;
         private ClassLibrary.Winform.UI.Controls.Label lblNextMaintenance;
         private ClassLibrary.Winform.UI.Controls.CheckBoxList chklstNextMaintenance;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colItemSummary;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLoseSales;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMileage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNextDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNextMileage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
+        private ClassLibrary.Winform.UI.Controls.Label lblStatus;
+        private ClassLibrary.Winform.UI.Controls.ComboBox cbxStatus;
+        private System.Windows.Forms.TableLayoutPanel tlpNext;
     }
 }

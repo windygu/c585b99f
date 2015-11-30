@@ -47,7 +47,7 @@ namespace CarManage.UI.Client.Common.Customer
 
         private void InitControl()
         {
-            dgvCars.ColumnHeaderBackgroundImage = ImageResource.List_Header_Higher_BG;
+            dgvCars.ColumnHeaderBackgroundImage = ImageResource.List_Header_Lower_BG;
             dgvCars.AutoGenerateColumns = false;
         }
 
@@ -82,24 +82,24 @@ namespace CarManage.UI.Client.Common.Customer
 
         public void BindCars()
         {
-            if (string.IsNullOrEmpty(CustomerId))
-                return;
+            //if (string.IsNullOrEmpty(CustomerId))
+            //    return;
 
-            List<CarInfo> carList = car.GetCars(CustomerId);
+            //List<CarInfo> carList = car.GetCars(CustomerId);
 
-            if (carList.Count > 0)
-            {
-                dgvCars.DataSource = carList;
+            //if (carList.Count > 0)
+            //{
+            //    dgvCars.DataSource = carList;
 
-                dgvCars.CurrentCell = dgvCars.Rows[0].Cells[colCarNumber.Index];
-                CarId = dgvCars.Rows[0].Cells[colId.Name].Value.ToString();
+            //    dgvCars.CurrentCell = dgvCars.Rows[0].Cells[colCarNumber.Index];
+            //    CarId = dgvCars.Rows[0].Cells[colId.Name].Value.ToString();
 
-                BindCarDetail();
-            }
-            else
-            {
-                dgvCars.DataSource = null;
-            }
+            //    BindCarDetail();
+            //}
+            //else
+            //{
+            //    dgvCars.DataSource = null;
+            //}
         }
 
         public void BindCarDetail()
@@ -219,6 +219,32 @@ namespace CarManage.UI.Client.Common.Customer
         private void cbxCars_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbxStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbxStatus.SelectedValue == null || string.IsNullOrEmpty(cbxStatus.SelectedValue.ToString()))
+                    throw new Exception("保养状态不能为空！");
+
+                MaintenanceStatus status = ConvertUtil.ToEnum<MaintenanceStatus>(cbxStatus.SelectedValue);
+
+                if (status.Equals(MaintenanceStatus.待保养))
+                {
+                    dtpNextDate.Text = string.Empty;
+                    txtNextMileage.Text = string.Empty;
+                    tlpNext.Visible = false;
+                }
+                else
+                {
+                    tlpNext.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                UserInterfaceExceptionHandler.HandlerException("切换是否显示下次保养信息失败！", ref ex);
+            }
         }
     }
 }
