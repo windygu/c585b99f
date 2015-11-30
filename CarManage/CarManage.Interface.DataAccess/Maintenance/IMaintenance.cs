@@ -52,6 +52,13 @@ namespace CarManage.Interface.DataAccess.Maintenance
         MaintenanceInfo Load(string id);
 
         /// <summary>
+        /// 获取车辆保养信息
+        /// </summary>
+        /// <param name="carId">车辆主键</param>
+        /// <returns>返回车辆保养信息对象集合</returns>
+        List<MaintenanceInfo> GetMaintenances(string carId);
+
+        /// <summary>
         /// 查询保养信息
         /// </summary>
         /// <returns>保养信息集合</returns>

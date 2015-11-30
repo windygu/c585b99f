@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 
+using ClassLibrary.Winform.UI.Controls;
+
 namespace ClassLibrary.Utility.Form
 {
     public class ControlUtil
@@ -467,7 +469,7 @@ namespace ClassLibrary.Utility.Form
         /// </summary>
         /// <param name="control">ComboBox控件</param>
         /// <param name="text">列表项的显示文本</param>
-        public static void SetListControlSelectedByText(ComboBox control, string text)
+        public static void SetListControlSelectedByText(System.Windows.Forms.ComboBox control, string text)
         {
             for (int i = 0; i < control.Items.Count; i++)
             {
@@ -488,7 +490,7 @@ namespace ClassLibrary.Utility.Form
         /// </summary>
         /// <param name="control">ComboBox控件</param>
         /// <param name="value">列表项的值</param>
-        public static void SetListControlSelectedByValue(ComboBox control, string value)
+        public static void SetListControlSelectedByValue(System.Windows.Forms.ComboBox control, string value)
         {
             for (int i = 0; i < control.Items.Count; i++)
             {
@@ -510,7 +512,7 @@ namespace ClassLibrary.Utility.Form
         /// <param name="rowIndex"></param>
         /// <param name="columnIndex"></param>
         /// <param name="value"></param>
-        public static void SetDataGridViewCellValue(DataGridView gridView, int rowIndex,
+        public static void SetDataGridViewCellValue(System.Windows.Forms.DataGridView gridView, int rowIndex,
             int columnIndex, object value)
         {
             if (gridView.InvokeRequired)
@@ -532,7 +534,7 @@ namespace ClassLibrary.Utility.Form
         /// <param name="columnIndex"></param>
         /// <param name="gridView"></param>
         /// <param name="value"></param>
-        private static void SetDataGridViewCellValueSync(DataGridView gridView,
+        private static void SetDataGridViewCellValueSync(System.Windows.Forms.DataGridView gridView,
             int rowIndex, int columnIndex, object value)
         {
             if (gridView != null && gridView.Rows.Count > rowIndex &&
@@ -625,7 +627,7 @@ namespace ClassLibrary.Utility.Form
         }
 
         public static void DataGridViewIntegerSort(int sortColumnIndex,
-            DataGridView dgv, DataGridViewSortCompareEventArgs e)
+            System.Windows.Forms.DataGridView dgv, DataGridViewSortCompareEventArgs e)
         {
             //检查排序列索引
             if (sortColumnIndex < 0 || sortColumnIndex >= dgv.Columns.Count)
@@ -657,19 +659,6 @@ namespace ClassLibrary.Utility.Form
         }
     }
 
-    public class ListControlItem
-    {
-        public ListControlItem()
-        {
-            Text = string.Empty;
-            Value = string.Empty;
-        }
-
-        public string Text { get; set; }
-
-        public string Value { get; set; }
-    }
-
     /// <summary>
     /// 设置DataGridView的值
     /// </summary>
@@ -677,6 +666,6 @@ namespace ClassLibrary.Utility.Form
     /// <param name="gridView"></param>
     /// <param name="value"></param>
     /// <param name="rowIndex"></param>
-    public delegate void DeletgateSetDataGridViewValue(DataGridView gridView,
+    public delegate void DeletgateSetDataGridViewValue(System.Windows.Forms.DataGridView gridView,
         int rowIndex, int columnIndex, object value);
 }

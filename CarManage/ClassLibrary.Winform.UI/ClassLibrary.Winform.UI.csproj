@@ -47,6 +47,9 @@
     <Compile Include="Controls\CheckBox.Designer.cs">
       <DependentUpon>CheckBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CheckBoxList.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\ComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -59,6 +62,7 @@
     <Compile Include="Controls\Label.Designer.cs">
       <DependentUpon>Label.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ListControlItem.cs" />
     <Compile Include="Controls\TextBox.cs">
       <SubType>Component</SubType>
     </Compile>

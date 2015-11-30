@@ -52,6 +52,11 @@ namespace CarManage.Model.Maintenance
         ///</summary>
         public string CarId { get; set; }
 
+        /// <summary>
+        /// 保养项摘要
+        /// </summary>
+        public string ItemSummary { get; set; }
+
         ///<summary>
         ///实际保养日期
         ///</summary>
@@ -101,11 +106,6 @@ namespace CarManage.Model.Maintenance
         ///预计保养里程
         ///</summary>
         public int EstimateMileage { get; set; }
-
-        ///<summary>
-        ///维修人
-        ///</summary>
-        public string Worker { get; set; }
 
         ///<summary>
         ///保养类型

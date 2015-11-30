@@ -27,6 +27,50 @@ namespace CarManage.Model.Common
     [Serializable]
     public class CodeBookInfo : BaseModel
     {
+        #region 基础代码分类
+
+        /// <summary>
+        /// 客户称呼代码类型编号
+        /// </summary>
+        public static readonly string AliasCodeType = "";
+
+        /// <summary>
+        /// 喜欢的销售活动代码类型编号
+        /// </summary>
+        public static readonly string PreferSaleCodeType = "";
+
+        /// <summary>
+        /// 喜欢的售后活动代码类型编号
+        /// </summary>
+        public static readonly string PreferSupportCodeType = "";
+
+        /// <summary>
+        /// 喜欢的饮品代码类型编号
+        /// </summary>
+        public static readonly string PreferDrinkCodeType = "";
+
+        /// <summary>
+        /// 销售类型代码类型编号
+        /// </summary>
+        public static readonly string SaleTypeCodeType = "";
+
+        /// <summary>
+        /// 保养周期代码类型编号
+        /// </summary>
+        public static readonly string MaintenancePeriodCodeType = "";
+
+        /// <summary>
+        /// 保养间隔里程代码类型编号
+        /// </summary>
+        public static readonly string MaintenanceMileageCodeType = "";
+
+        /// <summary>
+        /// 保养项目代码类型编号
+        /// </summary>
+        public static readonly string MaintenanceItemCodeType = "";
+
+        #endregion
+
         #region 构造函数
 
         ///<summary>

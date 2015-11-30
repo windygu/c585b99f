@@ -51,6 +51,16 @@ namespace CarManage.Model.Maintenance
         ///</summary>
         public string MaintenanceId { get; set; }
 
+        /// <summary>
+        /// 车牌号
+        /// </summary>
+        public string CarNumber { get; set; }
+
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        public string ItemName { get; set; }
+
         ///<summary>
         ///项目编号
         ///</summary>
