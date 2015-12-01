@@ -15,6 +15,22 @@ namespace CarManage.UI.Test
         {
             InitializeComponent();
             dateTimePicker1.TextChanged += dateTimePicker1_TextChanged;
+
+            //List<c2> list = new List<c2>();
+            //list.Add(new c2() { id = "1" });
+            //list.Add(new c2() { id = "2" });
+            //list.Add(new c2() { id = "3" });
+
+            c1 c = new c1();
+            c.items.Add(new c2() { id = "1" });
+            c.items.Add(new c2() { id = "2" });
+            c.items.Add(new c2() { id = "3" });
+
+            c1 c2 = new c1();
+            c2.items.AddRange(c.items);
+
+            c.items[0].id = "8";
+            ClassLibrary.Utility.Common.CommonUtil.DeepClone<List<c2>>(c.items);
         }
 
         void dateTimePicker1_TextChanged(object sender, EventArgs e)
@@ -45,5 +61,19 @@ namespace CarManage.UI.Test
         {
             dateTimePicker2.Text = "1999-01-01";
         }
+    }
+
+    public class c1
+    {
+        public c1()
+        {
+            items = new List<c2>();
+        }
+        public List<c2> items { get; set; }
+    }
+
+    public class c2
+    {
+        public string id { get; set; }
     }
 }

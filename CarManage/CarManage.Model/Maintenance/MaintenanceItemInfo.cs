@@ -52,9 +52,9 @@ namespace CarManage.Model.Maintenance
         public string MaintenanceId { get; set; }
 
         /// <summary>
-        /// 车牌号
+        /// 车辆主键
         /// </summary>
-        public string CarNumber { get; set; }
+        public string CarId { get; set; }
 
         /// <summary>
         /// 项目名称

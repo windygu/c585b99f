@@ -65,6 +65,11 @@ namespace ClassLibrary.Winform.UI.Controls
         public event EventHandler OnChecked;
 
         /// <summary>
+        /// 获取或设置选中项的值集合，此属性需要在使用DataBind方法之前赋值。
+        /// </summary>
+        public List<string> CheckedValues { get; set; }
+
+        /// <summary>
         /// 选中项集合
         /// </summary>
         [Bindable(false), Browsable(false)]
@@ -113,6 +118,7 @@ namespace ClassLibrary.Winform.UI.Controls
             y = 0;
             customerY = 0;
 
+            CheckedValues = new List<string>();
             itemList = new List<ListControlItem>();
             selectedItem = new List<ListControlItem>();
         }
@@ -142,6 +148,22 @@ namespace ClassLibrary.Winform.UI.Controls
             itemList.Clear();
 
             this.Controls.Clear();
+        }
+
+
+        public void ClearCheckedItems()
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (!control.Name.StartsWith("chk_"))
+                    continue;
+
+                ClassLibrary.Winform.UI.Controls.CheckBox chk =
+                    control as ClassLibrary.Winform.UI.Controls.CheckBox;
+
+                if (chk != null && chk.Checked)
+                    chk.Checked = false;
+            }
         }
 
         /// <summary>
@@ -211,6 +233,10 @@ namespace ClassLibrary.Winform.UI.Controls
                 chk.Name = "chk_" + item.Value;
                 chk.Text = item.Text;
                 chk.Value = item.Value;
+
+                if (CheckedValues != null && CheckedValues.Contains(item.Value))
+                    chk.Checked = true;
+
                 chk.CheckedChanged += new EventHandler(chk_CheckedChanged);
 
                 chk.Size = GetCheckBoxSize(chk);

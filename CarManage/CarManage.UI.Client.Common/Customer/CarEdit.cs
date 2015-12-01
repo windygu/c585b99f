@@ -203,7 +203,7 @@ namespace CarManage.UI.Client.Common.Customer
             if (string.IsNullOrEmpty(CarId))
             {
                 car.Add(carInfo);
-                carInfo.Id = Guid.NewGuid().ToString();
+                CarId = carInfo.Id;
             }
             else
             {

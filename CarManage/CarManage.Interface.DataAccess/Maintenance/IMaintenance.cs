@@ -52,6 +52,13 @@ namespace CarManage.Interface.DataAccess.Maintenance
         MaintenanceInfo Load(string id);
 
         /// <summary>
+        /// 获取指定保养记录的下次保养记录
+        /// </summary>
+        /// <param name="prevId">当前保养记录主键</param>
+        /// <returns>返回保养信息对象，如果无匹配则返回null。</returns>
+        MaintenanceInfo GetNextMaintenance(string prevId);
+
+        /// <summary>
         /// 获取车辆保养信息
         /// </summary>
         /// <param name="carId">车辆主键</param>

@@ -30,17 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgvCars = new ClassLibrary.Winform.UI.Controls.DataGridView();
-            this.colItemSummary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLoseSales = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMileage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNextDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNextMileage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.dgvMaintenance = new ClassLibrary.Winform.UI.Controls.DataGridView();
             this.dtpNextDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker(this.components);
             this.dtpDate = new ClassLibrary.Winform.UI.Controls.DateTimePicker(this.components);
             this.cbxCars = new ClassLibrary.Winform.UI.Controls.ComboBox();
@@ -67,24 +61,33 @@
             this.lblStatus = new ClassLibrary.Winform.UI.Controls.Label(this.components);
             this.cbxStatus = new ClassLibrary.Winform.UI.Controls.ComboBox();
             this.tlpNext = new System.Windows.Forms.TableLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).BeginInit();
+            this.colStatusText = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.colItemSummary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLoseSales = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMileage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNextDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNextMileage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMaintenance)).BeginInit();
             this.tlpCarDetail.SuspendLayout();
             this.tlpNext.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgvCars
+            // dgvMaintenance
             // 
-            this.dgvCars.AllowUserToAddRows = false;
-            this.dgvCars.AllowUserToDeleteRows = false;
-            this.dgvCars.AllowUserToResizeRows = false;
-            this.dgvCars.BackgroundColor = System.Drawing.Color.White;
-            this.dgvCars.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.dgvCars.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvCars.CheckBoxBorderColor = System.Drawing.Color.Empty;
-            this.dgvCars.CheckedAll = false;
-            this.dgvCars.CheckedImage = null;
-            this.dgvCars.ColumnHeaderBackgroundImage = null;
-            this.dgvCars.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvMaintenance.AllowUserToAddRows = false;
+            this.dgvMaintenance.AllowUserToDeleteRows = false;
+            this.dgvMaintenance.AllowUserToResizeRows = false;
+            this.dgvMaintenance.BackgroundColor = System.Drawing.Color.White;
+            this.dgvMaintenance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.dgvMaintenance.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvMaintenance.CheckBoxBorderColor = System.Drawing.Color.Empty;
+            this.dgvMaintenance.CheckedAll = false;
+            this.dgvMaintenance.CheckedImage = null;
+            this.dgvMaintenance.ColumnHeaderBackgroundImage = null;
+            this.dgvMaintenance.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -92,10 +95,11 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCars.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvCars.ColumnHeadersHeight = 21;
-            this.dgvCars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvCars.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvMaintenance.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvMaintenance.ColumnHeadersHeight = 21;
+            this.dgvMaintenance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvMaintenance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colStatusText,
             this.colItemSummary,
             this.colAmount,
             this.colLoseSales,
@@ -104,91 +108,26 @@
             this.colNextDate,
             this.colNextMileage,
             this.colId});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCars.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvCars.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCars.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.dgvCars.Location = new System.Drawing.Point(0, 270);
-            this.dgvCars.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvCars.MultiSelect = false;
-            this.dgvCars.Name = "dgvCars";
-            this.dgvCars.PaintRowNumber = false;
-            this.dgvCars.ReadOnly = true;
-            this.dgvCars.RowHeadersVisible = false;
-            this.dgvCars.RowTemplate.Height = 30;
-            this.dgvCars.Size = new System.Drawing.Size(655, 116);
-            this.dgvCars.TabIndex = 62;
-            // 
-            // colItemSummary
-            // 
-            this.colItemSummary.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colItemSummary.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colItemSummary.HeaderText = "保养项目";
-            this.colItemSummary.Name = "colItemSummary";
-            this.colItemSummary.ReadOnly = true;
-            this.colItemSummary.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colAmount
-            // 
-            this.colAmount.HeaderText = "金额";
-            this.colAmount.Name = "colAmount";
-            this.colAmount.ReadOnly = true;
-            this.colAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colAmount.Width = 50;
-            // 
-            // colLoseSales
-            // 
-            this.colLoseSales.HeaderText = "失销金额";
-            this.colLoseSales.Name = "colLoseSales";
-            this.colLoseSales.ReadOnly = true;
-            this.colLoseSales.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colLoseSales.Width = 60;
-            // 
-            // colDate
-            // 
-            this.colDate.HeaderText = "保养日期";
-            this.colDate.Name = "colDate";
-            this.colDate.ReadOnly = true;
-            this.colDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colDate.Width = 60;
-            // 
-            // colMileage
-            // 
-            this.colMileage.HeaderText = "里程";
-            this.colMileage.Name = "colMileage";
-            this.colMileage.ReadOnly = true;
-            this.colMileage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colMileage.Width = 40;
-            // 
-            // colNextDate
-            // 
-            this.colNextDate.HeaderText = "下次保养日期";
-            this.colNextDate.Name = "colNextDate";
-            this.colNextDate.ReadOnly = true;
-            this.colNextDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colNextDate.Width = 90;
-            // 
-            // colNextMileage
-            // 
-            this.colNextMileage.HeaderText = "下次保养里程";
-            this.colNextMileage.Name = "colNextMileage";
-            this.colNextMileage.ReadOnly = true;
-            this.colNextMileage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colNextMileage.Width = 90;
-            // 
-            // colId
-            // 
-            this.colId.HeaderText = "主键";
-            this.colId.Name = "colId";
-            this.colId.ReadOnly = true;
-            this.colId.Visible = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMaintenance.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvMaintenance.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMaintenance.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.dgvMaintenance.Location = new System.Drawing.Point(0, 270);
+            this.dgvMaintenance.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvMaintenance.MultiSelect = false;
+            this.dgvMaintenance.Name = "dgvMaintenance";
+            this.dgvMaintenance.PaintRowNumber = false;
+            this.dgvMaintenance.ReadOnly = true;
+            this.dgvMaintenance.RowHeadersVisible = false;
+            this.dgvMaintenance.RowTemplate.Height = 30;
+            this.dgvMaintenance.Size = new System.Drawing.Size(655, 116);
+            this.dgvMaintenance.TabIndex = 62;
             // 
             // dtpNextDate
             // 
@@ -609,19 +548,107 @@
             this.tlpNext.Size = new System.Drawing.Size(655, 81);
             this.tlpNext.TabIndex = 63;
             // 
+            // colStatusText
+            // 
+            this.colStatusText.DataPropertyName = "StatusText";
+            this.colStatusText.HeaderText = "状态";
+            this.colStatusText.Name = "colStatusText";
+            this.colStatusText.ReadOnly = true;
+            this.colStatusText.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colStatusText.Width = 60;
+            // 
+            // colItemSummary
+            // 
+            this.colItemSummary.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colItemSummary.DataPropertyName = "ItemSummary";
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colItemSummary.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colItemSummary.HeaderText = "保养项目";
+            this.colItemSummary.Name = "colItemSummary";
+            this.colItemSummary.ReadOnly = true;
+            this.colItemSummary.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colAmount
+            // 
+            this.colAmount.DataPropertyName = "Amount";
+            this.colAmount.HeaderText = "金额";
+            this.colAmount.Name = "colAmount";
+            this.colAmount.ReadOnly = true;
+            this.colAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colAmount.Width = 50;
+            // 
+            // colLoseSales
+            // 
+            this.colLoseSales.DataPropertyName = "LoseSales";
+            this.colLoseSales.HeaderText = "失销金额";
+            this.colLoseSales.Name = "colLoseSales";
+            this.colLoseSales.ReadOnly = true;
+            this.colLoseSales.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colLoseSales.Width = 60;
+            // 
+            // colDate
+            // 
+            this.colDate.DataPropertyName = "Date";
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.colDate.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colDate.HeaderText = "保养日期";
+            this.colDate.Name = "colDate";
+            this.colDate.ReadOnly = true;
+            this.colDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDate.Width = 60;
+            // 
+            // colMileage
+            // 
+            this.colMileage.DataPropertyName = "Mileage";
+            this.colMileage.HeaderText = "里程";
+            this.colMileage.Name = "colMileage";
+            this.colMileage.ReadOnly = true;
+            this.colMileage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colMileage.Width = 40;
+            // 
+            // colNextDate
+            // 
+            this.colNextDate.DataPropertyName = "NextDate";
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            this.colNextDate.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colNextDate.HeaderText = "下次保养日期";
+            this.colNextDate.Name = "colNextDate";
+            this.colNextDate.ReadOnly = true;
+            this.colNextDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colNextDate.Width = 90;
+            // 
+            // colNextMileage
+            // 
+            this.colNextMileage.DataPropertyName = "NextMileage";
+            this.colNextMileage.HeaderText = "下次保养里程";
+            this.colNextMileage.Name = "colNextMileage";
+            this.colNextMileage.ReadOnly = true;
+            this.colNextMileage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colNextMileage.Width = 90;
+            // 
+            // colId
+            // 
+            this.colId.DataPropertyName = "Id";
+            this.colId.HeaderText = "主键";
+            this.colId.Name = "colId";
+            this.colId.ReadOnly = true;
+            this.colId.Visible = false;
+            // 
             // MaintenanceEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.dgvCars);
+            this.Controls.Add(this.dgvMaintenance);
             this.Controls.Add(this.tlpNext);
             this.Controls.Add(this.tlpCarDetail);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MaintenanceEdit";
             this.Size = new System.Drawing.Size(655, 386);
             this.Load += new System.EventHandler(this.MaintenanceEdit_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMaintenance)).EndInit();
             this.tlpCarDetail.ResumeLayout(false);
             this.tlpCarDetail.PerformLayout();
             this.tlpNext.ResumeLayout(false);
@@ -633,7 +660,7 @@
 
         #endregion
 
-        private ClassLibrary.Winform.UI.Controls.DataGridView dgvCars;
+        private ClassLibrary.Winform.UI.Controls.DataGridView dgvMaintenance;
         private ClassLibrary.Winform.UI.Controls.DateTimePicker dtpNextDate;
         private ClassLibrary.Winform.UI.Controls.DateTimePicker dtpDate;
         private ClassLibrary.Winform.UI.Controls.ComboBox cbxCars;
@@ -657,6 +684,10 @@
         private ClassLibrary.Winform.UI.Controls.CheckBoxList chklstMaintenance;
         private ClassLibrary.Winform.UI.Controls.Label lblNextMaintenance;
         private ClassLibrary.Winform.UI.Controls.CheckBoxList chklstNextMaintenance;
+        private ClassLibrary.Winform.UI.Controls.Label lblStatus;
+        private ClassLibrary.Winform.UI.Controls.ComboBox cbxStatus;
+        private System.Windows.Forms.TableLayoutPanel tlpNext;
+        private System.Windows.Forms.DataGridViewLinkColumn colStatusText;
         private System.Windows.Forms.DataGridViewTextBoxColumn colItemSummary;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLoseSales;
@@ -665,8 +696,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colNextDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNextMileage;
         private System.Windows.Forms.DataGridViewTextBoxColumn colId;
-        private ClassLibrary.Winform.UI.Controls.Label lblStatus;
-        private ClassLibrary.Winform.UI.Controls.ComboBox cbxStatus;
-        private System.Windows.Forms.TableLayoutPanel tlpNext;
     }
 }

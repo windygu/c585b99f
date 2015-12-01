@@ -36,6 +36,7 @@ namespace CarManage.Model.Maintenance
         public MaintenanceInfo()
         {
             Items = new List<MaintenanceItemInfo>();
+            NextMaintenanceItems = new List<MaintenanceItemInfo>();
         }
 
         #endregion
@@ -46,6 +47,11 @@ namespace CarManage.Model.Maintenance
         ///主键
         ///</summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// 上次保养历史主键
+        /// </summary>
+        public string PrevId { get; set; }
 
         ///<summary>
         ///车辆主键
@@ -90,27 +96,22 @@ namespace CarManage.Model.Maintenance
         ///<summary>
         ///下次保养日期
         ///</summary>
-        public DateTime NextDate { get; set; }
+        public DateTime? NextDate { get; set; }
 
         ///<summary>
         ///下次保养里程
         ///</summary>
-        public int NextMileage { get; set; }
+        public int? NextMileage { get; set; }
 
         ///<summary>
         ///预计保养日期
         ///</summary>
-        public DateTime EstimateDate { get; set; }
+        public DateTime? EstimateDate { get; set; }
 
         ///<summary>
         ///预计保养里程
         ///</summary>
-        public int EstimateMileage { get; set; }
-
-        ///<summary>
-        ///保养类型
-        ///</summary>
-        public int Type { get; set; }
+        public int? EstimateMileage { get; set; }
 
         ///<summary>
         ///状态
@@ -146,6 +147,16 @@ namespace CarManage.Model.Maintenance
         #endregion
 
         #region 扩展属性
+
+        /// <summary>
+        /// 状态显示文本
+        /// </summary>
+        public string StatusText { get { return Status.ToString(); } }
+
+        /// <summary>
+        /// 下次保养项目
+        /// </summary>
+        public List<MaintenanceItemInfo> NextMaintenanceItems { get; set; }
 
         /// <summary>
         /// 保养项目

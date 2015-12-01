@@ -178,6 +178,42 @@ namespace CarManage.DataAccess.MySql.Maintenance
         }
 
         /// <summary>
+        /// 获取指定保养记录的下次保养记录
+        /// </summary>
+        /// <param name="prevId">当前保养记录主键</param>
+        /// <returns>返回保养信息对象，如果无匹配则返回null。</returns>
+        public MaintenanceInfo GetNextMaintenance(string prevId)
+        {
+            MaintenanceInfo maintenanceInfo = null;
+            IDbConnection connection = null;
+            string commandText = "SELECT * FROM Maintenance WHERE PrevId=@PrevId";
+
+            try
+            {
+                connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
+                maintenanceInfo = base.Load<MaintenanceInfo>(commandText, connection, param: new { PrevId = prevId });
+
+                if (maintenanceInfo != null)
+                {
+                    commandText = "SELECT * FROM MaintenanceItem WHERE MaintenanceId=@MaintenanceId";
+                    maintenanceInfo.Items = base.Query<MaintenanceItemInfo>(commandText, connection: connection,
+                        param: new { MaintenanceId = prevId }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                DataAccessExceptionHandler.HandlerException(
+                    "读取保养信息详细信息失败！", ex);
+            }
+            finally
+            {
+                CloseConnection(connection);
+            }
+
+            return maintenanceInfo;
+        }
+
+        /// <summary>
         /// 获取车辆保养信息
         /// </summary>
         /// <param name="carId">车辆主键</param>
@@ -190,7 +226,7 @@ namespace CarManage.DataAccess.MySql.Maintenance
 
             try
             {
-                string commandText = "SELECT * FROM Maintenance WHERE CarId=@CarId";
+                string commandText = "SELECT * FROM Maintenance WHERE CarId=@CarId ORDER BY CreateDate DESC";
                 connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
 
                 maintenanceList = base.Query<MaintenanceInfo>(commandText, connection,

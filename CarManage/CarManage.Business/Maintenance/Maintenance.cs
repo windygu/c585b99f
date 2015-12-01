@@ -47,7 +47,21 @@ namespace CarManage.Business.Maintenance
             try
             {
                 maintenanceInfo.ItemSummary = GetItemSummary(maintenanceInfo.Items);
-                maintenance.Add(maintenanceInfo);
+
+                if (maintenanceInfo.NextDate.HasValue)
+                {
+                    MaintenanceInfo nextInfo = CreateNextMaintenance(maintenanceInfo);
+
+                    using (ClassLibrary.Transaction.TransactionScope scope = new ClassLibrary.Transaction.TransactionScope())
+                    {
+                        maintenance.Add(maintenanceInfo);
+                        maintenance.Add(nextInfo);
+                    }
+                }
+                else
+                {
+                    maintenance.Add(maintenanceInfo);
+                }
             }
             catch (Exception ex)
             {
@@ -64,7 +78,23 @@ namespace CarManage.Business.Maintenance
             try
             {
                 maintenanceInfo.ItemSummary = GetItemSummary(maintenanceInfo.Items);
-                maintenance.Update(maintenanceInfo);
+
+                MaintenanceInfo nextInfo = maintenance.GetNextMaintenance(maintenanceInfo.Id);
+
+                if (nextInfo == null && maintenanceInfo.NextDate.HasValue)
+                {
+                    nextInfo = CreateNextMaintenance(maintenanceInfo);
+
+                    using (ClassLibrary.Transaction.TransactionScope scope = new ClassLibrary.Transaction.TransactionScope())
+                    {
+                        maintenance.Update(maintenanceInfo);
+                        maintenance.Add(nextInfo);
+                    }
+                }
+                else
+                {
+                    maintenance.Update(maintenanceInfo);
+                }
             }
             catch (Exception ex)
             {
@@ -110,11 +140,32 @@ namespace CarManage.Business.Maintenance
         }
 
         /// <summary>
+        /// 获取指定保养记录的下次保养记录
+        /// </summary>
+        /// <param name="prevId">当前保养记录主键</param>
+        /// <returns>返回保养信息对象，如果无匹配则返回null。</returns>
+        public MaintenanceInfo GetNextMaintenance(string prevId)
+        {
+            MaintenanceInfo maintenanceInfo = null;
+
+            try
+            {
+                maintenanceInfo = maintenance.GetNextMaintenance(prevId);
+            }
+            catch (Exception ex)
+            {
+                BusinessExceptionHandler.HandlerException("获取下次保养信息失败！", ex);
+            }
+
+            return maintenanceInfo;
+        }
+
+        /// <summary>
         /// 获取车辆保养信息
         /// </summary>
         /// <param name="carId">车辆主键</param>
         /// <returns>返回车辆保养信息对象集合</returns>
-        List<MaintenanceInfo> GetMaintenances(string carId)
+        public List<MaintenanceInfo> GetMaintenances(string carId)
         {
             List<MaintenanceInfo> maintenanceList = new List<MaintenanceInfo>();
 
@@ -171,6 +222,41 @@ namespace CarManage.Business.Maintenance
             itemList.ForEach(info => result += info.ItemName + ";");
 
             return result;
+        }
+
+        /// <summary>
+        /// 生成下次保养记录
+        /// </summary>
+        /// <param name="maintenanceInfo"></param>
+        /// <returns></returns>
+        private MaintenanceInfo CreateNextMaintenance(MaintenanceInfo maintenanceInfo)
+        {
+            MaintenanceInfo nextInfo = new MaintenanceInfo();
+
+            nextInfo.Id = Guid.NewGuid().ToString();
+            nextInfo.PrevId = maintenanceInfo.Id;
+            nextInfo.CarId = maintenanceInfo.CarId;
+            nextInfo.PrevDate = maintenanceInfo.Date;
+            nextInfo.PrevMileage = maintenanceInfo.Mileage;
+            nextInfo.ItemSummary = GetItemSummary(nextInfo.Items);
+            nextInfo.Status = MaintenanceStatus.待保养;
+            nextInfo.EstimateDate = maintenanceInfo.NextDate;
+            nextInfo.EstimateMileage = maintenanceInfo.NextMileage;
+            nextInfo.CreateDate = DateTime.Now;
+            nextInfo.Creator = maintenanceInfo.Creator;
+            nextInfo.Operator = maintenanceInfo.Operator;
+            nextInfo.UpdateDate = DateTime.Now;
+            nextInfo.Valid = true;
+
+            foreach (MaintenanceItemInfo itemInfo in maintenanceInfo.NextMaintenanceItems)
+            {
+                MaintenanceItemInfo nextItemInfo = CommonUtil.DeepClone<MaintenanceItemInfo>(itemInfo);
+                nextItemInfo.MaintenanceId = nextInfo.Id;
+
+                nextInfo.Items.Add(nextItemInfo);
+            }
+
+            return nextInfo;
         }
     }
 }
