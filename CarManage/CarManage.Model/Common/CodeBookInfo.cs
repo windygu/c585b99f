@@ -69,6 +69,16 @@ namespace CarManage.Model.Common
         /// </summary>
         public static readonly string MaintenanceItemCodeType = "";
 
+        /// <summary>
+        /// 保险项目代码类型编号
+        /// </summary>
+        public static readonly string InsuranceItemCodeType = "";
+
+        /// <summary>
+        /// 保险公司代码类型编码
+        /// </summary>
+        public static readonly string InsuranceCompanyCodeType = "";
+
         #endregion
 
         #region 构造函数

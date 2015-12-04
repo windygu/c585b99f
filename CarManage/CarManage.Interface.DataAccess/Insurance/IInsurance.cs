@@ -52,6 +52,13 @@ namespace CarManage.Interface.DataAccess.Insurance
         InsuranceInfo Load(string id);
 
         /// <summary>
+        /// 获取车辆保险信息
+        /// </summary>
+        /// <param name="carId">车辆主键</param>
+        /// <returns>返回车辆保险信息对象集合</returns>
+        List<InsuranceInfo> GetInsurances(string carId);
+
+        /// <summary>
         /// 查询保险信息
         /// </summary>
         /// <returns>保险信息集合</returns>

@@ -226,7 +226,7 @@ namespace CarManage.DataAccess.MySql.Maintenance
 
             try
             {
-                string commandText = "SELECT * FROM Maintenance WHERE CarId=@CarId ORDER BY CreateDate DESC";
+                string commandText = "SELECT * FROM Maintenance WHERE CarId=@CarId AND Valid=1 ORDER BY CreateDate DESC";
                 connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
 
                 maintenanceList = base.Query<MaintenanceInfo>(commandText, connection,
@@ -235,7 +235,7 @@ namespace CarManage.DataAccess.MySql.Maintenance
                 if (maintenanceList.Count.Equals(0))
                     return maintenanceList;
 
-                commandText = "SELECT * FROM MaintenanceItem WHERE CarId = @CarId AND Valid=1";
+                commandText = "SELECT * FROM MaintenanceItem WHERE CarId = @CarId";
 
                 List<MaintenanceItemInfo> itemList = base.Query<MaintenanceItemInfo>(commandText, connection,
                     param: new { Type = CodeBookInfo.MaintenanceItemCodeType, CarId = carId }).ToList();

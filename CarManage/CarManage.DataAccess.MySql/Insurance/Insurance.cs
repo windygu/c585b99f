@@ -20,6 +20,7 @@ using ClassLibrary.Utility.Common;
 using CarManage.Configuration;
 using CarManage.Interface.DataAccess.Insurance;
 using CarManage.Model.Insurance;
+using CarManage.Model.Common;
 using CarManage.DataAccess.MySql;
 
 namespace CarManage.DataAccess.MySql.Insurance
@@ -181,6 +182,48 @@ namespace CarManage.DataAccess.MySql.Insurance
             return insuranceInfo;
         }
 
+        /// <summary>
+        /// 获取车辆保养信息
+        /// </summary>
+        /// <param name="carId">车辆主键</param>
+        /// <returns>返回车辆保养信息对象集合</returns>
+        public List<InsuranceInfo> GetInsurances(string carId)
+        {
+            IDbConnection connection = null;
+
+            List<InsuranceInfo> insuranceList = new List<InsuranceInfo>();
+
+            try
+            {
+                string commandText = "SELECT * FROM Insurance WHERE CarId=@CarId AND Valid=1 ORDER BY InsuranceDate DESC";
+                connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
+
+                insuranceList = base.Query<InsuranceInfo>(commandText, connection,
+                    param: new { CarId = carId }).ToList();
+
+                if (insuranceList.Count.Equals(0))
+                    return insuranceList;
+
+                commandText = "SELECT * FROM InsuranceItem WHERE CarId = @CarId";
+
+                List<InsuranceItemInfo> itemList = base.Query<InsuranceItemInfo>(commandText, connection,
+                    param: new { Type = CodeBookInfo.MaintenanceItemCodeType, CarId = carId }).ToList();
+
+                insuranceList.ForEach(
+                    info => info.Items = itemList.Where(item => item.InsuranceId.Equals(info.Id)).ToList());
+            }
+            catch (Exception ex)
+            {
+                DataAccessExceptionHandler.HandlerException(
+                    "获取保养信息失败！", ex);
+            }
+            finally
+            {
+                CloseConnection(connection);
+            }
+
+            return insuranceList;
+        }
 
         /// <summary>
         /// 获得所有保险信息集合

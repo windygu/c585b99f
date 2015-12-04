@@ -53,6 +53,12 @@
     <Compile Include="Customer\CustomerEdit.Designer.cs">
       <DependentUpon>CustomerEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Customer\InsuranceEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Customer\InsuranceEdit.Designer.cs">
+      <DependentUpon>InsuranceEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer\MaintenanceEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -73,6 +79,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\CustomerEdit.resx">
       <DependentUpon>CustomerEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\InsuranceEdit.resx">
+      <DependentUpon>InsuranceEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\MaintenanceEdit.resx">
       <DependentUpon>MaintenanceEdit.cs</DependentUpon>

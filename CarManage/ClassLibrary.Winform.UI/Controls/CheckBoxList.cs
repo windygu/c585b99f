@@ -153,6 +153,8 @@ namespace ClassLibrary.Winform.UI.Controls
 
         public void ClearCheckedItems()
         {
+            this.CheckedValues.Clear();
+
             foreach (Control control in this.Controls)
             {
                 if (!control.Name.StartsWith("chk_"))

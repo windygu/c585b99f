@@ -44,23 +44,27 @@ namespace CarManage.Model.Insurance
         ///<summary>
         ///主键
         ///</summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         ///<summary>
         ///保单主键
         ///</summary>
         public string InsuranceId { get; set; }
 
+        /// <summary>
+        /// 车辆主键
+        /// </summary>
+        public string CarId { get; set; }
+
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        public string ItemName { get; set; }
+
         ///<summary>
-        ///保险项目编码
+        ///项目编号
         ///</summary>
         public string ItemCode { get; set; }
-
-        ///<summary>
-        ///保险项目金额
-        ///</summary>
-        public decimal Amount { get; set; }
-
 
         #endregion
 

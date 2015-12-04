@@ -183,10 +183,11 @@ namespace CarManage.UI.Client.Common.Customer
 
                 if (maintenanceInfo.NextMileage.HasValue)
                     txtNextMileage.Text = maintenanceInfo.NextMileage.Value.ToString();
-
-                chklstNextMaintenance.DataTextField = "ItemName";
-                chklstNextMaintenance.DataValueField = "ItemCode";
-                chklstNextMaintenance.DataBind(maintenanceInfo.Items);
+                
+                chklstMaintenance.DataTextField = "ItemName";
+                chklstMaintenance.DataValueField = "ItemCode";
+                chklstMaintenance.CheckedValues.AddRange(maintenanceInfo.Items.Select(info => info.ItemCode).ToList());
+                chklstMaintenance.DataBind(maintenanceInfo.Items);
 
                 ControlUtil.SetListControlSelectedByValue(cbxStatus, ((int)maintenanceInfo.Status).ToString());
             }
@@ -198,67 +199,76 @@ namespace CarManage.UI.Client.Common.Customer
 
         public void Save()
         {
-            MaintenanceInfo maintenanceInfo = new MaintenanceInfo();
-
-            if (string.IsNullOrEmpty(MaintenanceId))
+            try
             {
-                maintenanceInfo.Id = Guid.NewGuid().ToString();
-                maintenanceInfo.CreateDate = DateTime.Now;
-                maintenanceInfo.Creator = CarManageConfig.Instance.UserData.UserName;
-            }
-            else
-            {
-                maintenanceInfo = maintenance.Load(MaintenanceId);
-            }
+                MaintenanceInfo maintenanceInfo = new MaintenanceInfo();
 
-            maintenanceInfo.CarId = CarId;
-            maintenanceInfo.Date = ConvertUtil.ToNullableDateTime(dtpDate.Text);
-
-            maintenanceInfo.Mileage = ConvertUtil.ToNullableInt32(txtMileage.Text);
-            maintenanceInfo.Amount = ConvertUtil.ToNullableDecimal(txtAmount.Text);
-            maintenanceInfo.LoseSales = ConvertUtil.ToNullableDecimal(CommonUtil.FilterInput(txtLoseSales.Text));
-            maintenanceInfo.PrevDate = ConvertUtil.ToNullableDateTime(dtpPrevDate.Text);
-            maintenanceInfo.PrevMileage = ConvertUtil.ToNullableInt32(CommonUtil.FilterInput(txtPrevMileage.Text));
-
-            maintenanceInfo.Status = ConvertUtil.ToEnum<MaintenanceStatus>(cbxStatus.SelectedValue);
-
-            if (maintenanceInfo.Status.Equals(MaintenanceStatus.已保养))
-            {
-                maintenanceInfo.NextDate = maintenanceInfo.EstimateDate = ConvertUtil.ToNullableDateTime(dtpNextDate.Text);
-
-                maintenanceInfo.NextMileage = maintenanceInfo.EstimateMileage = 
-                    ConvertUtil.ToNullableInt32(CommonUtil.FilterInput(txtNextMileage.Text));
-
-                foreach (ListControlItem item in chklstNextMaintenance.SelectedItem)
+                if (string.IsNullOrEmpty(MaintenanceId))
                 {
-                    maintenanceInfo.NextMaintenanceItems.Add(new MaintenanceItemInfo()
+                    maintenanceInfo.Id = Guid.NewGuid().ToString();
+                    maintenanceInfo.CreateDate = DateTime.Now;
+                    maintenanceInfo.Creator = CarManageConfig.Instance.UserData.UserName;
+                }
+                else
+                {
+                    maintenanceInfo = maintenance.Load(MaintenanceId);
+                }
+
+                maintenanceInfo.CarId = CarId;
+                maintenanceInfo.Date = ConvertUtil.ToNullableDateTime(dtpDate.Text);
+
+                maintenanceInfo.Mileage = ConvertUtil.ToNullableInt32(txtMileage.Text);
+                maintenanceInfo.Amount = ConvertUtil.ToNullableDecimal(txtAmount.Text);
+                maintenanceInfo.LoseSales = ConvertUtil.ToNullableDecimal(CommonUtil.FilterInput(txtLoseSales.Text));
+                maintenanceInfo.PrevDate = ConvertUtil.ToNullableDateTime(dtpPrevDate.Text);
+                maintenanceInfo.PrevMileage = ConvertUtil.ToNullableInt32(CommonUtil.FilterInput(txtPrevMileage.Text));
+
+                maintenanceInfo.Status = ConvertUtil.ToEnum<MaintenanceStatus>(cbxStatus.SelectedValue);
+
+                if (maintenanceInfo.Status.Equals(MaintenanceStatus.已保养))
+                {
+                    maintenanceInfo.NextDate = maintenanceInfo.EstimateDate = ConvertUtil.ToNullableDateTime(dtpNextDate.Text);
+
+                    maintenanceInfo.NextMileage = maintenanceInfo.EstimateMileage =
+                        ConvertUtil.ToNullableInt32(CommonUtil.FilterInput(txtNextMileage.Text));
+
+                    foreach (ListControlItem item in chklstNextMaintenance.SelectedItem)
                     {
-                        Id = Guid.NewGuid().ToString(),
-                        CarId = this.CarId,
-                        ItemName = item.Text,
-                        ItemCode = item.Value,
-                        Canceled = false
-                    });
+                        maintenanceInfo.NextMaintenanceItems.Add(new MaintenanceItemInfo()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            MaintenanceId = maintenanceInfo.Id,
+                            CarId = this.CarId,
+                            ItemName = item.Text,
+                            ItemCode = item.Value,
+                            Canceled = false
+                        });
+                    }
+                }
+
+                maintenanceInfo.Operator = CarManageConfig.Instance.UserData.UserName;
+                maintenanceInfo.UpdateDate = DateTime.Now;
+                maintenanceInfo.Valid = true;
+
+                if (string.IsNullOrEmpty(MaintenanceId))
+                {
+                    maintenance.Add(maintenanceInfo);
+                }
+                else
+                {
+                    maintenance.Update(maintenanceInfo);
                 }
             }
-
-            maintenanceInfo.Operator = CarManageConfig.Instance.UserData.UserName;
-            maintenanceInfo.UpdateDate = DateTime.Now;
-            maintenanceInfo.Valid = true;
-
-            if (string.IsNullOrEmpty(MaintenanceId))
+            catch (Exception ex)
             {
-                maintenance.Add(maintenanceInfo);
-            }
-            else
-            {
-                maintenance.Update(maintenanceInfo);
+                UserInterfaceExceptionHandler.HandlerException("保存保养信息失败！", ref ex);
             }
         }
 
         public void Reset()
         {
             MaintenanceId = string.Empty;
+
             dtpDate.Text = string.Empty;
             txtMileage.Text = string.Empty;
             txtAmount.Text = string.Empty;
@@ -275,6 +285,25 @@ namespace CarManage.UI.Client.Common.Customer
             txtNextMileage.Text = string.Empty;
         }
 
-        
+        private void dgvMaintenance_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex.Equals(colStatusText.Index))
+                {
+                    string id = dgvMaintenance.Rows[e.RowIndex].Cells[colId.Index].Value.ToString();
+
+                    if (string.IsNullOrEmpty(id))
+                        throw new Exception("保养信息Id无效！");
+
+                    MaintenanceId = id;
+                    BindMaintenanceDetail();
+                }
+            }
+            catch (Exception ex)
+            {
+                UserInterfaceExceptionHandler.HandlerException("查看指定保养记录信息失败！", ref ex);
+            }
+        }
     }
 }

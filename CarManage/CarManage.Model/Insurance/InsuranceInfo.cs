@@ -71,15 +71,15 @@ namespace CarManage.Model.Insurance
         ///</summary>
         public string InsurantPhone { get; set; }
 
-        ///<summary>
-        ///被保险人身份证号
-        ///</summary>
-        public string InsurantId { get; set; }
+        /// <summary>
+        /// 保养项摘要
+        /// </summary>
+        public string ItemSummary { get; set; }
 
         ///<summary>
-        ///保险公司
+        ///保险公司编码
         ///</summary>
-        public int InsuranceCompany { get; set; }
+        public string InsuranceCompanyCode { get; set; }
 
         ///<summary>
         ///保险金额
@@ -89,7 +89,7 @@ namespace CarManage.Model.Insurance
         ///<summary>
         ///本店投保
         ///</summary>
-        public bool Local { get; set; }
+        public bool? Local { get; set; }
 
         ///<summary>
         ///投保日期
@@ -99,12 +99,12 @@ namespace CarManage.Model.Insurance
         ///<summary>
         ///续保日期
         ///</summary>
-        public DateTime NextInsuranceDate { get; set; }
+        public DateTime? NextInsuranceDate { get; set; }
 
         ///<summary>
         ///续保提醒日期
         ///</summary>
-        public DateTime RemindDate { get; set; }
+        public DateTime? RemindDate { get; set; }
 
         ///<summary>
         ///创建日期
