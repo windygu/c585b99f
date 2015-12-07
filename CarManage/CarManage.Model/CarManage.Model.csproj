@@ -51,6 +51,7 @@
     <Compile Include="Maintenance\MaintenanceInfo.cs" />
     <Compile Include="Maintenance\MaintenanceItemInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solicit\CallRecordInfo.cs" />
     <Compile Include="Solicit\SolicitInfo.cs" />
     <Compile Include="User\UserInfo.cs" />
   </ItemGroup>

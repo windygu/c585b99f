@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer\CallRecordHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Customer\CallRecordHistory.Designer.cs">
+      <DependentUpon>CallRecordHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer\CarEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Customer\CallRecordHistory.resx">
+      <DependentUpon>CallRecordHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customer\CarEdit.resx">
       <DependentUpon>CarEdit.cs</DependentUpon>
     </EmbeddedResource>

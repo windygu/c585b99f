@@ -46,6 +46,7 @@
     <Compile Include="Insurance\Insurance.cs" />
     <Compile Include="Maintenance\Maintenance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solicit\CallRecord.cs" />
     <Compile Include="Solicit\Solicit.cs" />
     <Compile Include="User\User.cs" />
   </ItemGroup>
