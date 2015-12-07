@@ -44,10 +44,10 @@ namespace CarManage.DataAccess.MySql.Insurance
         {
             IDbTransaction transaction = null;
 
-            string commandText = @"INSERT INTO Insurance(Id,CarNumber,FrameNumber,EngineNumber,Insurant,"
+            string commandText = @"INSERT INTO Insurance(Id,CarNumber,FrameNumber,EngineNumber,ItemSummary,Insurant,"
                 + "InsurantPhone,InsurantId,InsuranceCompany,Amount,Local,InsuranceDate,NextInsuranceDate,"
                 + "RemindDate,CreateDate,UpdateDate,Creator,Operator,Valid)VALUES(@Id,@CarNumber,@FrameNumber,"
-                + "@EngineNumber,@Insurant,@InsurantPhone,@InsurantId,@InsuranceCompany,@Amount,@Local,"
+                + "@EngineNumber,@ItemSummary,@Insurant,@InsurantPhone,@InsurantId,@InsuranceCompany,@Amount,@Local,"
                 + "@InsuranceDate,@NextInsuranceDate,@RemindDate,@CreateDate,@UpdateDate,@Creator,@Operator,@Valid)";
 
             try
@@ -56,8 +56,8 @@ namespace CarManage.DataAccess.MySql.Insurance
 
                 base.Execute(commandText, transaction:transaction, param: insuranceInfo);
 
-                commandText = "INSERT INTO InsuranceItem(Id,InsuranceId,ItemCode,Amount)"
-                    + "VALUES(@Id,@InsuranceId,@ItemCode,@Amount)";
+                commandText = "INSERT INTO InsuranceItem(Id,InsuranceId,CarId,ItemName,ItemCode,Amount)"
+                    + "VALUES(@Id,@InsuranceId,@CarId,@ItemName,@ItemCode,@Amount)";
 
                 base.Execute(commandText, transaction: transaction, param: insuranceInfo.Items);
 
@@ -83,8 +83,8 @@ namespace CarManage.DataAccess.MySql.Insurance
             IDbTransaction transaction = base.BeginTransaction(CarManageConfig.Instance.ConnectionString);
 
             string commandText = "UPDATE Insurance SET "
-                + "CarNumber=@CarNumber,FrameNumber=@FrameNumber,EngineNumber=@EngineNumber,Insurant=@Insurant,"
-                + "InsurantPhone=@InsurantPhone,InsurantId=@InsurantId,InsuranceCompany=@InsuranceCompany,"
+                + "CarNumber=@CarNumber,FrameNumber=@FrameNumber,EngineNumber=@EngineNumber,ItemSummary=@ItemSummary,"
+                + "Insurant=@Insurant,InsurantPhone=@InsurantPhone,InsurantId=@InsurantId,InsuranceCompany=@InsuranceCompany,"
                 + "Amount=@Amount,Local=@Local,InsuranceDate=@InsuranceDate,NextInsuranceDate=@NextInsuranceDate,"
                 + "RemindDate=@RemindDate,CreateDate=@CreateDate,UpdateDate=@UpdateDate,Creator=@Creator,"
                 + "Operator=@Operator,Valid=@Valid WHERE Id=@Id";
@@ -97,8 +97,8 @@ namespace CarManage.DataAccess.MySql.Insurance
 
                 base.Execute(commandText, transaction: transaction, param: new { InsuranceId = insuranceInfo.Id });
 
-                commandText = "INSERT INTO InsuranceItem(Id,InsuranceId,ItemCode,Amount)"
-                    + "VALUES(@Id,@InsuranceId,@ItemCode,@Amount)";
+                commandText = "INSERT INTO InsuranceItem(Id,InsuranceId,CarId,ItemNameItemCode,Amount)"
+                    + "VALUES(@Id,@InsuranceId,@CarId,@ItemName,@ItemCode,@Amount)";
 
                 base.Execute(commandText, transaction: transaction, param: insuranceInfo.Items);
 

@@ -44,9 +44,9 @@ namespace CarManage.DataAccess.MySql.Maintenance
         {
             IDbTransaction transaction = null;
 
-            string commandText = "INSERT INTO Maintenance(Id,CarId,Date,Mileage,Amount,LoseSales,"
+            string commandText = "INSERT INTO Maintenance(Id,CarId,Date,ItemSummary,Mileage,Amount,LoseSales,"
                 + "PrevDate,PrevMileage,NextDate,NextMileage,EstimateDate,EstimateMileage,Worker,"
-                + "Type,Status,Creator,Operator,CreateDate,UpdateDate,ValidVALUES(@Id,@CarId,@Date,"
+                + "Type,Status,Creator,Operator,CreateDate,UpdateDate,ValidVALUES(@Id,@CarId,@Date,@ItemSummary,"
                 + "@Mileage,@Amount,@LoseSales,@PrevDate,@PrevMileage,@NextDate,@NextMileage,"
                 + "@EstimateDate,@EstimateMileage,@Worker,@Type,@Status,@Creator,@Operator,"
                 + "@CreateDate,@UpdateDate,@Valid)";
@@ -56,8 +56,8 @@ namespace CarManage.DataAccess.MySql.Maintenance
                 transaction = base.BeginTransaction(CarManageConfig.Instance.ConnectionString);
                 base.Execute(commandText, transaction: transaction, param: maintenanceInfo);
 
-                commandText = "INSERT INTO MaintenanceItem(Id,MaintenanceId,ItemCode,Canceled,Valid)"
-                    + " VALUES(@Id,@MaintenanceId,@ItemCode,@Canceled,@Valid)";
+                commandText = "INSERT INTO MaintenanceItem(Id,MaintenanceId,CarId,ItemName,ItemCode,Canceled)"
+                    + " VALUES(@Id,@MaintenanceId,@CarId,@ItemName,@ItemCode,@Canceled)";
                 base.Execute(commandText, transaction: transaction, param: maintenanceInfo.Items);
                 base.Commit(transaction);
             }
@@ -81,7 +81,7 @@ namespace CarManage.DataAccess.MySql.Maintenance
             IDbTransaction transaction = null;
 
             string commandText = "UPDATE Maintenance SET "
-                + "CarId=@CarId,Date=@Date,Mileage=@Mileage,Amount=@Amount,LoseSales=@LoseSales,"
+                + "CarId=@CarId,Date=@Date,ItemSummary=@ItemSummary,Mileage=@Mileage,Amount=@Amount,LoseSales=@LoseSales,"
                 + "PrevDate=@PrevDate,PrevMileage=@PrevMileage,NextDate=@NextDate,NextMileage=@NextMileage,"
                 + "EstimateDate=@EstimateDate,EstimateMileage=@EstimateMileage,Worker=@Worker,Type=@Type,"
                 + "Status=@Status,Creator=@Creator,Operator=@Operator,CreateDate=@CreateDate,"
@@ -95,8 +95,8 @@ namespace CarManage.DataAccess.MySql.Maintenance
                 commandText = "DELETE FROM MaintenanceItem WHERE MaintenanceId=@MaintenanceId";
                 base.Execute(commandText, transaction: transaction, param: new { MaintenanceId = maintenanceInfo.Id });
 
-                commandText = "INSERT INTO MaintenanceItem(Id,MaintenanceId,ItemCode,Canceled,Valid)"
-                    + " VALUES(@Id,@MaintenanceId,@ItemCode,@Canceled,@Valid)";
+                commandText = "INSERT INTO MaintenanceItem(Id,MaintenanceId,CarId,ItemName,ItemCode,Canceled)"
+                    + " VALUES(@Id,@MaintenanceId,@CarId,@ItemName,@ItemCode,@Canceled,@Valid)";
                 base.Execute(commandText, transaction: transaction, param: maintenanceInfo.Items);
                 base.Commit(transaction);
             }

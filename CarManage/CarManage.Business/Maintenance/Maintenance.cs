@@ -56,6 +56,7 @@ namespace CarManage.Business.Maintenance
                     {
                         maintenance.Add(maintenanceInfo);
                         maintenance.Add(nextInfo);
+                        scope.Complete();
                     }
                 }
                 else
@@ -89,6 +90,7 @@ namespace CarManage.Business.Maintenance
                     {
                         maintenance.Update(maintenanceInfo);
                         maintenance.Add(nextInfo);
+                        scope.Complete();
                     }
                 }
                 else
