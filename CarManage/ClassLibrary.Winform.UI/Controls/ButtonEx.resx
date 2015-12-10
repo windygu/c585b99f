@@ -117,56 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Button_First_Disabled_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_First_Disabled_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_First_Primary_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_First_Primary_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_First_Primary_Hover_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_First_Primary_Hover_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_First_Secondary_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_First_Secondary_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_First_Secondary_Hover_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_First_Secondary_Hover_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Second_Primary_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_Second_Primary_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Second_Primary_Hover_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_Second_Primary_Hover_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Second_Secondary_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_Second_Secondary_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Second_Secondary_Hover_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_Second_Secondary_Hover_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Seconed_Disabled_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_Seconed_Disabled_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Third_Disabled_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_Third_Disabled_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Third_Primary_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_Third_Primary_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Third_Primary_Hover_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_Third_Primary_Hover_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Third_Secondary_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_Third_Secondary_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Button_Third_Secondary_Hover_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\Button_Third_Secondary_Hover_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="List_Header_Higher_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\List_Header_Higher_BG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="List_Header_Lower_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\List_Header_Lower_BG.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
 </root>

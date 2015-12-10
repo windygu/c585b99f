@@ -50,6 +50,21 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Button_First_Disabled_BG.png" />
+    <Content Include="Images\Button_First_Primary_BG.png" />
+    <Content Include="Images\Button_First_Primary_Hover_BG.png" />
+    <Content Include="Images\Button_First_Secondary_BG.png" />
+    <Content Include="Images\Button_First_Secondary_Hover_BG.png" />
+    <Content Include="Images\Button_Second_Primary_BG.png" />
+    <Content Include="Images\Button_Second_Primary_Hover_BG.png" />
+    <Content Include="Images\Button_Second_Secondary_BG.png" />
+    <Content Include="Images\Button_Second_Secondary_Hover_BG.png" />
+    <Content Include="Images\Button_Seconed_Disabled_BG.png" />
+    <Content Include="Images\Button_Third_Disabled_BG.png" />
+    <Content Include="Images\Button_Third_Primary_BG.png" />
+    <Content Include="Images\Button_Third_Primary_Hover_BG.png" />
+    <Content Include="Images\Button_Third_Secondary_BG.png" />
+    <Content Include="Images\Button_Third_Secondary_Hover_BG.png" />
     <Content Include="Images\List_Header_Lower_BG.PNG" />
     <Content Include="Images\List_Header_Higher_BG.jpg" />
   </ItemGroup>

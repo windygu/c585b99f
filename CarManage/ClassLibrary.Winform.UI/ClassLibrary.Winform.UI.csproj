@@ -41,6 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ControlManager.cs" />
+    <Compile Include="Controls\ButtonEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ButtonEx.designer.cs">
+      <DependentUpon>ButtonEx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CheckBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\ButtonEx.resx">
+      <DependentUpon>ButtonEx.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\TextBox.resx">
       <DependentUpon>TextBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -105,6 +114,12 @@
     <EmbeddedResource Include="Forms\CustomTitleBarForm.resx">
       <DependentUpon>CustomTitleBarForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CarManage.Resources.Common\CarManage.Resources.Common.csproj">
+      <Project>{66c3441b-c664-4112-9ef4-cc4f6f5a44cd}</Project>
+      <Name>CarManage.Resources.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
