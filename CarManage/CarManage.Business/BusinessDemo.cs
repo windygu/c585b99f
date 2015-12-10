@@ -10,7 +10,7 @@ namespace CarManage.Business
     {
         public BusinessDemo()
         {
-            //base.RegisterEvent(this.OnTest);
+            //base.RegisterEvent(this.OnTest);9
         }
 
         private object OnTestKey = new object();
