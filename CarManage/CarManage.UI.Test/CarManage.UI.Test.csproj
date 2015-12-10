@@ -89,6 +89,12 @@
     <Compile Include="UserControl2.Designer.cs">
       <DependentUpon>UserControl2.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControl3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl3.Designer.cs">
+      <DependentUpon>UserControl3.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl2.resx">
       <DependentUpon>UserControl2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl3.resx">
+      <DependentUpon>UserControl3.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="CarManage.config">
