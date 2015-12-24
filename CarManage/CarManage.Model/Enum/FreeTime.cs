@@ -9,6 +9,8 @@ namespace CarManage.Model.Enum
     {
         全天 = 1,
         上午 = 2,
-        下午 = 3
+        中午 = 3,
+        下午 = 4,
+        晚上 = 5
     }
 }
