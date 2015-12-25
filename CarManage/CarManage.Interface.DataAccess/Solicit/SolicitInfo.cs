@@ -56,5 +56,11 @@ namespace CarManage.Interface.DataAccess.Solicit
         /// </summary>
         /// <returns>招揽信息集合</returns>
         List<SolicitInfo> Search(SolicitInfo queryInfo);
+
+        /// <summary>
+        /// 查询招揽信息
+        /// </summary>
+        /// <returns>招揽信息集合</returns>
+        List<SolicitListInfo> Search(SolicitQueryInfo queryInfo);
     }
 }

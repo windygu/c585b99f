@@ -122,5 +122,25 @@ namespace CarManage.Business.Solicit
 
             return solicitList;
         }
+
+        /// <summary>
+        /// 查询招揽信息
+        /// </summary>
+        /// <returns>招揽信息集合</returns>
+        public List<SolicitListInfo> Search(SolicitQueryInfo queryInfo)
+        {
+            List<SolicitListInfo> solicitList = new List<SolicitListInfo>();
+
+            try
+            {
+                solicitList = solicit.Search(queryInfo);
+            }
+            catch (Exception ex)
+            {
+                BusinessExceptionHandler.HandlerException("查询招揽信息失败！", ex);
+            }
+
+            return solicitList;
+        }
     }
 }

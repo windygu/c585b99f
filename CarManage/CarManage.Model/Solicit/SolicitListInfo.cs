@@ -15,7 +15,7 @@ namespace CarManage.Model.Solicit
     ///<other></other>    
     ///</summary>
     [Serializable]
-    class SolicitListInfo : BaseModel
+    public class SolicitListInfo : BaseModel
     {
         #region 构造函数
 
@@ -42,9 +42,9 @@ namespace CarManage.Model.Solicit
         public string Model { get; set; }
 
         ///<summary>
-        ///车主/使用人
+        ///车主
         ///</summary>
-        public string OwnerOrUser { get; set; }
+        public string Owner { get; set; }
 
         ///<summary>
         ///业务活动

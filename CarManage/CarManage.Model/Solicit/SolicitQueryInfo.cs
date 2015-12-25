@@ -15,7 +15,7 @@ namespace CarManage.Model.Solicit
     ///<other></other>    
     ///</summary>
     [Serializable]
-    class SolicitQueryInfo : BaseModel
+    public class SolicitQueryInfo : BaseModel
     {
         
         #region 构造函数
@@ -38,9 +38,9 @@ namespace CarManage.Model.Solicit
         public string Number { get; set; }
 
         ///<summary>
-        ///车主/使用人
+        ///车主
         ///</summary>
-        public string OwnerOrUser { get; set; }
+        public string Owner { get; set; }
 
         ///<summary>
         ///手机号
@@ -51,6 +51,11 @@ namespace CarManage.Model.Solicit
         ///招揽业务员
         ///</summary>
         public string Solicitor { get; set; }
+
+        ///<summary>
+        ///业务活动编码
+        ///</summary>
+        public string ActivityCode { get; set; }
 
         #endregion
 
