@@ -41,6 +41,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ControlManager.cs" />
+    <Compile Include="Controls\Accordion.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Accordion.Designer.cs">
+      <DependentUpon>Accordion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AccordionItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AccordionItem.Designer.cs">
+      <DependentUpon>AccordionItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ButtonEx.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -102,6 +114,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\AccordionItem.resx">
+      <DependentUpon>AccordionItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ButtonEx.resx">
       <DependentUpon>ButtonEx.cs</DependentUpon>
     </EmbeddedResource>
