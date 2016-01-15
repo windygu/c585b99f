@@ -44,6 +44,7 @@
             this.lblText.Size = new System.Drawing.Size(178, 20);
             this.lblText.TabIndex = 1;
             this.lblText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblText.MouseEnter += new System.EventHandler(this.lblText_MouseEnter);
             // 
             // pbxImage
             // 
@@ -53,6 +54,7 @@
             this.pbxImage.Size = new System.Drawing.Size(20, 20);
             this.pbxImage.TabIndex = 0;
             this.pbxImage.TabStop = false;
+            this.pbxImage.MouseEnter += new System.EventHandler(this.pbxImage_MouseEnter);
             // 
             // AccordionItem
             // 
@@ -64,6 +66,7 @@
             this.Name = "AccordionItem";
             this.Padding = new System.Windows.Forms.Padding(5, 5, 0, 5);
             this.Size = new System.Drawing.Size(203, 30);
+            this.MouseEnter += new System.EventHandler(this.AccordionItem_MouseEnter);
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).EndInit();
             this.ResumeLayout(false);
 

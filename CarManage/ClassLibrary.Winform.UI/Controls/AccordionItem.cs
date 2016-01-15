@@ -105,6 +105,12 @@ namespace ClassLibrary.Winform.UI.Controls
         [Description("悬浮项背景图")]
         public Image ActiveBackgroundImage { get; set; }
 
+        /// <summary>
+        /// 当前控件是否为选中项
+        /// </summary>
+        [Description("当前控件是否为选中项")]
+        public bool Selected { get; set; }
+
         public AccordionItem()
         {
             InitializeComponent();
@@ -128,6 +134,8 @@ namespace ClassLibrary.Winform.UI.Controls
             NormalBackgroundImage = null;
             HoverBackgroundImage = null;
             ActiveBackgroundImage = null;
+
+            Selected = false;
         }
 
 
@@ -143,5 +151,97 @@ namespace ClassLibrary.Winform.UI.Controls
                 }
             }
         }
+
+        private void AccordionItem_MouseEnter(object sender, EventArgs e)
+        {
+            SetEnterStyle(SelectionStatus.Hover);
+        }
+
+        private void pbxImage_MouseEnter(object sender, EventArgs e)
+        {
+            SetEnterStyle(SelectionStatus.Hover);
+        }
+
+        private void lblText_MouseEnter(object sender, EventArgs e)
+        {
+            SetEnterStyle(SelectionStatus.Hover);
+        }
+
+        private void SetEnterStyle(SelectionStatus status)
+        {
+            if (status.Equals(SelectionStatus.Hover))
+            {
+                if (HoverBackgroundImage != null)
+                {
+                    this.BackgroundImage = HoverBackgroundImage;
+                }
+                else if (HoverBackColor != null && !HoverBackColor.Equals(Color.Empty))
+                {
+                    this.BackColor = HoverBackColor;
+                }
+
+                if (HoverForeColor != null && !HoverForeColor.Equals(Color.Empty))
+                {
+                    lblText.ForeColor = HoverForeColor;
+                }
+            }
+            else if (status.Equals(SelectionStatus.Normal))
+            {
+                if (NormalBackgroundImage != null)
+                {
+                    this.BackgroundImage = NormalBackgroundImage;
+                }
+                else if (NormalBackColor != null && !NormalBackColor.Equals(Color.Empty))
+                {
+                    this.BackColor = NormalBackColor;
+                }
+                else
+                {
+                    this.BackgroundImage = null;
+                    this.BackColor = Color.Empty;
+                }
+
+                if (NormalForeColor != null && !NormalForeColor.Equals(Color.Empty))
+                {
+                    lblText.ForeColor = NormalForeColor;
+                }
+                else
+                {
+                    lblText.ForeColor = SystemColors.ControlText;
+                }
+            }
+            else if (status.Equals(SelectionStatus.Selected))
+            {
+                if (ActiveBackgroundImage != null)
+                {
+                    this.BackgroundImage = ActiveBackgroundImage;
+                }
+                else if (ActiveBackColor != null && !ActiveBackColor.Equals(Color.Empty))
+                {
+                    this.BackColor = ActiveBackColor;
+                }
+                else
+                {
+                    this.BackColor = NormalBackColor;
+                    this.BackgroundImage = NormalBackgroundImage;                   
+                }
+
+                if (ActiveForeColor != null && !ActiveForeColor.Equals(Color.Empty))
+                {
+                    lblText.ForeColor = ActiveForeColor;
+                }
+                else
+                {
+                    lblText.ForeColor = NormalForeColor;
+                }
+            }
+        }
+    }
+
+    internal enum SelectionStatus
+    {
+        Normal,
+        Hover,
+        Selected
     }
 }
