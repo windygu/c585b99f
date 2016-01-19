@@ -1,6 +1,6 @@
 ﻿namespace CarManage.UI.Client.Common.Task
 {
-    partial class TodoList
+    partial class CustomerList
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TodoList));
-            this.tlpSeatchCondition = new System.Windows.Forms.TableLayoutPanel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerList));
             this.lblNumber = new ClassLibrary.Winform.UI.Controls.Label(this.components);
             this.txtNumber = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
             this.txtOwner = new ClassLibrary.Winform.UI.Controls.TextBox(this.components);
@@ -44,46 +43,17 @@
             this.ColOwner = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDisplacement = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColActivity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColContent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColEstimateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColFreeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSolicitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColBodyColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColRegisterDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMileage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSolicitor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColUpdateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColCustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColCarID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tlpSeatchCondition.SuspendLayout();
+            this.tlpSeatchCondition = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
+            this.tlpSeatchCondition.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tlpSeatchCondition
-            // 
-            this.tlpSeatchCondition.AutoSize = true;
-            this.tlpSeatchCondition.ColumnCount = 8;
-            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21F));
-            this.tlpSeatchCondition.Controls.Add(this.lblNumber, 0, 0);
-            this.tlpSeatchCondition.Controls.Add(this.txtNumber, 1, 0);
-            this.tlpSeatchCondition.Controls.Add(this.txtOwner, 3, 0);
-            this.tlpSeatchCondition.Controls.Add(this.lblOwner, 2, 0);
-            this.tlpSeatchCondition.Controls.Add(this.lblMobile, 4, 0);
-            this.tlpSeatchCondition.Controls.Add(this.txtMobile, 5, 0);
-            this.tlpSeatchCondition.Controls.Add(this.btnSearch, 6, 0);
-            this.tlpSeatchCondition.Controls.Add(this.btnNew, 7, 0);
-            this.tlpSeatchCondition.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tlpSeatchCondition.Location = new System.Drawing.Point(0, 0);
-            this.tlpSeatchCondition.Name = "tlpSeatchCondition";
-            this.tlpSeatchCondition.Padding = new System.Windows.Forms.Padding(3);
-            this.tlpSeatchCondition.RowCount = 1;
-            this.tlpSeatchCondition.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tlpSeatchCondition.Size = new System.Drawing.Size(900, 33);
-            this.tlpSeatchCondition.TabIndex = 2;
             // 
             // lblNumber
             // 
@@ -130,7 +100,7 @@
             this.txtOwner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtOwner.BorderWidth = 1;
             this.txtOwner.DecimalPrecision = 0;
-            this.txtOwner.Location = new System.Drawing.Point(281, 6);
+            this.txtOwner.Location = new System.Drawing.Point(329, 33);
             this.txtOwner.Margin = new System.Windows.Forms.Padding(2);
             this.txtOwner.MaxLength = 50;
             this.txtOwner.MaxValue = new decimal(new int[] {
@@ -252,12 +222,11 @@
             this.ColOwner,
             this.ColModel,
             this.ColDisplacement,
-            this.ColActivity,
-            this.ColContent,
-            this.ColEstimateDate,
-            this.ColFreeTime,
-            this.ColStatus,
-            this.ColSolicitID,
+            this.ColBodyColor,
+            this.ColRegisterDate,
+            this.ColMileage,
+            this.ColSolicitor,
+            this.ColUpdateDate,
             this.ColCustomerID,
             this.ColCarID});
             this.dgvList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -268,7 +237,7 @@
             this.dgvList.RowHeadersVisible = false;
             this.dgvList.RowTemplate.Height = 23;
             this.dgvList.Size = new System.Drawing.Size(900, 467);
-            this.dgvList.TabIndex = 3;
+            this.dgvList.TabIndex = 5;
             // 
             // colNumber
             // 
@@ -301,51 +270,45 @@
             this.ColDisplacement.ReadOnly = true;
             this.ColDisplacement.Width = 60;
             // 
-            // ColActivity
+            // ColBodyColor
             // 
-            this.ColActivity.DataPropertyName = "Activity";
-            this.ColActivity.HeaderText = "业务活动";
-            this.ColActivity.Name = "ColActivity";
-            this.ColActivity.ReadOnly = true;
+            this.ColBodyColor.DataPropertyName = "BodyColor";
+            this.ColBodyColor.HeaderText = "颜色";
+            this.ColBodyColor.Name = "ColBodyColor";
+            this.ColBodyColor.ReadOnly = true;
+            this.ColBodyColor.Width = 70;
             // 
-            // ColContent
+            // ColRegisterDate
             // 
-            this.ColContent.DataPropertyName = "Content";
-            this.ColContent.HeaderText = "招揽内容";
-            this.ColContent.Name = "ColContent";
-            this.ColContent.ReadOnly = true;
+            this.ColRegisterDate.DataPropertyName = "RegisterDate";
+            this.ColRegisterDate.HeaderText = "上牌日期";
+            this.ColRegisterDate.Name = "ColRegisterDate";
+            this.ColRegisterDate.ReadOnly = true;
+            this.ColRegisterDate.Width = 80;
             // 
-            // ColEstimateDate
+            // ColMileage
             // 
-            this.ColEstimateDate.DataPropertyName = "EstimateDate";
-            this.ColEstimateDate.HeaderText = "预计招揽日期";
-            this.ColEstimateDate.Name = "ColEstimateDate";
-            this.ColEstimateDate.ReadOnly = true;
-            this.ColEstimateDate.Width = 120;
+            this.ColMileage.DataPropertyName = "Mileage";
+            this.ColMileage.HeaderText = "行驶里程";
+            this.ColMileage.Name = "ColMileage";
+            this.ColMileage.ReadOnly = true;
+            this.ColMileage.Width = 80;
             // 
-            // ColFreeTime
+            // ColSolicitor
             // 
-            this.ColFreeTime.DataPropertyName = "FreeTime";
-            this.ColFreeTime.HeaderText = "习惯接电话时间";
-            this.ColFreeTime.Name = "ColFreeTime";
-            this.ColFreeTime.ReadOnly = true;
-            this.ColFreeTime.Width = 120;
+            this.ColSolicitor.DataPropertyName = "Solicitor";
+            this.ColSolicitor.HeaderText = "客户顾问";
+            this.ColSolicitor.Name = "ColSolicitor";
+            this.ColSolicitor.ReadOnly = true;
+            this.ColSolicitor.Width = 80;
             // 
-            // ColStatus
+            // ColUpdateDate
             // 
-            this.ColStatus.DataPropertyName = "Status";
-            this.ColStatus.HeaderText = "状态";
-            this.ColStatus.Name = "ColStatus";
-            this.ColStatus.ReadOnly = true;
-            this.ColStatus.Width = 80;
-            // 
-            // ColSolicitID
-            // 
-            this.ColSolicitID.DataPropertyName = "SolicitID";
-            this.ColSolicitID.HeaderText = "SolicitID";
-            this.ColSolicitID.Name = "ColSolicitID";
-            this.ColSolicitID.ReadOnly = true;
-            this.ColSolicitID.Visible = false;
+            this.ColUpdateDate.DataPropertyName = "UpdateDate";
+            this.ColUpdateDate.HeaderText = "更新日期";
+            this.ColUpdateDate.Name = "ColUpdateDate";
+            this.ColUpdateDate.ReadOnly = true;
+            this.ColUpdateDate.Width = 80;
             // 
             // ColCustomerID
             // 
@@ -363,18 +326,47 @@
             this.ColCarID.ReadOnly = true;
             this.ColCarID.Visible = false;
             // 
-            // TodoList
+            // tlpSeatchCondition
+            // 
+            this.tlpSeatchCondition.AutoSize = true;
+            this.tlpSeatchCondition.ColumnCount = 8;
+            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tlpSeatchCondition.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21F));
+            this.tlpSeatchCondition.Controls.Add(this.lblNumber, 0, 0);
+            this.tlpSeatchCondition.Controls.Add(this.txtNumber, 1, 0);
+            this.tlpSeatchCondition.Controls.Add(this.lblOwner, 2, 0);
+            this.tlpSeatchCondition.Controls.Add(this.lblMobile, 4, 0);
+            this.tlpSeatchCondition.Controls.Add(this.txtMobile, 5, 0);
+            this.tlpSeatchCondition.Controls.Add(this.btnSearch, 6, 0);
+            this.tlpSeatchCondition.Controls.Add(this.btnNew, 7, 0);
+            this.tlpSeatchCondition.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tlpSeatchCondition.Location = new System.Drawing.Point(0, 0);
+            this.tlpSeatchCondition.Name = "tlpSeatchCondition";
+            this.tlpSeatchCondition.Padding = new System.Windows.Forms.Padding(3);
+            this.tlpSeatchCondition.RowCount = 1;
+            this.tlpSeatchCondition.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tlpSeatchCondition.Size = new System.Drawing.Size(900, 33);
+            this.tlpSeatchCondition.TabIndex = 4;
+            // 
+            // CustomerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgvList);
             this.Controls.Add(this.tlpSeatchCondition);
-            this.Name = "TodoList";
+            this.Controls.Add(this.txtOwner);
+            this.Name = "CustomerList";
             this.Size = new System.Drawing.Size(900, 500);
-            this.Load += new System.EventHandler(this.TodoList_Load);
+            this.Load += new System.EventHandler(this.CustomerList_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
             this.tlpSeatchCondition.ResumeLayout(false);
             this.tlpSeatchCondition.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,26 +374,25 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tlpSeatchCondition;
-        private ClassLibrary.Winform.UI.Controls.TextBox txtNumber;
         private ClassLibrary.Winform.UI.Controls.Label lblNumber;
+        private ClassLibrary.Winform.UI.Controls.TextBox txtNumber;
         private ClassLibrary.Winform.UI.Controls.TextBox txtOwner;
         private ClassLibrary.Winform.UI.Controls.Label lblOwner;
         private ClassLibrary.Winform.UI.Controls.Label lblMobile;
         private ClassLibrary.Winform.UI.Controls.TextBox txtMobile;
-        private ClassLibrary.Winform.UI.Controls.DataGridView dgvList;
         private ClassLibrary.Winform.UI.Controls.ButtonEx btnSearch;
         private ClassLibrary.Winform.UI.Controls.ButtonEx btnNew;
+        private ClassLibrary.Winform.UI.Controls.DataGridView dgvList;
+        private System.Windows.Forms.TableLayoutPanel tlpSeatchCondition;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColOwner;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColModel;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDisplacement;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColActivity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColContent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColEstimateDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColFreeTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSolicitID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColBodyColor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColRegisterDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMileage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSolicitor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColUpdateDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCustomerID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCarID;
 

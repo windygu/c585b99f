@@ -3,26 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CarManage.Model.Solicit
+namespace CarManage.Model.Customer
 {
-    ///<summary>
-    ///<summary>招揽查询结果对象</summary>
-    ///<creator>张凯</creator>
-    ///<createdate>2015-12-24</createdate>
-    ///<modifier></modifier>
-    ///<modifynote></modifynote>
-    ///<modifydate></modifydate>
-    ///<other></other>    
-    ///</summary>
     [Serializable]
-    public class SolicitListInfo : BaseModel
+    public class CustomerListInfo : BaseModel
     {
         #region 构造函数
 
         ///<summary>
         ///构造函数
         ///</summary>
-        public SolicitListInfo()
+        public CustomerListInfo()
         {
 
         }
@@ -52,34 +43,29 @@ namespace CarManage.Model.Solicit
         public string Owner { get; set; }
 
         ///<summary>
-        ///业务活动
+        ///车身颜色
         ///</summary>
-        public string Activity { get; set; }
+        public string BodyColor { get; set; }
 
         ///<summary>
-        ///招揽内容
+        ///上牌日期
         ///</summary>
-        public string Content { get; set; }
+        public string RegisterDate { get; set; }
 
         ///<summary>
-        ///预计招揽日期
+        ///行驶里程
         ///</summary>
-        public string EstimateDate { get; set; }
+        public string Mileage { get; set; }
 
         ///<summary>
-        ///习惯接电话时间
+        ///客户顾问
         ///</summary>
-        public string FreeTime { get; set; }
+        public string Solicitor { get; set; }
 
         ///<summary>
-        ///状态
+        ///更新日期
         ///</summary>
-        public string Status { get; set; }
-
-        ///<summary>
-        ///招揽任务ID
-        ///</summary>
-        public string SolicitID { get; set; }
+        public string UpdateDate { get; set; }
 
         ///<summary>
         ///客户ID
