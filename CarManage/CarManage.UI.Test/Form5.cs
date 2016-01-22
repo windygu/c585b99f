@@ -14,6 +14,9 @@ namespace CarManage.UI.Test
         public Form5()
         {
             InitializeComponent();
+
+            accordion1.AddItem("item1");
+            accordion1.AddItem("item2");
         }
     }
 }

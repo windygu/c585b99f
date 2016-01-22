@@ -18,7 +18,7 @@ namespace CarManage.UI.Test
 
             ClassLibrary.Configuration.ConfigurationManager.Instance.Init();
 
-            Application.Run(new Form1());
+            Application.Run(new Form5());
         }
     }
 }

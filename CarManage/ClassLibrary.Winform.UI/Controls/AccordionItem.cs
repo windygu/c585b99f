@@ -28,6 +28,7 @@ namespace ClassLibrary.Winform.UI.Controls
         public Image Icon
         {
             get { return pbxImage.Image; }
+
             set 
             { 
                 pbxImage.Image = value;
@@ -51,65 +52,193 @@ namespace ClassLibrary.Winform.UI.Controls
         [Description("边框颜色")]
         public Color BorderColor { get; set; }
 
+        private Color normalBackColor;
+
         /// <summary>
         /// 背景色
         /// </summary>
         [Description("背景色")]
-        public Color NormalBackColor { get; set; }
+        public Color NormalBackColor
+        {
+            get { return normalBackColor; }
+
+            set 
+            {
+                normalBackColor = value;
+
+                if (this.Status.Equals(SelectionStatus.Normal))
+                    this.BackColor = normalBackColor;
+            }
+        }
+
+        private Color hoverBackColor;
 
         /// <summary>
         /// 悬浮背景色
         /// </summary>
         [Description("悬浮背景色")]
-        public Color HoverBackColor { get; set; }
+        public Color HoverBackColor
+        {
+            get { return hoverBackColor; }
+
+            set
+            {
+                hoverBackColor = value;
+
+                if (this.Status.Equals(SelectionStatus.Hover))
+                    this.BackColor = hoverBackColor;
+            }
+        }
+
+        private Color activeBackColor;
 
         /// <summary>
         /// 选中项背景色
         /// </summary>
         [Description("选中项背景色")]
-        public Color ActiveBackColor { get; set; }
+        public Color ActiveBackColor
+        {
+            get { return activeBackColor; }
+
+            set
+            {
+                activeBackColor = value;
+
+                if (this.Status.Equals(SelectionStatus.Selected))
+                    this.BackColor = activeBackColor;
+            }
+        }
+
+        private Color normalForeColor;
 
         /// <summary>
         /// 前景色
         /// </summary>
         [Description("前景色")]
-        public Color NormalForeColor { get; set; }
+        public Color NormalForeColor
+        {
+            get { return normalForeColor; }
+
+            set
+            {
+                normalForeColor = value;
+
+                if (this.Status.Equals(SelectionStatus.Normal))
+                    lblText.ForeColor = normalForeColor;
+            }
+        }
+
+        private Color hoverForeColor;
 
         /// <summary>
         /// 悬浮项前景色
         /// </summary>
         [Description("悬浮项前景色")]
-        public Color HoverForeColor { get; set; }
+        public Color HoverForeColor
+        {
+            get { return hoverForeColor; }
+
+            set
+            {
+                hoverForeColor = value;
+
+                if (this.Status.Equals(SelectionStatus.Hover))
+                    lblText.ForeColor = hoverForeColor;
+            }
+        }
+
+        private Color activeForeColor;
 
         /// <summary>
         /// 选中项前景色
         /// </summary>
         [Description("选中项前景色")]
-        public Color ActiveForeColor { get; set; }
+        public Color ActiveForeColor
+        {
+            get { return activeForeColor; }
+
+            set
+            {
+                activeForeColor = value;
+
+                if (this.Status.Equals(SelectionStatus.Selected))
+                    lblText.ForeColor = activeForeColor;
+            }
+        }
+
+        private Image normalBackgroundImage;
 
         /// <summary>
         /// 背景图
         /// </summary>
         [Description("背景图")]
-        public Image NormalBackgroundImage { get; set; }
+        public Image NormalBackgroundImage
+        {
+            get { return normalBackgroundImage; }
+
+            set
+            {
+                normalBackgroundImage = value;
+
+                if (this.Status.Equals(SelectionStatus.Normal))
+                    this.BackgroundImage = normalBackgroundImage;
+            }
+        }
+
+        private Image hoverBackgroundImage;
 
         /// <summary>
         /// 选中项背景图
         /// </summary>
         [Description("选中项背景图")]
-        public Image HoverBackgroundImage { get; set; }
+        public Image HoverBackgroundImage
+        {
+            get { return hoverBackgroundImage; }
+
+            set
+            {
+                hoverBackgroundImage = value;
+
+                if (this.Status.Equals(SelectionStatus.Hover))
+                    this.BackgroundImage = hoverBackgroundImage;
+            }
+        }
+
+        private Image activeBackgroundImage;
 
         /// <summary>
         /// 悬浮项背景图
         /// </summary>
         [Description("悬浮项背景图")]
-        public Image ActiveBackgroundImage { get; set; }
+        public Image ActiveBackgroundImage
+        {
+            get { return activeBackgroundImage; }
+
+            set
+            {
+                activeBackgroundImage = value;
+
+                if (this.Status.Equals(SelectionStatus.Selected))
+                    this.BackgroundImage = activeBackgroundImage;
+            }
+        }
 
         /// <summary>
         /// 当前控件是否为选中项
         /// </summary>
         [Description("当前控件是否为选中项")]
-        public bool Selected { get; set; }
+        internal SelectionStatus Status { get; set; }
+
+        /// <summary>
+        /// Item项索引序号
+        /// </summary>
+        internal int ItemIndex { get; set; }
+
+        /// <summary>
+        /// 当前选中控件时引发的事件
+        /// </summary>
+        [Description("当前选中控件时引发的事件")]
+        public event EventHandler<EventArgs> OnSelected;
 
         public AccordionItem()
         {
@@ -123,19 +252,19 @@ namespace ClassLibrary.Winform.UI.Controls
             Icon = null;
             BorderColor = Color.Empty;
 
-            NormalBackColor = Color.Empty;
-            HoverBackColor = Color.Empty;
-            ActiveBackColor = Color.Empty;
+            normalBackColor = Color.Empty;
+            hoverBackColor = Color.Empty;
+            activeBackColor = Color.Empty;
 
-            NormalForeColor = SystemColors.ControlText;
-            HoverForeColor = SystemColors.ControlText;
-            ActiveForeColor = SystemColors.ControlText;
+            normalForeColor = SystemColors.ControlText;
+            hoverForeColor = SystemColors.ControlText;
+            activeForeColor = SystemColors.ControlText;
 
-            NormalBackgroundImage = null;
-            HoverBackgroundImage = null;
-            ActiveBackgroundImage = null;
+            normalBackgroundImage = null;
+            hoverBackgroundImage = null;
+            activeBackgroundImage = null;
 
-            Selected = false;
+            Status = SelectionStatus.Normal;
         }
 
 
@@ -154,46 +283,58 @@ namespace ClassLibrary.Winform.UI.Controls
 
         private void AccordionItem_MouseEnter(object sender, EventArgs e)
         {
-            SetEnterStyle(SelectionStatus.Hover);
+            if (this.Status.Equals(SelectionStatus.Selected))
+                return;
+
+            this.Status = SelectionStatus.Hover;
+            SetStyle();
         }
 
         private void pbxImage_MouseEnter(object sender, EventArgs e)
         {
-            SetEnterStyle(SelectionStatus.Hover);
+            if (this.Status.Equals(SelectionStatus.Selected))
+                return;
+
+            this.Status = SelectionStatus.Hover;
+            SetStyle();
         }
 
         private void lblText_MouseEnter(object sender, EventArgs e)
         {
-            SetEnterStyle(SelectionStatus.Hover);
+            if (this.Status.Equals(SelectionStatus.Selected))
+                return;
+
+            this.Status = SelectionStatus.Hover;
+            SetStyle();
         }
 
-        private void SetEnterStyle(SelectionStatus status)
+        internal void SetStyle()
         {
-            if (status.Equals(SelectionStatus.Hover))
+            if (this.Status.Equals(SelectionStatus.Hover))
             {
-                if (HoverBackgroundImage != null)
+                if (hoverBackgroundImage != null)
                 {
-                    this.BackgroundImage = HoverBackgroundImage;
+                    this.BackgroundImage = hoverBackgroundImage;
                 }
                 else if (HoverBackColor != null && !HoverBackColor.Equals(Color.Empty))
                 {
                     this.BackColor = HoverBackColor;
                 }
 
-                if (HoverForeColor != null && !HoverForeColor.Equals(Color.Empty))
+                if (hoverForeColor != null && !hoverForeColor.Equals(Color.Empty))
                 {
-                    lblText.ForeColor = HoverForeColor;
+                    lblText.ForeColor = hoverForeColor;
                 }
             }
-            else if (status.Equals(SelectionStatus.Normal))
+            else if (this.Status.Equals(SelectionStatus.Normal))
             {
-                if (NormalBackgroundImage != null)
+                if (normalBackgroundImage != null)
                 {
-                    this.BackgroundImage = NormalBackgroundImage;
+                    this.BackgroundImage = normalBackgroundImage;
                 }
-                else if (NormalBackColor != null && !NormalBackColor.Equals(Color.Empty))
+                else if (normalBackColor != null && !normalBackColor.Equals(Color.Empty))
                 {
-                    this.BackColor = NormalBackColor;
+                    this.BackColor = normalBackColor;
                 }
                 else
                 {
@@ -201,40 +342,88 @@ namespace ClassLibrary.Winform.UI.Controls
                     this.BackColor = Color.Empty;
                 }
 
-                if (NormalForeColor != null && !NormalForeColor.Equals(Color.Empty))
+                if (normalForeColor != null && !normalForeColor.Equals(Color.Empty))
                 {
-                    lblText.ForeColor = NormalForeColor;
+                    lblText.ForeColor = normalForeColor;
                 }
                 else
                 {
                     lblText.ForeColor = SystemColors.ControlText;
                 }
             }
-            else if (status.Equals(SelectionStatus.Selected))
+            else if (this.Status.Equals(SelectionStatus.Selected))
             {
-                if (ActiveBackgroundImage != null)
+                if (activeBackgroundImage != null)
                 {
-                    this.BackgroundImage = ActiveBackgroundImage;
+                    this.BackgroundImage = activeBackgroundImage;
                 }
-                else if (ActiveBackColor != null && !ActiveBackColor.Equals(Color.Empty))
+                else if (activeBackColor != null && !activeBackColor.Equals(Color.Empty))
                 {
-                    this.BackColor = ActiveBackColor;
+                    this.BackColor = activeBackColor;
                 }
                 else
                 {
-                    this.BackColor = NormalBackColor;
-                    this.BackgroundImage = NormalBackgroundImage;                   
+                    this.BackColor = normalBackColor;
+                    this.BackgroundImage = normalBackgroundImage;                   
                 }
 
-                if (ActiveForeColor != null && !ActiveForeColor.Equals(Color.Empty))
+                if (activeForeColor != null && !activeForeColor.Equals(Color.Empty))
                 {
-                    lblText.ForeColor = ActiveForeColor;
+                    lblText.ForeColor = activeForeColor;
                 }
                 else
                 {
-                    lblText.ForeColor = NormalForeColor;
+                    lblText.ForeColor = normalForeColor;
                 }
+
+                if (OnSelected != null)
+                    OnSelected(this, new EventArgs());
             }
+        }
+
+        private void pbxImage_MouseLeave(object sender, EventArgs e)
+        {
+            if (this.Status.Equals(SelectionStatus.Selected))
+                return;
+
+            this.Status = SelectionStatus.Normal;
+            SetStyle();
+        }
+
+        private void lblText_MouseLeave(object sender, EventArgs e)
+        {
+            if (this.Status.Equals(SelectionStatus.Selected))
+                return;
+
+            this.Status = SelectionStatus.Normal;
+            SetStyle();
+        }
+
+        private void AccordionItem_MouseLeave(object sender, EventArgs e)
+        {
+            if (this.Status.Equals(SelectionStatus.Selected))
+                return;
+
+            this.Status = SelectionStatus.Normal;
+            SetStyle();
+        }
+
+        private void pbxImage_Click(object sender, EventArgs e)
+        {
+            this.Status = SelectionStatus.Selected;
+            SetStyle();
+        }
+
+        private void lblText_Click(object sender, EventArgs e)
+        {
+            this.Status = SelectionStatus.Selected;
+            SetStyle();
+        }
+
+        private void AccordionItem_Click(object sender, EventArgs e)
+        {
+            this.Status = SelectionStatus.Selected;
+            SetStyle();
         }
     }
 

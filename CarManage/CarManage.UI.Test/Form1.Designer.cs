@@ -28,38 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.accordionItem1 = new ClassLibrary.Winform.UI.Controls.AccordionItem();
             this.SuspendLayout();
-            // 
-            // accordionItem1
-            // 
-            this.accordionItem1.ActiveBackColor = System.Drawing.Color.Empty;
-            this.accordionItem1.ActiveBackgroundImage = null;
-            this.accordionItem1.ActiveForeColor = System.Drawing.Color.Empty;
-            this.accordionItem1.BackColor = System.Drawing.SystemColors.Control;
-            this.accordionItem1.BorderColor = System.Drawing.Color.Red;
-            this.accordionItem1.ForeColor = System.Drawing.Color.Maroon;
-            this.accordionItem1.HoverBackColor = System.Drawing.Color.Empty;
-            this.accordionItem1.HoverBackgroundImage = null;
-            this.accordionItem1.HoverForeColor = System.Drawing.Color.Empty;
-            this.accordionItem1.Icon = global::CarManage.UI.Test.Properties.Resources.AddTableHS;
-            this.accordionItem1.ItemText = "asdasdasd";
-            this.accordionItem1.Location = new System.Drawing.Point(39, 57);
-            this.accordionItem1.Name = "accordionItem1";
-            this.accordionItem1.NormalBackColor = System.Drawing.Color.Empty;
-            this.accordionItem1.NormalBackgroundImage = null;
-            this.accordionItem1.NormalForeColor = System.Drawing.SystemColors.ControlText;
-            this.accordionItem1.Padding = new System.Windows.Forms.Padding(5, 5, 0, 5);
-            this.accordionItem1.Size = new System.Drawing.Size(203, 30);
-            this.accordionItem1.TabIndex = 0;
-            this.accordionItem1.TextPadding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(282, 261);
-            this.Controls.Add(this.accordionItem1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -68,7 +43,7 @@
 
         #endregion
 
-        private ClassLibrary.Winform.UI.Controls.AccordionItem accordionItem1;
+
 
 
 
