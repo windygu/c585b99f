@@ -195,5 +195,83 @@ namespace CarManage.DataAccess.MySql.Customer
 
             return customerList;
         }
+
+        /// <summary>
+        /// 获得所有招揽信息集合
+        /// </summary>
+        /// <returns>招揽信息集合</returns>
+        public List<CustomerListInfo> Search(CustomerQueryInfo queryInfo)
+        {
+            IDbConnection connection = null;
+
+            List<CustomerListInfo> solicitList = new List<CustomerListInfo>();
+
+            try
+            {
+                string field = "c.Number, c.Model, c.Displacement, b.Owner, c.BodyColor, c.RegisterDate, c.Mileage, c.UpdateDate "
+                    + "a.CustomerID, a.CarID "; // + 客户顾问Solicitor字段
+
+                string table = "Customer b, Car c";
+                string order = "ORDER BY c.Number";
+
+                StringBuilder filter = new StringBuilder();
+
+                #region 查询条件
+
+                filter.Append("and c.CustomerId=b.ID ");
+
+                if (!string.IsNullOrWhiteSpace(queryInfo.Number))
+                    filter.Append("and c.Number like '%'+@Number+'%' ");
+
+                if (!string.IsNullOrWhiteSpace(queryInfo.Owner))
+                    filter.Append("and b.Owner like '%'+@Owner+'%' ");
+
+                if (!string.IsNullOrWhiteSpace(queryInfo.Mobile))
+                    filter.Append("and b.Mobile like '%'+@Mobile+'%' ");
+
+                #endregion
+
+                string filterText = string.Empty;
+
+                if (filter.Length > 0)
+                {
+                    filterText = filter.ToString().TrimStart(' ').Remove(0, 3).Insert(0, " WHERE ");
+                }
+
+                string commandText = string.Format("SELECT COUNT(*) FROM {0} {1}", table, filterText);
+
+                connection = base.CreateConnection(CarManageConfig.Instance.ConnectionString);
+
+                queryInfo.TotalCount = base.ExecuteObject<int>(commandText: commandText,
+                    connection: connection, param: queryInfo);
+
+                if (queryInfo.TotalCount.Equals(0))
+                    return solicitList;
+
+                int pageCount = queryInfo.TotalCount / queryInfo.PageSize + 1;
+
+                if (queryInfo.TotalCount % queryInfo.PageSize != 0)
+                    pageCount++;
+
+                int startIndex = queryInfo.PageIndex * queryInfo.PageSize;
+
+                commandText = string.Format("SELECT {0} FROM {1} WHERE {2} ORDER BY {3} LIMIT {4},{5}",
+                    field, table, filterText, order, startIndex, queryInfo.PageSize);
+
+                solicitList = base.Query<CustomerListInfo>(commandText, connection, param: queryInfo).ToList();
+            }
+            catch (Exception ex)
+            {
+                DataAccessExceptionHandler.HandlerException(
+                    "查询客户列表信息失败！", ex);
+            }
+            finally
+            {
+                CloseConnection(connection);
+            }
+
+            return solicitList;
+        }
+
     }
 }

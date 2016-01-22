@@ -128,6 +128,26 @@ namespace CarManage.Business.Customer
         }
 
         /// <summary>
+        /// 查询招揽信息
+        /// </summary>
+        /// <returns>招揽信息集合</returns>
+        public List<CustomerListInfo> Search(CustomerQueryInfo queryInfo)
+        {
+            List<CustomerListInfo> customerList = new List<CustomerListInfo>();
+
+            try
+            {
+                customerList = customer.Search(queryInfo);
+            }
+            catch (Exception ex)
+            {
+                BusinessExceptionHandler.HandlerException("查询招揽信息失败！", ex);
+            }
+
+            return customerList;
+        }
+
+        /// <summary>
         /// 获取客户称呼字典集合
         /// </summary>
         /// <returns>返回客户称呼字典集合</returns>

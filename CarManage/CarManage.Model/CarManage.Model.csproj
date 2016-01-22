@@ -39,6 +39,8 @@
     <Compile Include="Common\CodeBookInfo.cs" />
     <Compile Include="Customer\CarInfo.cs" />
     <Compile Include="Customer\CustomerInfo.cs" />
+    <Compile Include="Customer\CustomerListInfo.cs" />
+    <Compile Include="Customer\CustomerQueryInfo.cs" />
     <Compile Include="Enum\FreeTime.cs" />
     <Compile Include="Enum\CustomerCharacter.cs" />
     <Compile Include="Enum\InsuranceItem.cs" />

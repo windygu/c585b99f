@@ -56,5 +56,11 @@ namespace CarManage.Interface.DataAccess.Customer
         /// </summary>
         /// <returns>客户信息集合</returns>
         List<CustomerInfo> Search(CustomerInfo queryInfo);
+
+        /// <summary>
+        /// 查询客户信息
+        /// </summary>
+        /// <returns>客户信息集合</returns>
+        List<CustomerListInfo> Search(CustomerQueryInfo queryInfo);
     }
 }

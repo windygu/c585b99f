@@ -207,7 +207,8 @@ namespace CarManage.DataAccess.MySql.Solicit
 
             try
             {
-                string field = "c.Number, c.Model, b.Owner, a.ActivityCode, a.Content, a.EstimateDate, b.FreeTime, a.Status";
+                string field = "c.Number, c.Model, c.Displacement, b.Owner, a.ActivityCode, a.Content, a.EstimateDate, b.FreeTime, a.Status, "
+                    + "SolicitID=a.ID, a.CustomerID, a.CarID ";
 
                 string table = "Solicit a, Customer b, Car c";
                 string order = "ORDER BY a.EstimateDate, c.Number";
@@ -215,6 +216,8 @@ namespace CarManage.DataAccess.MySql.Solicit
                 StringBuilder filter = new StringBuilder();
 
                 #region 查询条件
+
+                filter.Append("and a.CustomerId=b.ID and a.CarID=c.ID ");
 
                 if (!string.IsNullOrWhiteSpace(queryInfo.Number))
                     filter.Append("and c.Number like '%'+@Number+'%' ");
@@ -265,7 +268,7 @@ namespace CarManage.DataAccess.MySql.Solicit
             catch (Exception ex)
             {
                 DataAccessExceptionHandler.HandlerException(
-                    "查询招揽信息失败！", ex);
+                    "查询招揽列表信息失败！", ex);
             }
             finally
             {
