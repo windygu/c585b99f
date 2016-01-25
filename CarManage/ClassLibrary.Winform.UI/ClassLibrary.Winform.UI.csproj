@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -81,6 +82,46 @@
       <DependentUpon>Label.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ListControlItem.cs" />
+    <Compile Include="Controls\PluggableTabControl\AddInRendererAttribute.cs" />
+    <Compile Include="Controls\PluggableTabControl\AddInRendererManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\PluggableTabControl\ButtonState.cs" />
+    <Compile Include="Controls\PluggableTabControl\CustomControlsLogic.cs" />
+    <Compile Include="Controls\PluggableTabControl\DataGridViewEditorButtonColumn.cs" />
+    <Compile Include="Controls\PluggableTabControl\DDPaintCursor.cs" />
+    <Compile Include="Controls\PluggableTabControl\DefaultRenderer.cs" />
+    <Compile Include="Controls\PluggableTabControl\Design\NeoTabPageCollectionEditor.cs" />
+    <Compile Include="Controls\PluggableTabControl\Design\NeoTabPageDesigner.cs" />
+    <Compile Include="Controls\PluggableTabControl\Design\NeoTabWindowDesigner.cs" />
+    <Compile Include="Controls\PluggableTabControl\Design\NeoTabWindowToolboxItem.cs" />
+    <Compile Include="Controls\PluggableTabControl\Design\RendererNameEditor.cs" />
+    <Compile Include="Controls\PluggableTabControl\DrawingOffset.cs" />
+    <Compile Include="Controls\PluggableTabControl\DropDownButtonClickedEventArgs.cs" />
+    <Compile Include="Controls\PluggableTabControl\NeoTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\PluggableTabControl\NeoTabPageControlCollection.cs" />
+    <Compile Include="Controls\PluggableTabControl\NeoTabPageHidedMembersCollection.cs" />
+    <Compile Include="Controls\PluggableTabControl\NeoTabWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\PluggableTabControl\ProgressBarPainter.cs" />
+    <Compile Include="Controls\PluggableTabControl\RendererBase.cs" />
+    <Compile Include="Controls\PluggableTabControl\SelectedIndexChangedEventArgs.cs" />
+    <Compile Include="Controls\PluggableTabControl\SelectedIndexChangingEventArgs.cs" />
+    <Compile Include="Controls\PluggableTabControl\TabControlBorderStyle.cs" />
+    <Compile Include="Controls\PluggableTabControl\TabItemLayout.cs" />
+    <Compile Include="Controls\PluggableTabControl\TabItemStyle.cs" />
+    <Compile Include="Controls\PluggableTabControl\TabPageRemovedEventArgs.cs" />
+    <Compile Include="Controls\PluggableTabControl\TabPageRemovingEventArgs.cs" />
+    <Compile Include="Controls\PluggableTabControl\TabShowHideManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\PluggableTabControl\TooltipRenderer.cs" />
+    <Compile Include="Controls\PluggableTabControl\ToolTips.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Controls\TextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -119,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ButtonEx.resx">
       <DependentUpon>ButtonEx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PluggableTabControl\NeoTabWindow.resx">
+      <DependentUpon>NeoTabWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TextBox.resx">
       <DependentUpon>TextBox.cs</DependentUpon>

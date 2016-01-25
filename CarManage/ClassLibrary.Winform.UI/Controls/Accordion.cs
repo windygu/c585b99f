@@ -204,6 +204,10 @@ namespace ClassLibrary.Winform.UI.Controls
 
             item.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             item.Height = ItemHeight;
+            item.Width = this.Width - ItemMargin.Left - ItemMargin.Right;
+            item.Location = new Point(ItemMargin.Left, y + ItemMargin.Top);
+
+            y += item.Height + ItemMargin.Bottom;
 
             item.OnSelected += item_OnSelected;
             Items.Add(item);
