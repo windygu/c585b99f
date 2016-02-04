@@ -1362,11 +1362,11 @@ namespace ClassLibrary.Winform.UI.Controls.PluggableTabControl
                     if (this.TabItemLayout.Equals(TabItemLayout.Top))
                     {
                         x = this.TabItemAreaMargin.Left;
-                        y = 0;
+                        y = this.TabItemAreaMargin.Top;
 
                         padding.Left = this.TabPageAreaPadding.Left;
                         padding.Top = this.TabPageAreaPadding.Top + maxHeight
-                            + this.TabItemAreaMargin.Bottom;
+                            + this.TabItemAreaMargin.Top + this.TabItemAreaMargin.Bottom;
                         padding.Right = this.TabPageAreaPadding.Right;
                         padding.Bottom = this.TabPageAreaPadding.Bottom;
 
@@ -1376,13 +1376,13 @@ namespace ClassLibrary.Winform.UI.Controls.PluggableTabControl
                     {
                         //设置Tab选项卡X为Tab区域的左间距，Y为控件高度减去选项卡高度
                         x = this.TabItemAreaMargin.Left;
-                        y = this.ClientRectangle.Bottom - maxHeight;
+                        y = this.ClientRectangle.Bottom - this.TabItemAreaMargin.Bottom - maxHeight;
 
                         padding.Left = this.TabPageAreaPadding.Left;
                         padding.Top = this.TabPageAreaPadding.Top;
                         padding.Right = this.TabPageAreaPadding.Right;
                         padding.Bottom = this.TabPageAreaPadding.Bottom + maxHeight
-                            + this.TabItemAreaMargin.Top;
+                            + this.TabItemAreaMargin.Top + this.TabItemAreaMargin.Bottom;
 
                         TabItemArea = new Rectangle(0, this.ClientRectangle.Height - padding.Bottom, this.ClientRectangle.Width, padding.Bottom);
                     }
@@ -1467,10 +1467,10 @@ namespace ClassLibrary.Winform.UI.Controls.PluggableTabControl
                     if (this.TabItemLayout.Equals(TabItemLayout.Left))
                     {
                         //设置Tab选项卡的X起始位置为Tab区域的左间距,Y为0
-                        x = 0;
+                        x = this.TabItemAreaMargin.Left;
                         y = this.TabItemAreaMargin.Top;
 
-                        padding.Left = this.TabPageAreaPadding.Left + maxWidth + this.TabItemAreaMargin.Right;
+                        padding.Left = this.TabPageAreaPadding.Left + maxWidth + this.TabItemAreaMargin.Left + this.TabItemAreaMargin.Right;
                         padding.Top = this.TabPageAreaPadding.Top;
                         padding.Right = this.TabPageAreaPadding.Right;
                         padding.Bottom = this.TabPageAreaPadding.Bottom;
@@ -1480,12 +1480,12 @@ namespace ClassLibrary.Winform.UI.Controls.PluggableTabControl
                     else if (this.TabItemLayout.Equals(TabItemLayout.Right))
                     {
                         //设置Tab选项卡X为Tab区域的左间距，Y为控件高度减去选项卡高度
-                        x = this.ClientRectangle.Right - maxWidth;
+                        x = this.ClientRectangle.Right - this.TabItemAreaMargin.Right - maxWidth;
                         y = this.TabItemAreaMargin.Top;
 
                         padding.Left = this.TabPageAreaPadding.Left;
                         padding.Top = this.TabPageAreaPadding.Top;
-                        padding.Right = this.TabPageAreaPadding.Right + maxWidth + this.TabItemAreaMargin.Left;
+                        padding.Right = this.TabPageAreaPadding.Right + maxWidth + this.TabItemAreaMargin.Left + this.TabItemAreaMargin.Right;
                         padding.Bottom = this.TabPageAreaPadding.Bottom;
 
                         TabItemArea = new Rectangle(this.ClientRectangle.Width - padding.Right, 0, padding.Right, this.ClientRectangle.Height);

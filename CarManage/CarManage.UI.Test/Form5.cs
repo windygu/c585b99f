@@ -15,8 +15,8 @@ namespace CarManage.UI.Test
         {
             InitializeComponent();
 
-            accordion1.AddItem("item1");
-            accordion1.AddItem("item2");
+            //accordion1.AddItem("item1");
+            //accordion1.AddItem("item2");
         }
     }
 }
