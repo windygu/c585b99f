@@ -78,7 +78,7 @@
             this.tcMain.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.tcMain.Name = "tcMain";
             this.tcMain.RendererName = null;
-            this.tcMain.SelectedIndex = 0;
+            this.tcMain.SelectedIndex = 6;
             this.tcMain.Size = new System.Drawing.Size(1243, 703);
             this.tcMain.TabContentSpacing = 1;
             this.tcMain.TabIndex = 1;
