@@ -36,12 +36,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(585, 469);
             this.Name = "Form5";
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 1, 1);
             this.Text = "Form5";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
 
 
 

@@ -82,6 +82,18 @@
       <DependentUpon>Label.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ListControlItem.cs" />
+    <Compile Include="Controls\Panel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Panel.Designer.cs">
+      <DependentUpon>Panel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PictureBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\PictureBoxEx.Designer.cs">
+      <DependentUpon>PictureBoxEx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PluggableTabControl\AddInRendererAttribute.cs" />
     <Compile Include="Controls\PluggableTabControl\AddInRendererManager.cs">
       <SubType>Form</SubType>
@@ -160,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ButtonEx.resx">
       <DependentUpon>ButtonEx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PictureBoxEx.resx">
+      <DependentUpon>PictureBoxEx.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PluggableTabControl\NeoTabWindow.resx">
       <DependentUpon>NeoTabWindow.cs</DependentUpon>

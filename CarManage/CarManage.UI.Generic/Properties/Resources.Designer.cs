@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CarManage.UI.Test.Properties {
+namespace CarManage.UI.Generic.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace CarManage.UI.Test.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CarManage.UI.Test.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CarManage.UI.Generic.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,46 +57,6 @@ namespace CarManage.UI.Test.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap AddTableHS {
-            get {
-                object obj = ResourceManager.GetObject("AddTableHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap FullScreenHS {
-            get {
-                object obj = ResourceManager.GetObject("FullScreenHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap QQ截图20160219161257 {
-            get {
-                object obj = ResourceManager.GetObject("QQ截图20160219161257", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap ViewThumbnailsHS {
-            get {
-                object obj = ResourceManager.GetObject("ViewThumbnailsHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

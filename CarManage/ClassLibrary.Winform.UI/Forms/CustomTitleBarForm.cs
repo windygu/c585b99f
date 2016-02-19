@@ -157,14 +157,14 @@ namespace ClassLibrary.Winform.UI.Forms
         /// <summary>
         /// 是否显示最大化按钮
         /// </summary>
-        [Browsable(true), Description("最大化按钮")]
-        public virtual bool IsMaximumSize { get; set; }
+        [Browsable(true), Description("是否显示最大化按钮")]
+        public virtual bool AllowMaxSize { get; set; }
 
         /// <summary>
         /// 是否显示最小化按钮
         /// </summary>
-        [Browsable(true), Description("最小化按钮")]
-        public virtual bool IsMinimumSize { get; set; }
+        [Browsable(true), Description("是否显示最小化按钮")]
+        public virtual bool AllowMinSize { get; set; }
 
         public CustomTitleBarForm()
         {
@@ -175,7 +175,7 @@ namespace ClassLibrary.Winform.UI.Forms
 
             InitializeComponent();
 
-            IsMaximumSize = IsMinimumSize = false;
+            AllowMaxSize = AllowMinSize = false;
         }
 
         /// <summary>
@@ -188,6 +188,18 @@ namespace ClassLibrary.Winform.UI.Forms
 
             ReleaseCapture();
             SendMessage(this.Handle, WM_SYSCOMMAND, SC_MOVE + HTCAPTION, 0);
+        }
+
+        private void CustomTitleBarForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.OnFormClosing != null)
+                OnFormClosing(this, e);
+        }
+
+        private void CustomTitleBarForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (this.OnFormClose != null)
+                OnFormClose(sender, e);
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace ClassLibrary.Winform.UI.Forms
+﻿namespace CarManage.UI.Test
 {
-    partial class CustomTitleBarForm
+    partial class Form6
     {
         /// <summary>
         /// Required designer variable.
@@ -30,17 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // CustomTitleBarForm
+            // Form6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.ControlBox = false;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "CustomTitleBarForm";
-            this.Text = "CustomTitleBarForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CustomTitleBarForm_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CustomTitleBarForm_FormClosed);
+            this.Name = "Form6";
+            this.Text = "Form6";
             this.ResumeLayout(false);
 
         }

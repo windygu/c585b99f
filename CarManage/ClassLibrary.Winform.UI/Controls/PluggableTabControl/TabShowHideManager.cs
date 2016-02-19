@@ -162,12 +162,12 @@ namespace ClassLibrary.Winform.UI.Controls.PluggableTabControl
 
         private System.Windows.Forms.CheckedListBox tabList;
         private System.Windows.Forms.Button btnApply;
-        private Panel panel1;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private Button button1;
         private System.Windows.Forms.Label label3;
-        private Panel panel2;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnCancel;
 
         #region Constructor
