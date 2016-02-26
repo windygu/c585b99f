@@ -39,12 +39,30 @@ namespace ClassLibrary.Winform.UI.Controls
             }
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            if (!DesignMode)
+            {
+                CustomLoad();
+            }
+        }
+
         /// <summary>
         /// 窗体成员实例化方法，成员对象的实例化需要在此方法的重载中完成
         /// </summary>
         protected virtual void Init()
         {
 
+        }
+
+        /// <summary>
+        /// 控件加载方法
+        /// </summary>
+        protected virtual void CustomLoad()
+        { 
+            
         }
     }
 }

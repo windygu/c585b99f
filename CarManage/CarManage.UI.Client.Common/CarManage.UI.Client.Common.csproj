@@ -143,6 +143,10 @@
       <Project>{66c3441b-c664-4112-9ef4-cc4f6f5a44cd}</Project>
       <Name>CarManage.Resources.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CarManage.UI.Generic\CarManage.UI.Generic.csproj">
+      <Project>{c1e1b515-2554-4f54-9fe1-bf5b6845b7ba}</Project>
+      <Name>CarManage.UI.Generic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassLibrary.Winform.UI\ClassLibrary.Winform.UI.csproj">
       <Project>{5170771b-3195-4ee5-9990-a57c41a8c1c2}</Project>
       <Name>ClassLibrary.Winform.UI</Name>

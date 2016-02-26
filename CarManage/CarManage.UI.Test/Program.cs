@@ -18,7 +18,7 @@ namespace CarManage.UI.Test
 
             ClassLibrary.Configuration.ConfigurationManager.Instance.Init();
 
-            Application.Run(new CarManage.UI.Generic.Forms.CustomTitleBarBaseForm());
+            Application.Run(new CarManage.UI.Client.Common.MainForm());
         }
     }
 }

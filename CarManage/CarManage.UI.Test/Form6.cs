@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CarManage.UI.Test
 {
-    public partial class Form6 : ClassLibrary.Winform.UI.Forms.CustomTitleBarForm
+    public partial class Form6 : CarManage.UI.Generic.Forms.CustomTitleBarBaseForm
     {
         public Form6()
         {

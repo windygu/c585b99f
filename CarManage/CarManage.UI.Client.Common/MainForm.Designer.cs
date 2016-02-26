@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.pnlBottom = new System.Windows.Forms.Panel();
-            this.pnlMain = new System.Windows.Forms.Panel();
             this.tcMain = new ClassLibrary.Winform.UI.Controls.PluggableTabControl.NeoTabWindow();
             this.tpTask = new ClassLibrary.Winform.UI.Controls.PluggableTabControl.NeoTabPage();
             this.tpCustomer = new ClassLibrary.Winform.UI.Controls.PluggableTabControl.NeoTabPage();
@@ -38,7 +37,6 @@
             this.tpDistribute = new ClassLibrary.Winform.UI.Controls.PluggableTabControl.NeoTabPage();
             this.tpStatistics = new ClassLibrary.Winform.UI.Controls.PluggableTabControl.NeoTabPage();
             this.tpSettings = new ClassLibrary.Winform.UI.Controls.PluggableTabControl.NeoTabPage();
-            this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).BeginInit();
             this.tcMain.SuspendLayout();
             this.SuspendLayout();
@@ -52,16 +50,6 @@
             this.pnlBottom.Size = new System.Drawing.Size(1243, 43);
             this.pnlBottom.TabIndex = 0;
             // 
-            // pnlMain
-            // 
-            this.pnlMain.Controls.Add(this.tcMain);
-            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 0);
-            this.pnlMain.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1243, 703);
-            this.pnlMain.TabIndex = 0;
-            // 
             // tcMain
             // 
             this.tcMain.Controls.Add(this.tpTask);
@@ -74,14 +62,14 @@
             this.tcMain.DefaultTabPageBorderStyle.Color = System.Drawing.SystemColors.ActiveBorder;
             this.tcMain.DefaultTabPageBorderStyle.Width = 1;
             this.tcMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcMain.Location = new System.Drawing.Point(0, 0);
+            this.tcMain.Location = new System.Drawing.Point(0, 20);
             this.tcMain.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.tcMain.Name = "tcMain";
             this.tcMain.RendererName = null;
             this.tcMain.SelectedIndex = 6;
-            this.tcMain.Size = new System.Drawing.Size(1243, 703);
+            this.tcMain.Size = new System.Drawing.Size(1243, 683);
             this.tcMain.TabContentSpacing = 1;
-            this.tcMain.TabIndex = 1;
+            this.tcMain.TabIndex = 2;
             this.tcMain.TabItemActiveBackColor = System.Drawing.Color.Empty;
             this.tcMain.TabItemActiveBorderStyle.Color = System.Drawing.SystemColors.ActiveBorder;
             this.tcMain.TabItemActiveBorderStyle.Width = 1;
@@ -200,14 +188,17 @@
             // 
             // MainForm
             // 
+            this.AllowMaxSize = true;
+            this.AllowMinSize = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1243, 746);
-            this.Controls.Add(this.pnlMain);
+            this.Controls.Add(this.tcMain);
             this.Controls.Add(this.pnlBottom);
             this.Name = "MainForm";
             this.Text = "MainForm";
-            this.pnlMain.ResumeLayout(false);
+            this.Controls.SetChildIndex(this.pnlBottom, 0);
+            this.Controls.SetChildIndex(this.tcMain, 0);
             ((System.ComponentModel.ISupportInitialize)(this.tcMain)).EndInit();
             this.tcMain.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -217,7 +208,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlBottom;
-        private System.Windows.Forms.Panel pnlMain;
         private ClassLibrary.Winform.UI.Controls.PluggableTabControl.NeoTabWindow tcMain;
         private ClassLibrary.Winform.UI.Controls.PluggableTabControl.NeoTabPage tpTask;
         private ClassLibrary.Winform.UI.Controls.PluggableTabControl.NeoTabPage tpCustomer;

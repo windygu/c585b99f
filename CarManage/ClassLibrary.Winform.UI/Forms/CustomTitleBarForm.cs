@@ -175,7 +175,7 @@ namespace ClassLibrary.Winform.UI.Forms
 
             InitializeComponent();
 
-            AllowMaxSize = AllowMinSize = false;
+            //AllowMaxSize = AllowMinSize = false;
         }
 
         /// <summary>

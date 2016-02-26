@@ -22,6 +22,7 @@ namespace CarManage.UI.Client.Common.Task
         public CustomerList()
         {
             InitializeComponent();
+
             InitControl();
         }
 
@@ -67,14 +68,28 @@ namespace CarManage.UI.Client.Common.Task
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            CustomerQueryInfo queryInfo = new CustomerQueryInfo();
-            queryInfo.Number = CommonUtil.FilterInput(txtNumber.Text.Trim());
-            queryInfo.Owner = CommonUtil.FilterInput(txtOwner.Text.Trim());
-            queryInfo.Mobile = CommonUtil.FilterInput(txtMobile.Text.Trim());
+            
 
-            List<CustomerListInfo> list = customer.Search(queryInfo);
-            dgvList.DataSource = list;
+        }
 
+        private void Search()
+        {
+            try
+            {
+                CustomerQueryInfo queryInfo = new CustomerQueryInfo();
+                queryInfo.Number = CommonUtil.FilterInput(txtNumber.Text);
+                queryInfo.Owner = CommonUtil.FilterInput(txtOwner.Text);
+                queryInfo.Mobile = CommonUtil.FilterInput(txtMobile.Text);
+
+                List<CustomerListInfo> customerList = customer.Search(queryInfo);
+
+                
+                dgvList.DataSource = customerList;
+            }
+            catch (Exception ex)
+            {
+                UserInterfaceExceptionHandler.HandlerException("查询客户信息失败！", ref ex);
+            }
         }
 
         private void btnNew_Click(object sender, EventArgs e)

@@ -172,11 +172,11 @@
             this.btnSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearch.BackgroundImage")));
             this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSearch.ButtonLevel = ClassLibrary.Winform.UI.Controls.ButtonLevel.Third;
-            this.btnSearch.ButtonType = ClassLibrary.Winform.UI.Controls.ButtonType.Primary;
+            this.btnSearch.ButtonType = ClassLibrary.Winform.UI.Controls.ButtonType.Secondary;
             this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(90)))), ((int)(((byte)(22)))));
+            this.btnSearch.ForeColor = System.Drawing.Color.Black;
             this.btnSearch.Location = new System.Drawing.Point(633, 6);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(15, 3, 3, 3);
             this.btnSearch.Name = "btnSearch";
@@ -192,11 +192,11 @@
             this.btnNew.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNew.BackgroundImage")));
             this.btnNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNew.ButtonLevel = ClassLibrary.Winform.UI.Controls.ButtonLevel.Third;
-            this.btnNew.ButtonType = ClassLibrary.Winform.UI.Controls.ButtonType.Primary;
+            this.btnNew.ButtonType = ClassLibrary.Winform.UI.Controls.ButtonType.Secondary;
             this.btnNew.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNew.FlatAppearance.BorderSize = 0;
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNew.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(90)))), ((int)(((byte)(22)))));
+            this.btnNew.ForeColor = System.Drawing.Color.Black;
             this.btnNew.Location = new System.Drawing.Point(710, 6);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(60, 21);

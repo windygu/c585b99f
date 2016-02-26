@@ -51,12 +51,13 @@
             this.pnlCustomTitleBar.Name = "pnlCustomTitleBar";
             this.pnlCustomTitleBar.Size = new System.Drawing.Size(284, 20);
             this.pnlCustomTitleBar.TabIndex = 0;
+            this.pnlCustomTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlCustomTitleBar_MouseDown);
             // 
             // pbxMin
             // 
             this.pbxMin.ClickImage = null;
             this.pbxMin.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pbxMin.EnableEffect = false;
+            this.pbxMin.EnableEffect = true;
             this.pbxMin.HoverImage = null;
             this.pbxMin.Location = new System.Drawing.Point(224, 0);
             this.pbxMin.Name = "pbxMin";
@@ -70,7 +71,7 @@
             // 
             this.pbxMax.ClickImage = null;
             this.pbxMax.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pbxMax.EnableEffect = false;
+            this.pbxMax.EnableEffect = true;
             this.pbxMax.HoverImage = null;
             this.pbxMax.Location = new System.Drawing.Point(244, 0);
             this.pbxMax.Name = "pbxMax";
@@ -84,7 +85,7 @@
             // 
             this.pbxClose.ClickImage = null;
             this.pbxClose.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pbxClose.EnableEffect = false;
+            this.pbxClose.EnableEffect = true;
             this.pbxClose.HoverImage = null;
             this.pbxClose.Location = new System.Drawing.Point(264, 0);
             this.pbxClose.Name = "pbxClose";

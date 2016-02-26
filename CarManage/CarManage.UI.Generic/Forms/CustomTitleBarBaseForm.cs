@@ -16,7 +16,6 @@ namespace CarManage.UI.Generic.Forms
             }
             set
             {
-                base.AllowMinSize = value;
                 pbxMin.Visible = value;
             }
         }
@@ -29,7 +28,6 @@ namespace CarManage.UI.Generic.Forms
             }
             set
             {
-                base.AllowMaxSize = value;
                 pbxMax.Visible = value;
             }
         }
@@ -39,6 +37,8 @@ namespace CarManage.UI.Generic.Forms
             InitializeComponent();
 
             InitControl();
+
+            AllowMinSize = AllowMaxSize = true;
         }
 
         private void InitControl()
@@ -102,6 +102,11 @@ namespace CarManage.UI.Generic.Forms
         private void pbxClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void pnlCustomTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            base.MoveForm();
         }
     }
 }
