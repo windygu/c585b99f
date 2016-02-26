@@ -119,7 +119,14 @@ namespace CarManage.UI.Client.Common.Customer
         {
             List<InsuranceInfo> insuranceList = insurance.GetMaintenances(CarId);
 
-            dgvInsurance.DataSource = insuranceList;
+            if (insuranceList.Count.Equals(0))
+            {
+                dgvInsurance.DataSource = null;
+            }
+            else
+            {
+                dgvInsurance.DataSource = insuranceList;
+            }
         }
 
         public void BindMaintenanceDetail()
